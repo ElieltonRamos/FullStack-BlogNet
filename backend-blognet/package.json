@@ -1,0 +1,34 @@
+{
+  "name": "backend-blognet",
+  "version": "1.0.0",
+  "description": "backend of the full stack blognet project",
+  "main": "src/build/server.js",
+  "scripts": {
+    "test": "test",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "lint": "eslint ./src --ext .ts"
+  },
+  "keywords": [
+    "backend",
+    "express"
+  ],
+  "author": "elielton",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.2.0",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint": "^8.57.0",
+    "eslint-config-trybe-backend": "^2.1.0",
+    "eslint-plugin-sonarjs": "^1.0.3",
+    "globals": "^15.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0"
+  }
+}
