@@ -1,5 +1,8 @@
 {
   "conventionalCommits.scopes": [
-    "front-end"
-  ]
+    "front-end",
+    "back-end",
+    "docker"
+  ],
+  "editor.tabSize": 2
 }
