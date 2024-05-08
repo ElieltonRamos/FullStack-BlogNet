@@ -1,5 +1,5 @@
 export type StatusHTTP = 'ok' | 'created' | 'noContent' | 'serverError' | 'unprocessableEntity'
-| 'badRequest' | 'unauthorized' | 'notFound';
+| 'badRequest' | 'unauthorized' | 'notFound' | 'confict';
 
 function mapStatusHTTP(status: StatusHTTP): number {
   const statusHTTP = {
@@ -11,6 +11,7 @@ function mapStatusHTTP(status: StatusHTTP): number {
     serverError: 500,
     unauthorized: 401,
     notFound: 404,
+    confict: 409,
   };
   return statusHTTP[status] ?? 500;
 }

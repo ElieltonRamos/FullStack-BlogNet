@@ -1,4 +1,5 @@
 import ServiceResponse from '../interfaces/serviceResponse';
+import { Token } from '../interfaces/user';
 import AbstractModel from '../models/abstractModel';
 
 abstract class AbstractService<Entity> {
@@ -6,7 +7,7 @@ abstract class AbstractService<Entity> {
     protected model: AbstractModel<Entity>
   ) { }
 
-  async create(data: Entity): Promise<ServiceResponse<Entity>> {
+  async create(data: Entity): Promise<ServiceResponse<Entity | Token >> {
     const newEntity = await this.model.create(data);
     return { status: 'created', data: newEntity };
   }

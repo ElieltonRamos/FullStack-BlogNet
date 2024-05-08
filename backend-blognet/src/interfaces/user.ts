@@ -2,10 +2,10 @@ import ModelDatabase from './modelDatabase';
 
 export type IUserModel = ModelDatabase<User>;
 
+export interface Token { token: string }
+
 interface User {
   readonly id: number;
-  username: string;
-  role: string;
   email: string;
   password: string;
 }
