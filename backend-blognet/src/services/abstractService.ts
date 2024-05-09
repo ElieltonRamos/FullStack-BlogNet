@@ -1,10 +1,10 @@
+import modelDatabase from '../interfaces/modelDatabase';
 import ServiceResponse from '../interfaces/serviceResponse';
 import { Token } from '../interfaces/user';
-import AbstractModel from '../models/abstractModel';
 
 abstract class AbstractService<Entity> {
   constructor(
-    protected model: AbstractModel<Entity>
+    protected model: modelDatabase<Entity>
   ) { }
 
   async create(data: Entity): Promise<ServiceResponse<Entity | Token >> {
@@ -12,13 +12,13 @@ abstract class AbstractService<Entity> {
     return { status: 'created', data: newEntity };
   }
 
-  async listAll(): Promise<ServiceResponse<Entity[]>> {
-    const allEntities = await this.model.listAll();
+  async listAll(_userId: number): Promise<ServiceResponse<Entity[]>> {
+    const allEntities = await this.model.findAll();
     return { status: 'ok', data: allEntities };
   }
 
   async find(id: number): Promise<ServiceResponse<Entity | null>> {
-    const allEntities = await this.model.find(id);
+    const allEntities = await this.model.findById(id);
     return { status: 'ok', data: allEntities };
   }
 

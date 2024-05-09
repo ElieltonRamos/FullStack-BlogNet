@@ -1,13 +1,13 @@
+import modelDatabase from '../interfaces/modelDatabase';
 import ServiceResponse from '../interfaces/serviceResponse';
 import User, { Token } from '../interfaces/user';
-import AbstractModel from '../models/abstractModel';
 import JsonWebToken, { Payload } from '../utils/jsonWebToken';
 import { compareSync } from 'bcryptjs';
 
 class ServiceLogin {
 
   constructor(
-    protected model: AbstractModel<User>,
+    protected model: modelDatabase<User>,
   ) { }
 
   async validateLogin(email: string, password: string): Promise<string | User> {
@@ -30,7 +30,7 @@ class ServiceLogin {
     }
 
     const payload: Payload = {
-      id: validUser.id,
+      id: validUser.id as number,
       email: validUser.email,
     };
 

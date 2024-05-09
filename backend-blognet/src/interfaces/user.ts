@@ -5,7 +5,7 @@ export type IUserModel = ModelDatabase<User>;
 export interface Token { token: string }
 
 interface User {
-  readonly id: number;
+  id?: number;
   email: string;
   password: string;
 }

@@ -11,12 +11,12 @@ abstract class AbstractModel<entity> {
     return newEntity;
   }
 
-  async listAll(): Promise<entity[]> {
-    const data = await this.model.findAll();
+  async findAll(userId: number): Promise<entity[]> {
+    const data = await this.model.findAll(userId);
     return data;
   }
 
-  async find(id: number): Promise<entity | null> {
+  async findById(id: number): Promise<entity | null> {
     const data = await this.model.findById(id);
     return data;
   }
