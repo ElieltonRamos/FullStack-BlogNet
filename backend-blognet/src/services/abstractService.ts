@@ -22,9 +22,10 @@ abstract class AbstractService<Entity> {
     return { status: 'ok', data: allEntities };
   }
 
-  async update(id: number, data: Entity): Promise<ServiceResponse<number>> {
+  async update(id: number, data: Entity): Promise<ServiceResponse<Entity>> {
     const affectedRows = await this.model.update(id, data);
-    return { status: 'noContent', data: affectedRows };
+    if (affectedRows === 0) return { status: 'serverError', data: { message: 'internal error' } };
+    return { status: 'noContent', data };
   }
 
   async delete(id: number): Promise<ServiceResponse<number>> {

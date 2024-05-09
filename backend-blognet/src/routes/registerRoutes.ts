@@ -3,9 +3,8 @@ import ConstrollerRegister from '../controllers/constrollerRegister';
 import ServiceRegister from '../services/serviceRegister';
 import RegisterUserModel from '../models/modelRegister';
 import validateUser from '../middlewares/validateUser';
-import { memoryDatabase } from './loginRoutes';
 
-const modelregisterUser = new RegisterUserModel(memoryDatabase);
+const modelregisterUser = new RegisterUserModel();
 const serviceRegister = new ServiceRegister(modelregisterUser);
 const constrollerRegister = new ConstrollerRegister(serviceRegister);
 

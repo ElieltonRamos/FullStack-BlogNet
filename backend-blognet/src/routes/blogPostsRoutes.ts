@@ -3,11 +3,9 @@ import AuthenticateToken from '../middlewares/authenticateToken';
 import ControllerBlogPost from '../controllers/controllerBlogPost';
 import BlogPostService from '../services/serviceBlogPost';
 import BlogPostModel from '../models/modelBlogPost';
-import MemoryDatabase from '../database/memoryDatabase';
-import BlogPost from '../interfaces/blogPost';
 
-const modelDatabase = new MemoryDatabase<BlogPost>();
-const modelBlogPosts = new BlogPostModel(modelDatabase);
+// const memoryModelDatabase = new MemoryDatabase<BlogPost>();
+const modelBlogPosts = new BlogPostModel();
 const serviceBlogPosts = new BlogPostService(modelBlogPosts);
 const controlllerBlogPosts = new ControllerBlogPost(serviceBlogPosts);
 
