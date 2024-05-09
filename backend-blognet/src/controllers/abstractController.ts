@@ -21,7 +21,8 @@ abstract class AbstractController<entity> {
 
   async listAll(req: Request, res: Response): Promise<Response> {
     try {
-      const { status, data } = await this.service.listAll();
+      const { user } = req.body;
+      const { status, data } = await this.service.listAll(user.userId);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
       return res.status(500).send({ message: this.messageError });
