@@ -12,8 +12,8 @@ abstract class AbstractService<Entity> {
     return { status: 'created', data: newEntity };
   }
 
-  async listAll(_userId: number): Promise<ServiceResponse<Entity[]>> {
-    const allEntities = await this.model.findAll();
+  async listAll(userId: number): Promise<ServiceResponse<Entity[]>> {
+    const allEntities = await this.model.findAll(userId);
     return { status: 'ok', data: allEntities };
   }
 
