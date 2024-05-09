@@ -6,35 +6,41 @@ type Identified<T> = T & {
 
 class MemoryDatabase<Entity> implements modelDatabase<Entity> {
   protected memory: Identified<Entity>[] = [];
-  protected idCounter = 0;
+  protected idCounter = 1;
 
   async create(data: Entity) {
-    const newUser = { ...data, id: this.idCounter };
+    const newEntity = { ...data, id: this.idCounter };
     this.idCounter += 1;
-    this.memory.push(newUser);
-    return Promise.resolve(newUser);
+    this.memory.push(newEntity);
+    return Promise.resolve(newEntity);
   }
 
   async findAll() {
-    const allUsers = [...this.memory];
-    return Promise.resolve(allUsers);
+    const allEntities = [...this.memory];
+    return Promise.resolve(allEntities);
   }
 
   async findById(id: number) {
-    const user = this.memory.find((item) => item.id === id);
-    if (!user) return Promise.resolve(null);
-    return Promise.resolve(user);
+    const entity = this.memory.find((item) => item.id === id);
+    if (!entity) return Promise.resolve(null);
+    return Promise.resolve(entity);
+  }
+
+  async findOne(field: string, value: string): Promise<Entity | null> {
+    const entity = this.memory.find((item) => item[field as keyof Entity] === value);
+    if (!entity) return Promise.resolve(null);
+    return Promise.resolve(entity);
   }
 
   async update(id: number, data: Entity): Promise<number> {
-    const userIndex = this.memory.findIndex((item) => item.id === id);
-    this.memory[userIndex] = { ...data, id };
+    const entityIndex = this.memory.findIndex((item) => item.id === id);
+    this.memory[entityIndex] = { ...data, id };
     return Promise.resolve(1);
   }
 
   async delete(id: number): Promise<number> {
-    const userIndex = this.memory.findIndex((item) => item.id === id);
-    this.memory.splice(userIndex, 1);
+    const entityIndex = this.memory.findIndex((item) => item.id === id);
+    this.memory.splice(entityIndex, 1);
     return Promise.resolve(1);
   }
 

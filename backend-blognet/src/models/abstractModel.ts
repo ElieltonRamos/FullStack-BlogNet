@@ -21,6 +21,11 @@ abstract class AbstractModel<entity> {
     return data;
   }
 
+  async findOne(field: string, value: string): Promise<entity | null> {
+    const data = await this.model.findOne(field, value);
+    return data;
+  }
+
   async update(id: number, data: entity): Promise<number> {
     const affectedRows = await this.model.update(id, data);
     return affectedRows;

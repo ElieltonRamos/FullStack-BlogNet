@@ -3,23 +3,20 @@ import User from '../interfaces/user';
 import JsonWebToken from '../utils/jsonWebToken';
 import AbstractService from './abstractService';
 import { Token } from '../interfaces/user';
+import { hashSync } from 'bcryptjs';
 
 class ServiceRegister extends AbstractService<User> {
   override async create(user: User): Promise<ServiceResponse<Token>> {
     const { email, password } = user;
 
-    if (!email || !password) {
-      return { status: 'badRequest', data: { message: 'Email and password are required' } };
-    }
-
-    const allUsers = await this.model.listAll();
-    const userExists = allUsers.find((user) => user.email === email);
+    const userExists = await this.model.findOne('email', email);
 
     if (userExists) {
       return { status: 'confict', data: { message: 'Email already registered' } };
     }
 
-    const newUser = await this.model.create(user);
+    const passwordHash = hashSync(password);
+    const newUser = await this.model.create({ ...user, password: passwordHash });
 
     const token = JsonWebToken.generateToken({ id: newUser.id, email: newUser.email });
     return { status: 'ok', data: { token } };
