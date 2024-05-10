@@ -41,11 +41,13 @@ class BlogPostService extends AbstractService<BlogPost> {
     const post = await this.validateOwner(id, data.userId);
 
     if ('status' in post) return post;
+    const newContent = data.content || post.content;
+    const newTitle = data.title || post.title;
 
     const updatedPost = {
       id: post.id,
-      title: data.title,
-      content: data.content,
+      title: newTitle,
+      content: newContent,
       userId: post.userId,
       created: post.created,
       updated: new Date()
