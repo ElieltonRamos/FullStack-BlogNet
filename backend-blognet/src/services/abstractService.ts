@@ -28,7 +28,7 @@ abstract class AbstractService<Entity> {
     return { status: 'noContent', data };
   }
 
-  async delete(id: number): Promise<ServiceResponse<number>> {
+  async delete(id: number, _userId: number): Promise<ServiceResponse<number | Entity>> {
     const affectedRows = await this.model.delete(id);
     return { status: 'noContent', data: affectedRows };
   }

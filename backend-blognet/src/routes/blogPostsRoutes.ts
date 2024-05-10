@@ -32,4 +32,10 @@ blogPostsRoutes.get(
   (req: Request, res: Response) => controlllerBlogPosts.find(req, res)
 );
 
+blogPostsRoutes.delete(
+  '/:id',
+  AuthenticateToken.verifyToken,
+  (req: Request, res: Response) => controlllerBlogPosts.delete(req, res)
+);
+
 export default blogPostsRoutes;

@@ -65,10 +65,19 @@ class BlogPostService extends AbstractService<BlogPost> {
     return { status: 'ok', data: allPostsByUser };
   }
 
-  async find(postId: number, userId: number): Promise<ServiceResponse<BlogPost | null>> {
+  async find(postId: number, userId: number): Promise<ServiceResponse<BlogPost>> {
     const post = await this.validateOwner(postId, userId);
     if ('status' in post) return post;
     return { status: 'ok', data: post };
+  }
+
+  async delete(postId: number, userId: number): Promise<ServiceResponse<BlogPost | number>> {
+    const post = await this.validateOwner(postId, userId);
+    if ('status' in post) return post;
+
+    const affectedRows = await this.blogPostModel.delete(postId);
+    if (affectedRows === 0) return { status: 'serverError', data: { message: 'internal error' } };
+    return { status: 'noContent', data: affectedRows };
   }
 
 }

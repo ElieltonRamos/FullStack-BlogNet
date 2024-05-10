@@ -55,7 +55,8 @@ abstract class AbstractController<entity> {
   async delete(req: Request, res: Response): Promise<Response> {
     try {
       const id = Number(req.params.id);
-      const { status, data } = await this.service.delete(id);
+      const { user } = req.body;
+      const { status, data } = await this.service.delete(id, user.id);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
       return res.status(500).send({ message: this.messageError });
