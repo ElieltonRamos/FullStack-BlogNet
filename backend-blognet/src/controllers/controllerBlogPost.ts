@@ -11,18 +11,26 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
   }
 
   async create(req: Request, res: Response): Promise<Response> {
-    const { title, content, user } = req.body;
-    const postInfo = { title, content, userId: user.id };
-    const { status, data } = await this.blogPostService.create(postInfo);
-    return res.status(mapStatusHTTP(status)).send(data);
+    try {
+      const { title, content, user } = req.body;
+      const postInfo = { title, content, userId: user.id };
+      const { status, data } = await this.blogPostService.create(postInfo);
+      return res.status(mapStatusHTTP(status)).send(data);
+    } catch (error) {
+      return res.status(500).send({ message: this.messageError });
+    }
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const { title, content, user } = req.body;
-    const postInfo = { title, content, userId: user.id };
-    const { status, data } = await this.blogPostService.update(Number(id), postInfo);
-    return res.status(mapStatusHTTP(status)).send(data);
+    try {
+      const { id } = req.params;
+      const { title, content, user } = req.body;
+      const postInfo = { title, content, userId: user.id };
+      const { status, data } = await this.blogPostService.update(Number(id), postInfo);
+      return res.status(mapStatusHTTP(status)).send(data);
+    } catch (error) {
+      return res.status(500).send({ message: this.messageError });
+    }
   }
 
 }

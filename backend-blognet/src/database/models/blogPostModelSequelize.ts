@@ -45,7 +45,7 @@ BlogPostModelSequelize.init({
   },
 }, {
   sequelize: db,
-  modelName: 'users',
+  modelName: 'blog_posts',
   timestamps: false,
 })
 
