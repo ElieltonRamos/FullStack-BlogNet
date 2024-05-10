@@ -17,9 +17,9 @@ abstract class AbstractService<Entity> {
     return { status: 'ok', data: allEntities };
   }
 
-  async find(id: number): Promise<ServiceResponse<Entity | null>> {
-    const allEntities = await this.model.findById(id);
-    return { status: 'ok', data: allEntities };
+  async find(postId: number, _userId: number): Promise<ServiceResponse<Entity | null>> {
+    const entity = await this.model.findById(postId);
+    return { status: 'ok', data: entity };
   }
 
   async update(id: number, data: Entity): Promise<ServiceResponse<Entity>> {

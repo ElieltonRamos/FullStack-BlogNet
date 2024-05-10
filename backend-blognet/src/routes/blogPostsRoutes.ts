@@ -26,4 +26,10 @@ blogPostsRoutes.patch(
   AuthenticateToken.verifyToken,
   (req: Request, res: Response) => controlllerBlogPosts.update(req, res));
 
+blogPostsRoutes.get(
+  '/:id',
+  AuthenticateToken.verifyToken,
+  (req: Request, res: Response) => controlllerBlogPosts.find(req, res)
+);
+
 export default blogPostsRoutes;
