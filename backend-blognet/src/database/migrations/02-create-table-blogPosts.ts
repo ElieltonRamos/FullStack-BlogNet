@@ -21,7 +21,6 @@ export default {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
       },
       created: {
         type: DataTypes.DATE,
