@@ -26,7 +26,7 @@ class ServiceRegister extends AbstractService<User> {
     if (!newUser.id) return { status: 'serverError', data: { message: 'Error creating user' } };
 
     const token = JsonWebToken.generateToken({ id: newUser.id, email: newUser.email });
-    return { status: 'ok', data: { token } };
+    return { status: 'created', data: { token } };
   }
 }
 

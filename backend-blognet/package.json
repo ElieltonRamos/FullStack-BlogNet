@@ -5,6 +5,7 @@
   "main": "src/build/server.js",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "predev": "npm run db:reset",
     "build": "tsc --project tsconfig.json",

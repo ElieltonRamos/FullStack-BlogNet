@@ -5,16 +5,17 @@ const config: Config = {
   testEnvironment: 'node',
   rootDir: '.',
   testRegex: './*\\.test\\.ts$',
-  collectCoverage: true,
   coverageProvider: 'v8',
+  coverageReporters:['json-summary', 'text'],
   collectCoverageFrom: [
     'src/**/*',
     '!**/node_modules/**',
     '!src/interfaces/**',
-    '!src/index.ts',
-    '!src/models/model.ts',
+    '!src/server.ts',
+    '!src/models/**',
+    '!src/database/**',
   ],
-  coverageDirectory: 'tests/coverage',
+  coverageDirectory: './coverage',
   coverageThreshold: {
     global: {
       functions: 60,
