@@ -27,7 +27,7 @@ class BlogPostService extends AbstractService<BlogPost> {
     if (!title || !content || !userId) {
       return {
         status: 'unprocessableEntity',
-        data: { message: 'necessary to inform content and title and userId' }
+        data: { message: 'necessary to inform content and title' }
       };
     }
 
