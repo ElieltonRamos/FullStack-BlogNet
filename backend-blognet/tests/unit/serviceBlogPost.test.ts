@@ -2,7 +2,7 @@ import MemoryDatabase from "../../src/database/memoryDatabase";
 import BlogPost from "../../src/interfaces/blogPost";
 import ServiceBlogPost from '../../src/services/serviceBlogPost';
 
-describe('tests service login', () => {
+describe('tests service blogPost', () => {
   let memoryModel: MemoryDatabase<BlogPost>
   let serviceBlogPost: ServiceBlogPost
 
