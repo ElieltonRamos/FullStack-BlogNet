@@ -28,9 +28,10 @@ abstract class AbstractService<Entity> {
     return { status: 'noContent', data };
   }
 
-  async delete(id: number, _userId: number): Promise<ServiceResponse<number | Entity>> {
+  async delete(id: number, _userId: number): Promise<ServiceResponse<string | Entity>> {
     const affectedRows = await this.model.delete(id);
-    return { status: 'noContent', data: affectedRows };
+    if (affectedRows === 0) return { status: 'serverError', data: { message: 'internal error' } };
+    return { status: 'noContent', data: 'deleted' };
   }
 }
 
