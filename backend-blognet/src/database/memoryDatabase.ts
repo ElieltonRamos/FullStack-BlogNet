@@ -5,7 +5,7 @@ type Identified<T> = T & {
 };
 
 class MemoryDatabase<Entity> implements modelDatabase<Entity> {
-  protected memory: Identified<Entity>[] = [];
+  public memory: Identified<Entity>[] = [];
   protected idCounter = 1;
 
   async create(data: Entity) {
