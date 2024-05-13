@@ -105,7 +105,7 @@ describe('tests service blogPost', () => {
     const created = new Date();
     const updated = new Date();
     const blogPost = { id, title: 'Title', content: 'Content', userId, created, updated};
-    await memoryModel.memory.push(blogPost);
+    memoryModel.memory.push(blogPost);
     const { status, data } = await serviceBlogPost.find(1, 1);
     expect(status).toBe('ok');
     expect(data).toEqual(blogPost);
