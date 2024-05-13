@@ -2,6 +2,7 @@ import modelDatabase from '../interfaces/modelDatabase';
 
 type Identified<T> = T & {
   id: number;
+  userId?: number;
 };
 
 class MemoryDatabase<Entity> implements modelDatabase<Entity> {
@@ -15,8 +16,8 @@ class MemoryDatabase<Entity> implements modelDatabase<Entity> {
     return Promise.resolve(newEntity);
   }
 
-  async findAll() {
-    const allEntities = [...this.memory];
+  async findAll(userId: number) {
+    const allEntities = this.memory.filter((item) => item.userId === userId);
     return Promise.resolve(allEntities);
   }
 
