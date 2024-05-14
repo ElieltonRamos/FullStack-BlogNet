@@ -22,7 +22,6 @@ class ServiceRegister extends AbstractService<User> {
 
     const passwordHash = hashSync(password);
     const newUser = await this.model.create({ ...user, password: passwordHash });
-    console.log(newUser, 'serviceRegister');
 
     if (!newUser.id) return { status: 'serverError', data: { message: 'Error creating user' } };
 

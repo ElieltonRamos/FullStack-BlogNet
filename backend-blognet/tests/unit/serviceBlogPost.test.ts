@@ -119,4 +119,13 @@ describe('tests service blogPost', () => {
     expect(data).toEqual({ message: 'post deleted' });
   });
 
+  it('verify that the user is the owner of the post', async () => {
+    const blogPost = { title: 'Title', content: 'Content', userId: 2 };
+    await serviceBlogPost.create(blogPost);
+    const response = await serviceBlogPost.validateOwner(1, 1);
+    if ('status' in response) {
+      expect(response).toEqual({ status: 'unauthorized', data: { message: 'user not authorized to update this post' }});
+    }
+  });
+
 });

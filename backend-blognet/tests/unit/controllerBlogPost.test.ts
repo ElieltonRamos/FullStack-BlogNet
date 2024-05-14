@@ -31,6 +31,26 @@ describe('tests controller Login', () => {
     expect(res.send).toHaveBeenCalledWith(mockPosts[0]);
   });
 
+  it('should return 500 when an error occurs', async () => {
+    req.body = { title: 'Hello World', content: 'This is my first blog post!', user: { id: 1} };
+    serviceBlogPost.create = jest.fn().mockImplementation(() => { throw new Error('Error') });
+    await controllerBlogPost.create(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith({ message: 'Server Error' });
+
+    await controllerBlogPost.update(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith({ message: 'Server Error' });
+
+    await controllerBlogPost.listAll(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith({ message: 'Server Error' });
+
+    await controllerBlogPost.delete(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith({ message: 'Server Error' });
+  });
+
   it('check if it is possible to update a post', async () => {
     req.body = { title: 'Hello World', content: 'This is my first blog post!', user: { id: 1} };
     req.params = { id: '1' };

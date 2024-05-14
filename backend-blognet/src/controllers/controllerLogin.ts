@@ -13,7 +13,7 @@ class ControllerLogin {
       const { status, data } = await this.serviceLogin.login(email, password);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (erro) {
-      return res.status(mapStatusHTTP('serverError')).send('Internal Server Error');
+      return res.status(mapStatusHTTP('serverError')).send({ message: 'Server Error' });
     }
   }
 

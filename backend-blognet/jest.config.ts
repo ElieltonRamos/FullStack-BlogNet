@@ -6,10 +6,11 @@ const config: Config = {
   rootDir: '.',
   testRegex: './*\\.test\\.ts$',
   coverageProvider: 'v8',
-  coverageReporters:['json-summary', 'text'],
+  coverageReporters: ['json-summary', 'text'],
   collectCoverageFrom: [
     'src/**/*',
     '!**/node_modules/**',
+    '!**/abstract*.ts',
     '!src/interfaces/**',
     '!src/server.ts',
     '!src/models/**',
