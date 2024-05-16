@@ -12,12 +12,12 @@ class ServiceLogin {
 
   async validateLogin(email: string, password: string): Promise<string | User> {
     const user = await this.model.findOne('email', email);
-    const error = 'Invalid email or password';
+    const error = 'email is not registered';
 
     if (!user) return error;
 
     const isValidPassword = compareSync(password, user.password);
-    if (!isValidPassword) error;
+    if (!isValidPassword) return 'Invalid email or password';
 
     return user;
   }
