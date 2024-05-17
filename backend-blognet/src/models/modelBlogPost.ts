@@ -10,8 +10,8 @@ class BlogPostModel implements modelDatabase<BlogPost> {
     return responseDB.dataValues;
   }
 
-  async findAll(userId: number): Promise<BlogPost[]> {
-    const responseDB = await this.model.findAll({ where: { userId } });
+  async findAll(): Promise<BlogPost[]> {
+    const responseDB = await this.model.findAll();
     const postsByUser = responseDB.map((item) => item.dataValues);
     return postsByUser;
   }
