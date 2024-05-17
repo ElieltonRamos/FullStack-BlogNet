@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
 import { UserLogin } from "../types/user";
 import Loading from "../components/LoadingSmall";
+import { GlobalContext } from "../context/globalContext";
 
 function Login() {
+  const { setToken } = useContext(GlobalContext);
   const [form, setForm] = useState<UserLogin>({ email: '', password: '' });
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,6 +27,7 @@ function Login() {
     if (typeof response === 'string') return setErrorMsg('Erro de rede');
     if ('message' in response.data) return setErrorMsg(response.data.message);
     localStorage.setItem('token', response.data.token);
+    setToken(response.data.token);
     setErrorMsg('');
   }
 
