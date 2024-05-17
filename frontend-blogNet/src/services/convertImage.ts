@@ -1,21 +1,28 @@
-import * as fs from 'fs/promises';
+export const convertImageToBase64 = (imageFile: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    let imagebase64 = '';
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const image = new Image();
+        if (typeof event.target?.result !== 'string') return reject(new Error('Invalid result'));
+        image.src = event.target.result as string;
 
-export async function imageToBase64(filePath: string) {
-  try {
-    const data = await fs.readFile(filePath);
-    return data
-  } catch (err) {
-    console.log(err);
-    return 'error';
-  }
-}
-
-export async function base64ToImage(base64String: string, outputPath: string) {
-  try {
-    const base64Data = base64String.replace(/^data:image\/\w+;base64,/, '');
-    const buffer = Buffer.from(base64Data, 'base64');
-    await fs.writeFile(outputPath, buffer);
-  } catch (err) {
-    return 'error';
-  }
-}
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject(new Error('Canvas context is null'));
+        image.onload = function() {
+          canvas.width = image.width;
+          canvas.height = image.height;
+          ctx.drawImage(image, 0, 0);
+          const dataURL = canvas.toDataURL('image/jpeg', 0.5);
+          imagebase64 = dataURL;
+          resolve(imagebase64);
+        };
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      reject(new Error('No image file provided'));
+    }
+  });
+};

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { BlogPost } from "../types/blogPost";
 
 export type ContextType = {
@@ -18,11 +18,6 @@ export const GlobalContext = createContext({} as ContextType);
 export function GlobalStateProvider({ children }: ContextProviderProps) {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [token, setToken] = useState<string>("");
-
-  useEffect(() => {
-    const tokenStorage = localStorage.getItem("token");
-    if (tokenStorage) setToken(tokenStorage);
-  }, []);
 
   const state = {
     blogPosts,

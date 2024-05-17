@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
 import { UserLogin } from "../types/user";
@@ -11,6 +11,14 @@ function Login() {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const tokenStorage = localStorage.getItem("token");
+    if (tokenStorage) {
+      setToken(tokenStorage);
+      navigate('/home');
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({

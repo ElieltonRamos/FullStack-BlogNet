@@ -31,8 +31,8 @@ function Home() {
       </nav>
       <section className="h-full mt-44 flex">
         <h2 className="text-blue-600 text-xl bg-gray-200 w-96 font-bold mt-3 fixed top-11">Feeds and News</h2>
-        <CreatePost />
         <section className="">
+        <CreatePost />
           {loading ? <><LoadingMid /><LoadingMid /><LoadingMid /></> :
             blogPosts.map(blogPost => (<Post key={blogPost.id} blogPost={blogPost} />))}
         </section>
