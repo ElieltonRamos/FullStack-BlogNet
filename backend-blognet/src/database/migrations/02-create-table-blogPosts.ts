@@ -19,8 +19,12 @@ export default {
         allowNull: false,
       },
       userId: {
+        field: 'user_id',
         type: DataTypes.INTEGER,
-        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
       },
       created: {
         type: DataTypes.DATE,

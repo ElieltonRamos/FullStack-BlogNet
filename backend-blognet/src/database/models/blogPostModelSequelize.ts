@@ -6,6 +6,7 @@ import {
   CreationOptional,
 } from 'sequelize';
 import db from '.';
+import UserModelSequelize from './userModelSequelize';
 
 class BlogPostModelSequelize extends Model<InferAttributes<BlogPostModelSequelize>,
 InferCreationAttributes<BlogPostModelSequelize>> {
@@ -45,8 +46,12 @@ BlogPostModelSequelize.init({
   },
 }, {
   sequelize: db,
+  underscored: true,
   modelName: 'blog_posts',
   timestamps: false,
 })
+
+BlogPostModelSequelize.belongsTo(UserModelSequelize, { foreignKey: 'userId', as: 'user' });
+UserModelSequelize.hasMany(BlogPostModelSequelize, { foreignKey: 'userId', as: 'blogPosts' });
 
 export default BlogPostModelSequelize;

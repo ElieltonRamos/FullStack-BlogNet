@@ -1,3 +1,5 @@
+import User from './user';
+
 export type CleanBlogPost = Omit<BlogPost, 'created' | 'updated'>;
 
 interface BlogPost {
@@ -7,6 +9,7 @@ interface BlogPost {
     content: string;
     created: Date;
     updated: Date;
+    user?: User;
 }
 
 export default BlogPost;

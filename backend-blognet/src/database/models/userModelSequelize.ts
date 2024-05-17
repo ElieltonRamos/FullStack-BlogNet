@@ -10,8 +10,10 @@ import db from '.';
 class UsersModelSequelize extends Model<InferAttributes<UsersModelSequelize>,
 InferCreationAttributes<UsersModelSequelize>> {
   declare id: CreationOptional<number>;
+  declare name: string;
   declare email: string;
   declare password: string;
+  declare image: string;
 }
 
 UsersModelSequelize.init({
@@ -20,6 +22,10 @@ UsersModelSequelize.init({
     primaryKey: true,
     autoIncrement: true,
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -27,6 +33,9 @@ UsersModelSequelize.init({
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  image: {
+    type: DataTypes.STRING,
   },
 }, {
   sequelize: db,

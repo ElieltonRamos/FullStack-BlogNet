@@ -39,6 +39,7 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
       const { status, data } = await this.service.listAll(sorted as string);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }

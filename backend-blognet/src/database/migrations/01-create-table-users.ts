@@ -9,6 +9,10 @@ export default {
         autoIncrement: true,
         primaryKey: true,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -17,7 +21,10 @@ export default {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
     });
   },
 
