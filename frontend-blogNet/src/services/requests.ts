@@ -50,7 +50,6 @@ export const requestBlogPosts = async (token: string) => {
     };
     const request = await fetch(`${BASE_URL}/posts`, configFetch);
     const response = await request.json();
-    console.log(request.status, response);
     await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
