@@ -10,8 +10,8 @@ class RegisterUserModel implements modelDatabase<User> {
     return responseDB.dataValues;
   }
 
-  async findAll(userId: number): Promise<User[]> {
-    const responseDB = await this.model.findAll({ where: { id: userId } });
+  async findAll(): Promise<User[]> {
+    const responseDB = await this.model.findAll();
     const postsByUser = responseDB.map((item) => item.dataValues);
     return postsByUser;
   }

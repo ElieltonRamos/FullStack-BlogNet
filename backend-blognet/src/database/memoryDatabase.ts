@@ -16,8 +16,8 @@ class MemoryDatabase<Entity> implements modelDatabase<Entity> {
     return Promise.resolve(newEntity);
   }
 
-  async findAll(userId: number) {
-    const allEntities = this.memory.filter((item) => item.userId === userId);
+  async findAll() {
+    const allEntities = [...this.memory];
     return Promise.resolve(allEntities);
   }
 

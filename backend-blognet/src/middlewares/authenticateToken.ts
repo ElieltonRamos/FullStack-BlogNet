@@ -10,7 +10,7 @@ class AuthenticateToken {
     const token = authorization.split(' ')[1];
     const userAuthenticate = JsonWebToken.verifyToken(token);
 
-    if (userAuthenticate === 'Token Invalido') {
+    if (userAuthenticate === 'token-invalid') {
       return res.status(401).send({ message: 'Token must be a valid token' });
     }
 
