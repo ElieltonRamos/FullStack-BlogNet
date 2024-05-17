@@ -4,7 +4,7 @@ import InputSearch from "../components/inputs/inputSearch";
 import { GlobalContext } from "../context/globalContext";
 import { requestBlogPosts } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
-import LoadingMid from "../components/LoadingMid";
+import LoadingMid from "../components/loadings/LoadingMid";
 
 function Home() {
   const { token, blogPosts, setBlogPosts } = useContext(GlobalContext)

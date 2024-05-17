@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import LoadingSmall from "../components/LoadingSmall";
+import LoadingSmall from "../components/loadings/LoadingSmall";
 import { requestRegister } from "../services/requests";
 import { GlobalContext } from "../context/globalContext";
 

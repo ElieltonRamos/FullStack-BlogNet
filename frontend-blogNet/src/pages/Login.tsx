@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
 import { UserLogin } from "../types/user";
-import Loading from "../components/LoadingSmall";
+import Loading from "../components/loadings/LoadingSmall";
 import { GlobalContext } from "../context/globalContext";
 
 function Login() {
@@ -29,6 +29,7 @@ function Login() {
     localStorage.setItem('token', response.data.token);
     setToken(response.data.token);
     setErrorMsg('');
+    navigate('/home');
   }
 
   return (
