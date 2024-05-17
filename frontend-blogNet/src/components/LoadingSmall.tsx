@@ -1,4 +1,4 @@
-function Loading() {
+function LoadingSmall() {
   return (
       <div className="flex flex-row gap-2 items-center justify-center">
         <div className="w-4 h-4 rounded-full bg-gray-200 animate-bounce"></div>
@@ -8,4 +8,4 @@ function Loading() {
   )
 }
 
-export default Loading;
+export default LoadingSmall;

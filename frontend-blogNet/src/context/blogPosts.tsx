@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { BlogPost } from "../types/blogPost";
 
 export type BlogPostContextType = {
+  token: string;
+  setToken: (token: string) => void;
   blogPosts: BlogPost[];
   setBlogPosts: (blogPosts: BlogPost[]) => void;
 };
@@ -32,8 +34,22 @@ export const BlogPostsContext = createContext({} as BlogPostContextType);
 
 export function BlogPostsProvider({ children }: BlogsPostsProviderProps) {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(mockBlogPosts);
+  const [token, setToken] = useState<string>("");
+
+  useEffect(() => {
+    const tokenStorage = localStorage.getItem("token");
+    if (tokenStorage) setToken(tokenStorage);
+  }, []);
+
+  const state = {
+    blogPosts,
+    setBlogPosts,
+    token,
+    setToken
+  }
+  
   return (
-    <BlogPostsContext.Provider value={{ blogPosts, setBlogPosts }}>
+    <BlogPostsContext.Provider value={state}>
       {children}
     </BlogPostsContext.Provider>
   )

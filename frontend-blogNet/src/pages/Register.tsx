@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Loading from "../components/Loading";
+import LoadingSmall from "../components/LoadingSmall";
 import { requestRegister } from "../services/requests";
 
 function Register() {
@@ -32,7 +32,7 @@ function Register() {
       [e.target.name]: e.target.value
     });
   }
-  
+
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col">
 
@@ -54,8 +54,8 @@ function Register() {
           className="h-12 w-full bg-blue-600 rounded-md text-white dark:hover:bg-blue-700"
           type="submit"
           disabled={loading}
-          >
-        {loading ? <Loading /> : 'Sign up'}
+        >
+          {loading ? <LoadingSmall /> : 'Sign up'}
         </button>
       </form>
 

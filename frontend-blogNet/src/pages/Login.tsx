@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
 import { UserLogin } from "../types/user";
-import Loading from "../components/Loading";
+import Loading from "../components/LoadingSmall";
 
 function Login() {
   const [form, setForm] = useState<UserLogin>({ email: '', password: '' });
@@ -30,7 +30,7 @@ function Login() {
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col md:flex-row">
-      
+
       <section className="w-580 pr-8 text-center md:text-left">
         <h1 className="text-blue-800 font-bold text-5xl">Login Social</h1>
         <h2 className="text-3xl text-black">Conecte-se com as pessoas que fazem parte da sua vida</h2>
@@ -74,7 +74,7 @@ function Login() {
         >
           Criar Nova Conta
         </button>
-        
+
       </form>
 
     </main>
