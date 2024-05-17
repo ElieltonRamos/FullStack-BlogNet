@@ -5,6 +5,6 @@ export type BlogPost = {
   title: string;
   content: string;
   user: User;
-  created: Date;
-  updated: Date;
+  created: string;
+  updated: string;
 }

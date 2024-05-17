@@ -1,4 +1,4 @@
-import { User } from "../types/user";
+import { UserLogin } from "../types/user";
 
 const BASE_URL: string = 'http://localhost:3001';
 
@@ -7,7 +7,7 @@ type Response = {
   data: { message: string } | { token: string };
 };
 
-export const requestLogin = async (body: User): Promise<Response | string> => {
+export const requestLogin = async (body: UserLogin): Promise<Response | string> => {
   try {
     const configFetch = {
       method: 'POST',
@@ -23,7 +23,7 @@ export const requestLogin = async (body: User): Promise<Response | string> => {
   }
 };
 
-export const requestRegister = async (body: User): Promise<Response | string> => {
+export const requestRegister = async (body: UserLogin): Promise<Response | string> => {
   try {
     const configFetch = {
       method: 'POST',

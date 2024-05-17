@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
-import { User } from "../types/user";
+import { UserLogin } from "../types/user";
 import Loading from "../components/Loading";
 
 function Login() {
-  const [form, setForm] = useState<User>({ email: '', password: '' });
+  const [form, setForm] = useState<UserLogin>({ email: '', password: '' });
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
