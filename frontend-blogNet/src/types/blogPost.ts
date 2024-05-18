@@ -7,4 +7,5 @@ export type BlogPost = {
   user: User;
   created: string;
   updated: string;
+  image?: string;
 }
