@@ -8,11 +8,12 @@ import LoadingMid from "../components/loadings/LoadingMid";
 import CreatePost from "../components/CreatePost";
 
 function Home() {
-  const { token, blogPosts, setBlogPosts } = useContext(GlobalContext)
+  const { blogPosts, setBlogPosts } = useContext(GlobalContext)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const requestPosts = async () => {
+      const token = localStorage.getItem('token') || '';
       const posts = await requestBlogPosts(token);
       if (posts === 'error network') return alertNoNetwork();
       if (posts.status !== 200) return alertNoLogged();
