@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { convertImageToBase64 } from "../services/convertImage";
 import { requestCreatePost } from "../services/requests";
 import LoadingSmall from "./loadings/LoadingSmall";
+import { GlobalContext } from "../context/globalContext";
 
 function CreatePost() {
+  const { blogPosts, setBlogPosts } = useContext(GlobalContext)
   const token = localStorage.getItem('token') || '';
   const [newPost, setNewPost] = useState({
     title: "",
@@ -27,7 +29,6 @@ function CreatePost() {
     if (newPost.title === '' || newPost.content === '') {
       return setMsgError('title and content are necessary');
     }
-    console.log(token);
     setLoading(true);
     const createdPost = await requestCreatePost(token, newPost);
     setLoading(false);
@@ -36,6 +37,7 @@ function CreatePost() {
     }
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
+    setBlogPosts([...blogPosts]);
   };
 
   return (
@@ -55,6 +57,7 @@ function CreatePost() {
       <textarea
         itemType="text"
         name="content"
+        value={newPost.content}
         onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
         placeholder="Solta o verbo!"
         className="bg-slate-100 h-10 text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border

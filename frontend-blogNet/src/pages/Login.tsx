@@ -15,7 +15,7 @@ function Login() {
     if (tokenStorage) {
       navigate('/home');
     }
-  }, []);
+  }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
