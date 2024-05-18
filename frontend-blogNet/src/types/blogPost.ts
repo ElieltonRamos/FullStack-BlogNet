@@ -9,3 +9,9 @@ export type BlogPost = {
   updated: string;
   image?: string;
 }
+
+export type BlogPostCreate = {
+  title: string;
+  content: string;
+  image?: string;
+}

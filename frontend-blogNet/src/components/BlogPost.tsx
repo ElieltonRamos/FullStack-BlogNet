@@ -19,7 +19,7 @@ function Post({ blogPost }: PropsBlogPost) {
       </div>
       <h2 className="font-extrabold">{title}</h2>
       <p className="text-center font-sans ">{content}</p>
-      <img className="w-full h-38 object-cover rounded-lg" src={image} alt="post-image" />
+      { image !== '' ? <img className="w-full" src={image} alt="post" /> : null}
     </article>
   );
 }

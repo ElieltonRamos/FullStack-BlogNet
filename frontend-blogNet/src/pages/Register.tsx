@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import LoadingSmall from "../components/loadings/LoadingSmall";
 import { requestRegister } from "../services/requests";
-import { GlobalContext } from "../context/globalContext";
 
 function Register() {
-  const { setToken } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -24,7 +22,6 @@ function Register() {
     if (typeof response === 'string') return setErrorMsg('Erro de rede');
     if ('message' in response.data) return setErrorMsg(response.data.message);
     localStorage.setItem('token', response.data.token);
-    setToken(response.data.token);
     setErrorMsg('');
     navigate('/home');
   };
