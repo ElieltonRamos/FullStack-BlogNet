@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import Post from "../components/BlogPost";
-import InputSearch from "../components/inputs/inputSearch";
 import { GlobalContext } from "../context/globalContext";
 import { requestBlogPosts } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import CreatePost from "../components/CreatePost";
 import ToggleSimple from "../components/toggleSwitches/toggleSimple";
+import NavBar from "../components/navBar";
 
 function Home() {
   const { blogPosts, setBlogPosts } = useContext(GlobalContext)
@@ -27,15 +27,11 @@ function Home() {
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
-      <nav className="bg-white fixed top-0 h-14 w-full shadow-sm flex justify-around">
-        <h1 className="text-blue-800 font-bold mt-3">Login Social</h1>
-        <InputSearch />
-        <img className="" src="./abstract-user.svg" alt="profile-user" />
-      </nav>
+      <NavBar />
       <section className="h-full mt-44 flex">
-        <div className="bg-gray-200 w-full mt-3 fixed top-11 flex justify-around">
+        <div className="bg-gray-200 w-full mt-3 fixed top-11 flex ">
           <h2 className="text-blue-600 text-xl font-bold">Feeds and News</h2>
-          <div className="flex ">
+          <div className="flex ml-[20%]">
             <p className="text-[8px] translate-y-2 mr-1 text-slate-500 text-sm font-bold">most recent</p>
             <ToggleSimple checked={order} setChecked={setOrder} />
             <p className="text-[8px] translate-y-2 ml-1 text-slate-500 text-sm font-bold">most older</p>
