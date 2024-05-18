@@ -1,4 +1,5 @@
 import BlogPostModelSequelize from '../database/models/blogPostModelSequelize';
+import UsersModelSequelize from '../database/models/userModelSequelize';
 import BlogPost from '../interfaces/blogPost';
 import modelDatabase from '../interfaces/modelDatabase';
 
@@ -11,7 +12,9 @@ class BlogPostModel implements modelDatabase<BlogPost> {
   }
 
   async findAll(): Promise<BlogPost[]> {
-    const responseDB = await this.model.findAll();
+    const responseDB = await this.model.findAll({
+      include: [{ model: UsersModelSequelize, as: 'user', attributes: { exclude: ['password'] } }]
+    });
     const postsByUser = responseDB.map((item) => item.dataValues);
     return postsByUser;
   }
