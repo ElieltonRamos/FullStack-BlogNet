@@ -37,8 +37,11 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
 
   async listAll(req: Request, res: Response): Promise<Response> {
     try {
-      const { sorted } = req.query;
-      const { status, data } = await this.service.listAll(sorted as string);
+      const { sorted , user } = req.query;
+      const { user: userLogged } = req.body;
+      const order = sorted === 'desc' ? 'desc' : 'asc';
+      const postsUser = user === 'true' ? userLogged.id : false;
+      const { status, data } = await this.service.listAll(order, postsUser);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
       console.log(error);

@@ -12,7 +12,7 @@ abstract class AbstractService<Entity> {
     return { status: 'created', data: newEntity };
   }
 
-  async listAll(_sorted: string): Promise<ServiceResponse<Entity[]>> {
+  async listAll(_sorted: string, _userId: number): Promise<ServiceResponse<Entity[]>> {
     const allEntities = await this.model.findAll();
     return { status: 'ok', data: allEntities };
   }
