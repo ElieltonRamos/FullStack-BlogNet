@@ -9,6 +9,7 @@ interface BlogPost {
     content: string;
     created: Date;
     updated: Date;
+    image?: string;
     user?: User;
 }
 

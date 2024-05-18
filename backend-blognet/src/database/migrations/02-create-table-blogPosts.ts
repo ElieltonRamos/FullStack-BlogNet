@@ -1,5 +1,4 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
-import User from '../../interfaces/user';
 import BlogPost from '../../interfaces/blogPost';
 
 export default {
@@ -17,6 +16,10 @@ export default {
       content: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      image: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       userId: {
         field: 'user_id',

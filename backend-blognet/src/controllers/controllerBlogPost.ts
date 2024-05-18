@@ -12,11 +12,12 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
 
   async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { title, content, user } = req.body;
-      const postInfo = { title, content, userId: user.id };
+      const { title, content, user, image } = req.body;
+      const postInfo = { title, content, userId: user.id, image };
       const { status, data } = await this.blogPostService.create(postInfo);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -29,6 +30,7 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
       const { status, data } = await this.blogPostService.update(Number(id), postInfo);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }

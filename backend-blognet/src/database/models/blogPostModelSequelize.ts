@@ -14,6 +14,7 @@ InferCreationAttributes<BlogPostModelSequelize>> {
   declare title: string;
   declare content: string;
   declare userId: number;
+  declare image: CreationOptional<string>;
   declare created: Date;
   declare updated: Date;
 }
@@ -35,6 +36,10 @@ BlogPostModelSequelize.init({
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+  image: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   created: {
     type: DataTypes.DATE,
