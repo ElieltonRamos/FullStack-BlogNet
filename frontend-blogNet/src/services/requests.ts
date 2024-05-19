@@ -1,4 +1,4 @@
-import { BlogPostCreate } from "../types/blogPost";
+import { BlogPost, BlogPostCreate } from "../types/blogPost";
 import { User, UserLogin, UserNoPassword } from "../types/user";
 
 const BASE_URL: string = 'http://localhost:3001';
@@ -123,4 +123,46 @@ export const requestEditUser = async (token: string, body: UserNoPassword) => {
     return 'error network';
   }
 }
+
+export const requestEditPost = async (token: string, body: BlogPost) => {
+  try {
+    const configFetch = {
+      method: 'PATCH',
+      body: JSON.stringify(body),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      })
+    };
+    const patch = `${BASE_URL}/posts/${body.id}`;
+    const request = await fetch(patch, configFetch);
+    const response = await request.json();
+    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
+    return { status: request.status, data: response };
+  } catch (error) {
+    console.log(error);
+    return 'error network';
+  }
+}
+
+export const requestDeletePost = async (token: string, body: BlogPost) => {
+  try {
+    const configFetch = {
+      method: 'DELETE',
+      body: JSON.stringify(body),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      })
+    };
+    const patch = `${BASE_URL}/posts/${body.id}`;
+    const request = await fetch(patch, configFetch);
+    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
+    return { status: request.status };
+  } catch (error) {
+    console.log(error);
+    return 'error network';
+  }
+}
+
 

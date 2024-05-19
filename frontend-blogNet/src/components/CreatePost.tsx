@@ -38,6 +38,7 @@ function CreatePost() {
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
     setBlogPosts([...blogPosts]);
+    location.reload();
   };
 
   return (

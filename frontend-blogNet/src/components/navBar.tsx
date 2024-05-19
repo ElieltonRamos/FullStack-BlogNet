@@ -9,7 +9,6 @@ function Navbar() {
   const { user } = useContext(GlobalContext);
   const navigate = useNavigate();
   const imageExists = user.image === null || user.image === '';
-  console.log(user.image);
 
   const clickLogOut = () => {
     localStorage.removeItem('token');

@@ -31,7 +31,7 @@ function Profile() {
       setLoading(false);
     });
     if (user.name === '') getUser(token, setUser);
-  }, [sorted, token]);
+  }, [sorted, token, posts]);
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">

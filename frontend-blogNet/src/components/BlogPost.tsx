@@ -4,18 +4,30 @@ import { GlobalContext } from "../context/globalContext";
 import AbstractUser from "./SVGs/AbstractUser";
 import DeleteSvg from "./SVGs/DeleteSvg";
 import EditSvg from "./SVGs/EditSvg";
+import { requestBlogPosts, requestDeletePost } from "../services/requests";
+import { alertNoLogged, alertNoNetwork, alertConfirmDeletePost } from "../services/alerts";
 
 type PropsBlogPost = {
   blogPost: BlogPost
 }
 
 function Post({ blogPost }: PropsBlogPost) {
-  const { user: userLogged } = useContext(GlobalContext);
+  const { user: userLogged, setBlogPosts } = useContext(GlobalContext);
   const isOwnerPost = userLogged.id === blogPost.user.id;
+  const token = localStorage.getItem('token') || '';
 
   const { title, content, created, user, image } = blogPost;
 
-  const clickDeletePost = () => {};
+  const clickDeletePost = async () => {
+    const confirmDelete = await alertConfirmDeletePost()
+    if (!confirmDelete) return;
+    const response = await requestDeletePost(token, blogPost);
+    if (response === 'error network') return alertNoNetwork();
+    if (response.status !== 204) return alertNoLogged();
+    const newBlogPosts = await requestBlogPosts(token, false);
+    if (newBlogPosts === 'error network') return alertNoNetwork();
+    setBlogPosts(newBlogPosts.data);
+  };
 
   const clickEditPost = () => {};
 
@@ -31,7 +43,7 @@ function Post({ blogPost }: PropsBlogPost) {
       <h2 className="font-extrabold">{title}</h2>
       <p className="font-sans">{content}</p>
       { image !== '' ? <img className="w-full" src={image} alt="post" /> : null}
-      <div className="flex justify-end gap-2">
+      <div className="flex justify-end gap-2 pt-2">
         {isOwnerPost ?
           <button onClick={clickDeletePost} className="hover:scale-110"><DeleteSvg /></button> : null}
         {isOwnerPost ?
