@@ -98,7 +98,6 @@ type PropEditUser = {
 
 export function ViewUser({ setEditUser }: PropEditUser) {
   const { user } = useContext(GlobalContext);
-  // const image = user.image || './abstract-user.svg';
 
   return (
     <div className="shadow-xl mb-2 mr-3 md:mt-10 h-[235px] min-w-80 bg-white border border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 text-sm">

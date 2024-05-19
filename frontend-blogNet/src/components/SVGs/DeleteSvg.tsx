@@ -1,11 +1,113 @@
-function DeleteSvg() {
+const DeleteSvg = () => {
   return (
-    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H9M15 5H17C18.1046 5 19 5.89543 19 7V9" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M14.902 20.3343L12.7153 20.7716L13.1526 18.585C13.1914 18.3914 13.2865 18.2136 13.4261 18.074L17.5 14L19.5 12L21.4869 13.9869L19.4869 15.9869L15.413 20.0608C15.2734 20.2004 15.0956 20.2956 14.902 20.3343Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <svg
+      className="h-[30px] w-[30px]"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      width="256"
+      height="256"
+      viewBox="0 0 256 256"
+      xmlSpace="preserve"
+    >
+      <defs></defs>
+      <g
+        style={{
+          stroke: "none",
+          strokeWidth: 0,
+          strokeDasharray: "none",
+          strokeLinecap: "butt",
+          strokeLinejoin: "miter",
+          strokeMiterlimit: 10,
+          fill: "none",
+          fillRule: "nonzero",
+          opacity: 1
+        }}
+        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
+      >
+        <path
+          d="M 68.842 90 H 21.158 c -4.251 0 -7.696 -3.446 -7.696 -7.696 v -52.09 h 63.077 v 52.09 C 76.538 86.554 73.092 90 68.842 90 z"
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 10,
+            fill: "rgb(188,60,60)",
+            fillRule: "nonzero",
+            opacity: 1
+          }}
+          transform="matrix(1 0 0 1 0 0)"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 78.321 22.213 H 11.679 c -2.209 0 -4 -1.791 -4 -4 s 1.791 -4 4 -4 h 66.643 c 2.209 0 4 1.791 4 4 S 80.53 22.213 78.321 22.213 z"
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 10,
+            fill: "rgb(188,60,60)",
+            fillRule: "nonzero",
+            opacity: 1
+          }}
+          transform="matrix(1 0 0 1 0 0)"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 57.815 22.213 h -25.63 c -2.209 0 -4 -1.791 -4 -4 V 7.696 C 28.185 3.453 31.637 0 35.881 0 h 18.238 c 4.244 0 7.696 3.453 7.696 7.696 v 10.517 C 61.815 20.422 60.024 22.213 57.815 22.213 z M 36.185 14.213 h 17.63 V 8 h -17.63 V 14.213 z"
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 10,
+            fill: "rgb(188,60,60)",
+            fillRule: "nonzero",
+            opacity: 1
+          }}
+          transform="matrix(1 0 0 1 0 0)"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 54.784 78.235 c -2.209 0 -4 -1.791 -4 -4 V 44.976 c 0 -2.209 1.791 -4 4 -4 s 4 1.791 4 4 v 29.259 C 58.784 76.444 56.993 78.235 54.784 78.235 z"
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 10,
+            fill: "rgb(255,255,255)",
+            fillRule: "nonzero",
+            opacity: 1
+          }}
+          transform="matrix(1 0 0 1 0 0)"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 35.216 78.235 c -2.209 0 -4 -1.791 -4 -4 V 44.976 c 0 -2.209 1.791 -4 4 -4 s 4 1.791 4 4 v 29.259 C 39.216 76.444 37.425 78.235 35.216 78.235 z"
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 10,
+            fill: "rgb(255,255,255)",
+            fillRule: "nonzero",
+            opacity: 1
+          }}
+          transform="matrix(1 0 0 1 0 0)"
+          strokeLinecap="round"
+        />
+      </g>
     </svg>
-  )
-}
+  );
+};
 
 export default DeleteSvg;
