@@ -29,16 +29,19 @@ function Home() {
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
       <NavBar />
-      <section className="h-full mt-44 flex">
-        <div className="bg-gray-200 w-full mt-3 fixed top-11 flex ">
-          <h2 className="text-blue-600 text-xl font-bold">Feeds and News</h2>
+      <div className="w-full bg-gray-200 mb-40"></div>
+
+      <div className="bg-gray-200 w-screen text-center fixed pt-[40px] z-10 top-[56px] flex flex-row justify-center">
+          <h2 className="text-blue-600 text-xl font-bold ">Feeds and News</h2>
           <div className="flex ml-[20%]">
             <p className="text-[8px] translate-y-2 mr-1 text-slate-500 text-sm font-bold">most recent</p>
             <ToggleSimple checked={order} setChecked={setOrder} />
             <p className="text-[8px] translate-y-2 ml-1 text-slate-500 text-sm font-bold">most older</p>
           </div>
-        </div>
-        <section className="">
+      </div>
+
+      <section className="h-full mt-44 flex">
+        <section>
           <CreatePost />
           {loading ? <><LoadingMid /><LoadingMid /><LoadingMid /></> :
             blogPosts.map(blogPost => (<Post key={blogPost.id} blogPost={blogPost} />))}

@@ -37,12 +37,12 @@ function Profile() {
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
       <Navbar />
       <div className="w-full bg-gray-200 mb-40"></div>
-      <div className="bg-gray-200 w-screen text-center fixed top-12">
+      <div className="pt-[40px] z-10 top-[56px] bg-gray-200 w-screen text-center fixed">
           <h2 className="text-blue-600 text-4xl font-bold ">Profile</h2>
       </div>
       <section className="h-full w-11/12 flex flex-col justify-center md:flex-row">
         {editUser ? <EditUser setEditUser={setEditUser} /> : <ViewUser setEditUser={setEditUser} />}
-        <div className="mt-80 md:mt-10">
+        <div className="md:mt-10">
           <CreatePost />
           <div>
             <h2 className="text-blue-600 text-xl font-bold text-center">Seus Posts</h2>
