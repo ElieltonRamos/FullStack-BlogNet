@@ -32,7 +32,7 @@ function Profile() {
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
       <Navbar />
       <div className="w-full bg-gray-200 mb-40"></div>
-      <div className="bg-gray-200 w-screen text-center fixed top-11">
+      <div className="bg-gray-200 w-screen text-center fixed top-12">
           <h2 className="text-blue-600 text-4xl font-bold ">Profile</h2>
       </div>
       <section className="h-full w-11/12 flex flex-col justify-center md:flex-row">
