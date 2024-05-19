@@ -1,21 +1,26 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
 import { UserLogin } from "../types/user";
 import Loading from "../components/loadings/LoadingSmall";
+import { GlobalContext } from "../context/globalContext";
+import { getUser } from "../services/utils";
 
 function Login() {
   const [form, setForm] = useState<UserLogin>({ email: '', password: '' });
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
+  const { setUser } =useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tokenStorage = localStorage.getItem("token");
-    if (tokenStorage) {
+    const token = localStorage.getItem("token") || '';
+    if (token !== '') {
+      getUser(token, setUser);
       navigate('/home');
     }
-  }, [navigate]);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({

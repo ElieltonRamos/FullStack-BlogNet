@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import Navbar from "../components/navBar";
 import { EditUser, ViewUser } from "../components/EditUser";
@@ -7,8 +8,11 @@ import { BlogPost } from "../types/blogPost";
 import { requestBlogPosts } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
+import { GlobalContext } from "../context/globalContext";
+import { getUser } from "../services/utils";
 
 function Profile() {
+  const { user, setUser } = useContext(GlobalContext)
   const [editUser, setEditUser] = useState(false);
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +30,7 @@ function Profile() {
       setPosts(response.data);
       setLoading(false);
     });
+    if (user.name === '') getUser(token, setUser);
   }, [sorted, token]);
 
   return (

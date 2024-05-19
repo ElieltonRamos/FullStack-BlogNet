@@ -1,8 +1,10 @@
-import { useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/globalContext";
 import { requestEditUser } from "../services/requests";
 import { convertImageToBase64 } from "../services/convertImage";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { getUser } from "../services/utils";
 
 export function EditUser({ setEditUser }: PropEditUser) {
   const { user, setUser } = useContext(GlobalContext);
@@ -11,10 +13,14 @@ export function EditUser({ setEditUser }: PropEditUser) {
   const token = localStorage.getItem('token') || '';
   const image = user.image || './abstract-user.svg';
 
+  useEffect(() => {
+    if (user.name === '') getUser(token, setUser);
+  }, []);
+
   const handleEditUser = async () => {
     const response = await requestEditUser(token, newUser);
-    // if (response === 'error network') return alertNoNetwork();
-    // if (response.status === 200) return alertNoLogged();
+    if (response === 'error network') return alertNoNetwork();
+    if (response.status !== 200) return alertNoLogged();
     setUser(newUser);
     setEditUser(false);
   };

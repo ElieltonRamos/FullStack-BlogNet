@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoadingSmall from "../components/loadings/LoadingSmall";
 import { requestRegister } from "../services/requests";
 import ButtonReturn from "../components/buttons/ButtonReturn";
+import { GlobalContext } from "../context/globalContext";
+import { getUser } from "../services/utils";
 
 function Register() {
+  const { user, setUser } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -18,11 +21,11 @@ function Register() {
     e.preventDefault();
     setLoading(true);
     const response = await requestRegister(form);
-    console.log(form);
     setLoading(false);
     if (typeof response === 'string') return setErrorMsg('Erro de rede');
     if ('message' in response.data) return setErrorMsg(response.data.message);
     localStorage.setItem('token', response.data.token);
+    if (user.name === '') getUser(response.data.token, setUser);
     setErrorMsg('');
     navigate('/home');
   };

@@ -1,5 +1,5 @@
 import { BlogPostCreate } from "../types/blogPost";
-import { UserLogin, UserNoPassword } from "../types/user";
+import { User, UserLogin, UserNoPassword } from "../types/user";
 
 const BASE_URL: string = 'http://localhost:3001';
 
@@ -24,7 +24,7 @@ export const requestLogin = async (body: UserLogin): Promise<Response | string> 
   }
 };
 
-export const requestRegister = async (body: UserLogin): Promise<Response | string> => {
+export const requestRegister = async (body: User): Promise<Response | string> => {
   try {
     const configFetch = {
       method: 'POST',
@@ -92,7 +92,7 @@ export const requestUser = async (token: string) => {
         'Authorization': `Bearer ${token}`,
       })
     };
-    const patch = `${BASE_URL}/users`;
+    const patch = `${BASE_URL}/register/user`;
     const request = await fetch(patch, configFetch);
     const response = await request.json();
     await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
@@ -106,14 +106,14 @@ export const requestUser = async (token: string) => {
 export const requestEditUser = async (token: string, body: UserNoPassword) => {
   try {
     const configFetch = {
-      method: 'patch',
+      method: 'PATCH',
+      body: JSON.stringify(body),
       headers: new Headers({
         'Content-Type': 'application/json',
-        'body': JSON.stringify(body),
         'Authorization': `Bearer ${token}`,
       })
     };
-    const patch = `${BASE_URL}/users`;
+    const patch = `${BASE_URL}/register/user`;
     const request = await fetch(patch, configFetch);
     const response = await request.json();
     await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento

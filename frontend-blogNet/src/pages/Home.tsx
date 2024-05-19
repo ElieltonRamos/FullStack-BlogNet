@@ -1,36 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import Post from "../components/BlogPost";
 import { GlobalContext } from "../context/globalContext";
-import { requestBlogPosts, requestUser } from "../services/requests";
+import { requestBlogPosts } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import CreatePost from "../components/CreatePost";
 import ToggleSimple from "../components/toggleSwitches/toggleSimple";
 import NavBar from "../components/navBar";
+import { getUser } from "../services/utils";
 
 function Home() {
-  const { setUser, blogPosts, setBlogPosts } = useContext(GlobalContext)
+  const { user, setUser, blogPosts, setBlogPosts } = useContext(GlobalContext)
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState(false);
   const token = localStorage.getItem('token') || '';
 
   useEffect(() => {
-    const requestPosts = async () => {
-      const posts = await requestBlogPosts(token, order);
+      requestBlogPosts(token, order).then(posts => {
       if (posts === 'error network') return alertNoNetwork();
       if (posts.status !== 200) return alertNoLogged();
       setBlogPosts(posts.data);
       setLoading(false);
-    };
-    const getUser = async () => {
-      const user = await requestUser(token);
-      if (user === 'error network') return alertNoNetwork();
-      if (user.status !== 200) return alertNoLogged();
-      setUser(user.data)
-    };
-    // getUser();
-    requestPosts();
-  }, [blogPosts, order, setBlogPosts, setUser, token])
+      });
+    if (user.name === '') getUser(token, setUser);
+  }, [blogPosts, order])
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
