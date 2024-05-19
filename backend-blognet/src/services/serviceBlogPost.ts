@@ -61,7 +61,6 @@ class BlogPostService extends AbstractService<BlogPost> {
 
   async listAll(sorted: string, userId: number): Promise<ServiceResponse<BlogPost[]>> {
     const allPosts = await this.blogPostModel.findAll();
-    console.log(sorted);
     const sortedPosts = [...allPosts].sort((a, b) => b.created.getTime() - a.created.getTime());
     if (sorted === 'desc' && !userId) return { status: 'ok', data: sortedPosts };
     if (userId && sorted === 'desc') {

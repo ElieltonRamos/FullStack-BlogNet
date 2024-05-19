@@ -1,11 +1,11 @@
 import UsersModelSequelize from '../database/models/userModelSequelize';
 import modelDatabase from '../interfaces/modelDatabase';
-import User from '../interfaces/user';
+import User, { CreateUser } from '../interfaces/user';
 
 class RegisterUserModel implements modelDatabase<User> {
   private model = UsersModelSequelize;
 
-  async create(data: User): Promise<User> {
+  async create(data: CreateUser): Promise<User> {
     const responseDB = await this.model.create(data);
     return responseDB.dataValues;
   }

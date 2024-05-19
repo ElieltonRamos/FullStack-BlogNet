@@ -1,23 +1,22 @@
 import ServiceResponse from '../interfaces/serviceResponse';
-import User from '../interfaces/user';
+import User, { CreateUser } from '../interfaces/user';
 import JsonWebToken from '../utils/jsonWebToken';
-import AbstractService from './abstractService';
 import { Token } from '../interfaces/user';
 import { hashSync } from 'bcryptjs';
 import modelDatabase from '../interfaces/modelDatabase';
 
-class ServiceRegister extends AbstractService<User> {
-  constructor(protected model: modelDatabase<User>) {
-    super(model);
-  }
+class ServiceRegister {
+  constructor(protected model: modelDatabase<User>) { }
 
-  override async create(user: User): Promise<ServiceResponse<Token>> {
-    const { email, password } = user;
+  async create(user: CreateUser): Promise<ServiceResponse<Token>> {
+    const { email, password, name } = user;
+
+    if (!name) return { status: 'badRequest', data: { message: 'Name is required' } };
 
     const userExists = await this.model.findOne('email', email);
 
     if (userExists) {
-      return { status: 'confict', data: { message: 'Email already registered' } };
+      return { status: 'conflict', data: { message: 'Email already registered' } };
     }
 
     const passwordHash = hashSync(password);
@@ -27,6 +26,12 @@ class ServiceRegister extends AbstractService<User> {
 
     const token = JsonWebToken.generateToken({ id: newUser.id, email: newUser.email });
     return { status: 'created', data: { token } };
+  }
+
+  async find(id: number): Promise<ServiceResponse<User | null>> {
+    const user = await this.model.findById(id);
+    if (!user) return { status: 'notFound', data: { message: 'User not found' } };
+    return { status: 'ok', data: user };
   }
 }
 

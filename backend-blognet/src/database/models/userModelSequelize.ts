@@ -13,7 +13,7 @@ InferCreationAttributes<UsersModelSequelize>> {
   declare name: string;
   declare email: string;
   declare password: string;
-  declare image: string;
+  declare image: CreationOptional<string>;
 }
 
 UsersModelSequelize.init({
