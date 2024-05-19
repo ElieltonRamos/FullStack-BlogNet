@@ -41,7 +41,7 @@ function CreatePost() {
   };
 
   return (
-    <div className="bg-white border mb-2 border-slate-200 flex flex-col gap-2 rounded-xl p-2 text-sm">
+    <div className="min-w-80 shadow-xl bg-white border mb-2 border-slate-200 flex flex-col gap-2 rounded-xl p-2 text-sm">
       <h1 className="text-center text-slate-500 text-sm font-bold">No que voce esta pensando?</h1>
 
       <input

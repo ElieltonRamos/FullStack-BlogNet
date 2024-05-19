@@ -1,8 +1,8 @@
-export function EditUser({setEditUser}: PropEditUser) {
-  const handleEditUser = () => {};
+export function EditUser({ setEditUser }: PropEditUser) {
+  const handleEditUser = () => { };
 
   return (
-    <div className="bg-white border mr-3 border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 mb-2 text-sm h-min">
+    <div className="shadow-xl bg-white border mr-3 border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 mb-2 text-sm h-min">
       <h1 className="mt-8 text-center text-slate-500 text-sm font-bold">Este e o Seu Perfil</h1>
 
       <img className="h-14 w-14" src="./abstract-user.svg" alt="user" />
@@ -30,8 +30,8 @@ export function EditUser({setEditUser}: PropEditUser) {
         onClick={handleEditUser}
         className="font-bold text-gray-800 transition-all duration-300 active:scale-95 w-full bg-green-400 stroke-slate-600 border 
         border-slate-200 col-span-2 flex justify-center rounded-lg p-2 hover:border-slate-800 hover:text-white"
-        >
-          Salvar Alterações
+      >
+        Salvar Alterações
       </button>
       <button
         onClick={() => setEditUser(false)}
@@ -49,14 +49,14 @@ type PropEditUser = {
   setEditUser: (value: boolean) => void;
 };
 
-export function ViewUser({ setEditUser}: PropEditUser) {
+export function ViewUser({ setEditUser }: PropEditUser) {
   return (
-    <div className="mb-2 bg-white border mr-3 border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 text-sm">
-    <h1 className="mt-8 text-center text-slate-500 text-sm font-bold">Este e o Seu Perfil</h1>
-    <img className="h-14 w-14" src="./abstract-user.svg" alt="user" />
-    <p className="text-slate-500 text-sm font-bold">Nome: Fulano de Tal</p>
-    <p className="text-slate-500 text-sm font-bold">Email: email.com</p>
-    <button onClick={() => setEditUser(true)} className="bg-blue-600 text-white font-bold rounded-md p-1 w-20">Editar</button>
-  </div>
+    <div className="shadow-xl mb-2 mr-3 md:mt-10 h-[235px] min-w-80 bg-white border border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 text-sm">
+      <h1 className="text-center text-slate-500 text-sm font-bold">Este e o Seu Perfil</h1>
+      <img className="h-14 w-14" src="./abstract-user.svg" alt="user" />
+      <p className="text-slate-500 text-sm font-bold">Nome: Fulano de Tal</p>
+      <p className="text-slate-500 text-sm font-bold">Email: email.com</p>
+      <button onClick={() => setEditUser(true)} className="bg-blue-600 text-white font-bold rounded-md p-1 w-20">Editar</button>
+    </div>
   )
 }

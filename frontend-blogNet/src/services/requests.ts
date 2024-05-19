@@ -40,7 +40,7 @@ export const requestRegister = async (body: UserLogin): Promise<Response | strin
   }
 }
 
-export const requestBlogPosts = async (token: string, sorted: boolean) => {
+export const requestBlogPosts = async (token: string, sorted: boolean, user?: boolean) => {
   try {
     const configFetch = {
       method: 'GET',
@@ -49,8 +49,11 @@ export const requestBlogPosts = async (token: string, sorted: boolean) => {
         'Authorization': `Bearer ${token}`
       })
     };
-    const orderPosts = sorted ? 'asc' : 'desc';
-    const request = await fetch(`${BASE_URL}/posts?sorted=${orderPosts}`, configFetch);
+    const orderPosts = sorted ? '?sorted=asc' : '?sorted=desc';
+    const userPosts = user ? `&user=${user}` : '';
+    const route = '/posts'
+    const path = BASE_URL + route + orderPosts + userPosts;
+    const request = await fetch(path, configFetch);
     const response = await request.json();
     await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
