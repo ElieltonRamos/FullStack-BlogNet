@@ -19,10 +19,7 @@ services:
     ports:
       - 3001:3001
       - 9229:9229
-    command: dev
-    working_dir: /app-backend
-    volumes: 
-      - ./backend-login-social/src:/app-backend/src
+    command: start
     environment:
       - API_PORT=3001
       - JWT_SECRET=senhajwt
@@ -42,11 +39,7 @@ services:
     build: ./frontend-login-social
     container_name: frontend
     ports:
-      - 3000:3000
-    command: dev
-    working_dir: /app-frontend
-    volumes: 
-      - ./frontend-login-social/src:/app-frontend/src
+      - 3000:80
     environment:
       - FRONT_PORT=3000
     depends_on:
