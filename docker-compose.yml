@@ -1,0 +1,50 @@
+services:
+  database:
+    image: mysql:8.0.32
+    container_name: database
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=senhadatabase
+    restart: 'always'
+    # Deve aguardar o banco ficar operacional
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+  backend:
+    build: ./backend-login-social
+    container_name: backend
+    ports:
+      - 3001:3001
+      - 9229:9229
+    command: start
+    environment:
+      - API_PORT=3001
+      - JWT_SECRET=senhajwt
+      - DB_USER=root
+      - DB_PASSWORD=senhadatabase
+      - DB_HOST=database
+      - DB_PORT=3306
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    build: ./frontend-login-social
+    container_name: frontend
+    ports:
+      - 3000:80
+    environment:
+      - FRONT_PORT=3000
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
+      timeout: 10s
+      retries: 5

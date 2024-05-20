@@ -2,11 +2,12 @@
   "name": "backend-blognet",
   "version": "1.0.0",
   "description": "backend of the full stack blognet project",
-  "main": "src/build/server.js",
+  "main": "build/src/server.js",
   "scripts": {
     "test": "jest --runInBand",
     "test:coverage": "jest --coverage --runInBand",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+    "start": "node build/src/server.js",
     "predev": "npm run db:reset",
     "build": "tsc --project tsconfig.json",
     "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
@@ -24,7 +25,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.7",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",

@@ -3,7 +3,6 @@ import app from '../../src/app';
 import BlogPostModel from '../../src/models/modelBlogPost';
 import { mockPostDateString, mockPosts } from '../mocks/mockBlogPosts';
 import JsonWebToken from '../../src/utils/jsonWebToken';
-import BlogPost from '../../src/interfaces/blogPost';
 
 jest.mock('../../src/models/modelBlogPost');
 
@@ -29,8 +28,8 @@ describe('blogPosts router tests', () => {
   it('should return 401 when token invalid', async () => {
     JsonWebToken.verifyToken = jest.fn().mockReturnValue('token-invalid');
 
-    const { status, body } = await request(app).post('/posts').send(mockPosts[0]).set({authorization: 'Bearer invalidtoken'});
-    
+    const { status, body } = await request(app).post('/posts').send(mockPosts[0]).set({ authorization: 'Bearer invalidtoken' });
+
     expect(status).toBe(401);
     expect(body).toEqual({ message: 'Token must be a valid token' });
 
@@ -68,7 +67,7 @@ describe('blogPosts router tests', () => {
 
     const { status, body } = await request(app).patch(`/posts/${post.id}`).send(updatedPost).set({ Authorization: 'Bearer token' });
     expect(status).toBe(200);
-    expect(body).toEqual({ ...mockPostDateString[0], title: 'Updated title', updated: expect.any(String)});
+    expect(body).toEqual({ ...mockPostDateString[0], title: 'Updated title', updated: expect.any(String) });
   });
 
   it('It should be possible to delete a blog post', async () => {
