@@ -27,9 +27,10 @@ describe('blogPosts router tests', () => {
   });
 
   it('should return 401 when token invalid', async () => {
-    JsonWebToken.verifyToken = jest.fn().mockReturnValue('Token Invalido');
+    JsonWebToken.verifyToken = jest.fn().mockReturnValue('token-invalid');
 
     const { status, body } = await request(app).post('/posts').send(mockPosts[0]).set({authorization: 'Bearer invalidtoken'});
+    
     expect(status).toBe(401);
     expect(body).toEqual({ message: 'Token must be a valid token' });
 
