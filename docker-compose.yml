@@ -14,7 +14,7 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
+    build: ./backend-login-social
     container_name: backend
     ports:
       - 3001:3001
@@ -39,7 +39,7 @@ services:
       retries: 5
 
   frontend:
-    build: ./frontend
+    build: ./frontend-login-social
     container_name: frontend
     ports:
       - 3000:3000
