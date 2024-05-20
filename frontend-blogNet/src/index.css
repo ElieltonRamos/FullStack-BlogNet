@@ -1,0 +1,9 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  .input-login {
+    @apply border-gray-300 rounded-sm border-2 w-full h-14 mb-2.5 pl-2;
+  }
+}
