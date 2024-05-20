@@ -15,3 +15,5 @@ export type BlogPostCreate = {
   content: string;
   image?: string;
 }
+
+export type BlogPostEdit = BlogPostCreate & { id: number; }

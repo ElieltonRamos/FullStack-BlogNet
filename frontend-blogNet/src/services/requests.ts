@@ -1,4 +1,4 @@
-import { BlogPost, BlogPostCreate } from "../types/blogPost";
+import { BlogPost, BlogPostCreate, BlogPostEdit } from "../types/blogPost";
 import { User, UserLogin, UserNoPassword } from "../types/user";
 
 const BASE_URL: string = 'http://localhost:3001';
@@ -124,7 +124,7 @@ export const requestEditUser = async (token: string, body: UserNoPassword) => {
   }
 }
 
-export const requestEditPost = async (token: string, body: BlogPost) => {
+export const requestEditPost = async (token: string, body: BlogPostEdit) => {
   try {
     const configFetch = {
       method: 'PATCH',

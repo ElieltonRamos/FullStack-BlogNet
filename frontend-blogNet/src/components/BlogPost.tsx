@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BlogPost } from "../types/blogPost";
 import { GlobalContext } from "../context/globalContext";
 import AbstractUser from "./SVGs/AbstractUser";
@@ -6,12 +6,14 @@ import DeleteSvg from "./SVGs/DeleteSvg";
 import EditSvg from "./SVGs/EditSvg";
 import { requestBlogPosts, requestDeletePost } from "../services/requests";
 import { alertNoLogged, alertNoNetwork, alertConfirmDeletePost } from "../services/alerts";
+import EditPost from "./EditPost";
 
 type PropsBlogPost = {
   blogPost: BlogPost
 }
 
 function Post({ blogPost }: PropsBlogPost) {
+  const [isEdit, setIsEdit] = useState(false);
   const { user: userLogged, setBlogPosts } = useContext(GlobalContext);
   const isOwnerPost = userLogged.id === blogPost.user.id;
   const token = localStorage.getItem('token') || '';
@@ -29,7 +31,13 @@ function Post({ blogPost }: PropsBlogPost) {
     setBlogPosts(newBlogPosts.data);
   };
 
-  const clickEditPost = () => {};
+  const clickEditPost = () => {
+    setIsEdit(true);
+  };
+
+  if (isEdit) return (
+    <EditPost post={blogPost} setIsEdit={setIsEdit} />
+  );
 
   return (
     <article className="bg-white rounded-lg p-5 mb-3">

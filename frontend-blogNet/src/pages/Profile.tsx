@@ -40,7 +40,7 @@ function Profile() {
       <div className="pt-[40px] z-10 top-[56px] bg-gray-200 w-screen text-center fixed">
           <h2 className="text-blue-600 text-4xl font-bold ">Profile</h2>
       </div>
-      <section className="h-full w-11/12 flex flex-col justify-center md:flex-row">
+      <section className="h-full w-11/12 mt-8 flex flex-col justify-center md:flex-row">
         {editUser ? <EditUser setEditUser={setEditUser} /> : <ViewUser setEditUser={setEditUser} />}
         <div className="md:mt-10">
           <CreatePost />
