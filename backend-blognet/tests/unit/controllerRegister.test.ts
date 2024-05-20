@@ -3,6 +3,7 @@ import ControllerRegister from '../../src/controllers/constrollerRegister';
 import ServiceRegister from '../../src/services/serviceRegister';
 import User from '../../src/interfaces/user';
 import { Request, Response } from 'express';
+import { newUser } from '../mocks/mockUser';
 
 describe('tests controller user', () => {
 
@@ -21,17 +22,17 @@ describe('tests controller user', () => {
   });
 
   it('should create a new user', async () => {
-    req.body = { email: 'user@email.com', password: '123456' };
+    req.body = newUser;
     await controllerRegister.create(req, res);
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.send).toHaveBeenCalledWith({ token: expect.any(String) });
   })
 
   it('should not create a new user with the same email', async () => {
-    const userRegistered = {email: 'created@email.com', password: 'test'}
+    const userRegistered = newUser;
     await memoryModel.create(userRegistered);
     req.body = userRegistered;
-    serviceRegister.create = jest.fn().mockReturnValue({ status: 'confict', data: { message: 'Email already registered' } });
+    serviceRegister.create = jest.fn().mockReturnValue({ status: 'conflict', data: { message: 'Email already registered' } });
     await controllerRegister.create(req, res);
     expect(res.status).toHaveBeenCalledWith(409);
     expect(res.send).toHaveBeenCalledWith({ message: 'Email already registered' });

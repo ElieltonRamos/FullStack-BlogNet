@@ -46,7 +46,6 @@ class ServiceRegister {
 
     const newUser = { ...userExists, name, email, image };
     const updatedUser = await this.model.update(id, newUser);
-    console.log(updatedUser);
     if (!updatedUser) return { status: 'serverError', data: { message: 'Error updating user' } };
 
     const resultUpdate = { id: userExists.id, name, email, image};

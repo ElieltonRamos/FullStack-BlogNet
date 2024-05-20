@@ -13,7 +13,9 @@ describe('tests service blogPost', () => {
 
   it('should must be possible to register a blog post successfully', async () => {
     const blogPost = { title: 'Title', content: 'Content', userId: 1 };
+
     const { status, data } = await serviceBlogPost.create(blogPost);
+
     expect(status).toBe('created');
     expect(data).toHaveProperty('id');
     expect(data).toHaveProperty('created');
@@ -22,7 +24,9 @@ describe('tests service blogPost', () => {
 
   it('should not be possible to register a blog post without title', async () => {
     const blogPost = { title: null as unknown as string, content: 'Content', userId: 1 };
+
     const { status, data } = await serviceBlogPost.create(blogPost);
+
     expect(status).toBe('unprocessableEntity');
     expect(memoryModel.memory).toHaveLength(0);
     expect(data).toEqual({ message: 'necessary to inform content and title'});
@@ -31,8 +35,10 @@ describe('tests service blogPost', () => {
   it('should be possible to update a blog post', async () => {
     const blogPost = { title: 'Title', content: 'Content', userId: 1 };
     await serviceBlogPost.create(blogPost);
+
     const updatedPost = { title: 'New Title', content: 'New Content', userId: 1 };
     const { status, data } = await serviceBlogPost.update(1, updatedPost);
+
     expect(status).toBe('ok');
     expect(data).toHaveProperty('id');
     expect(data).toHaveProperty('created');
@@ -46,6 +52,7 @@ describe('tests service blogPost', () => {
   it('should not be possible to update a blog post that does not exist', async () => {
     const updatedPost = { title: 'New Title', content: 'New Content', userId: 1 };
     const { status, data } = await serviceBlogPost.update(1, updatedPost);
+
     expect(status).toBe('notFound');
     expect(data).toEqual({ message: 'post not found' });
   });
@@ -53,8 +60,10 @@ describe('tests service blogPost', () => {
   it('should not be possible to update a blog post that the user is not the owner', async () => {
     const blogPost = { title: 'Title', content: 'Content', userId: 1 };
     await serviceBlogPost.create(blogPost);
+
     const updatedPost = { title: 'New Title', content: 'New Content', userId: 2 };
     const { status, data } = await serviceBlogPost.update(1, updatedPost);
+
     expect(status).toBe('unauthorized');
     expect(data).toEqual({ message: 'user not authorized to update this post' });
   });
@@ -66,7 +75,9 @@ describe('tests service blogPost', () => {
     await serviceBlogPost.create(blogPost2);
     const blogPost3 = { title: 'Title 3', content: 'Content 3', userId: 2 };
     await serviceBlogPost.create(blogPost3);
-    const posts = await serviceBlogPost.listAll(1, 'asc');
+
+    const posts = await serviceBlogPost.listAll('asc', 1);
+
     expect(posts.data).toHaveLength(2);
     expect(posts.status).toBe('ok');
   });
@@ -78,10 +89,12 @@ describe('tests service blogPost', () => {
     await serviceBlogPost.create(blogPost2);
     const blogPost3 = { title: 'Title 3', content: 'Content 3', userId: 2 };
     await serviceBlogPost.create(blogPost3);
-    const posts = await serviceBlogPost.listAll(1, 'desc');
-    const { data } = await serviceBlogPost.listAll(1, 'asc');
+
+    const posts = await serviceBlogPost.listAll('desc', 1);
+    const { data } = await serviceBlogPost.listAll('asc', 1);
+
     expect(posts.data).toHaveLength(2);
-    if (!('message' in data)) expect(posts.data).toEqual(data.reverse());
+    if (!('message' in data)) expect(posts.data).toEqual(data);
     expect(posts.status).toBe('ok');
   });
 
@@ -92,8 +105,10 @@ describe('tests service blogPost', () => {
     await serviceBlogPost.create(blogPost2);
     const blogPost3 = { title: 'Title 3', content: 'Content 3', userId: 2 };
     await serviceBlogPost.create(blogPost3);
-    const sorted = undefined as unknown as string;
-    const posts = await serviceBlogPost.listAll(1, sorted);
+
+    const sorted = 'asc';
+    const posts = await serviceBlogPost.listAll(sorted, 1);
+
     expect(posts.data).toHaveLength(2);
     expect(posts.status).toBe('ok');
   });

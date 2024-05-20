@@ -15,7 +15,6 @@ abstract class AbstractController<entity> {
       const { status, data } = await this.service.create(body);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -27,7 +26,6 @@ abstract class AbstractController<entity> {
       const { status, data } = await this.service.listAll(sorted as string, user.id);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -39,7 +37,6 @@ abstract class AbstractController<entity> {
       const { status, data } = await this.service.find(id, user.id);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -51,7 +48,6 @@ abstract class AbstractController<entity> {
       const { status, data } = await this.service.update(id, body);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -63,7 +59,6 @@ abstract class AbstractController<entity> {
       const { status, data } = await this.service.delete(id, user.id);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }

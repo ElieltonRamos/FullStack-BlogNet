@@ -14,7 +14,6 @@ class ConstrollerRegister {
       const { status, data } = await this.service.create({ email, password, name });
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -25,7 +24,6 @@ class ConstrollerRegister {
       const { status, data } = await this.service.find(user.id);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -37,7 +35,6 @@ class ConstrollerRegister {
       const { status, data } = await this.service.update(user.id, newUser);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
-      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }

@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import BlogPost from '../../src/interfaces/blogPost';
 import { mockPosts } from '../mocks/mockBlogPosts';
 
-describe('tests controller Login', () => {
+describe('tests controller BlogPost', () => {
 
   let memoryModel: MemoryDatabase<BlogPost>
   let serviceBlogPost: ServiceBlogPost
