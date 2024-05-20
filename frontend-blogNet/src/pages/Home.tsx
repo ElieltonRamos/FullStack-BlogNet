@@ -11,7 +11,8 @@ import NavBar from "../components/navBar";
 import { getUser } from "../services/utils";
 
 function Home() {
-  const { user, setUser, blogPosts, setBlogPosts } = useContext(GlobalContext)
+  const { user, setUser, blogPosts, setBlogPosts, viewPosts, setViewPosts } = useContext(GlobalContext)
+  console.log(blogPosts)
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState(false);
   const token = localStorage.getItem('token') || '';
@@ -21,10 +22,11 @@ function Home() {
       if (posts === 'error network') return alertNoNetwork();
       if (posts.status !== 200) return alertNoLogged();
       setBlogPosts(posts.data);
+      setViewPosts(posts.data);
       setLoading(false);
       });
     if (user.name === '') getUser(token, setUser);
-  }, [blogPosts, order])
+  }, [order])
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
@@ -44,7 +46,7 @@ function Home() {
         <section>
           <CreatePost />
           {loading ? <><LoadingMid /><LoadingMid /><LoadingMid /></> :
-            blogPosts.map(blogPost => (<Post key={blogPost.id} blogPost={blogPost} />))}
+            viewPosts.map(blogPost => (<Post key={blogPost.id} blogPost={blogPost} />))}
         </section>
       </section>
     </main>

@@ -11,9 +11,9 @@ type PropEditPost = {
 }
 
 function EditPost({ post, setIsEdit }: PropEditPost) {
-  const [editPost, setEditPost] = useState({ title: '', content: '', image: '' });
+  const [editPost, setEditPost] = useState({ title: post.title, content: post.content, image: '' });
   const [disabled, setDisabled] = useState(true);
-  const { title, content, created, user, image } = post;
+  const { title, content, created, user, image, updated } = post;
   const token = localStorage.getItem('token') || '';
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +45,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Postado em:{created.toLowerCase()}</p>
+          <p className="font-extralight text-xs">Atualizado em:{updated.toLowerCase()}</p>
         </div>
       </div>
 

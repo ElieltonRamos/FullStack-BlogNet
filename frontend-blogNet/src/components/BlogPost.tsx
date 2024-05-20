@@ -18,7 +18,7 @@ function Post({ blogPost }: PropsBlogPost) {
   const isOwnerPost = userLogged.id === blogPost.user.id;
   const token = localStorage.getItem('token') || '';
 
-  const { title, content, created, user, image } = blogPost;
+  const { title, content, created, user, image, updated } = blogPost;
 
   const clickDeletePost = async () => {
     const confirmDelete = await alertConfirmDeletePost()
@@ -29,10 +29,6 @@ function Post({ blogPost }: PropsBlogPost) {
     const newBlogPosts = await requestBlogPosts(token, false);
     if (newBlogPosts === 'error network') return alertNoNetwork();
     setBlogPosts(newBlogPosts.data);
-  };
-
-  const clickEditPost = () => {
-    setIsEdit(true);
   };
 
   if (isEdit) return (
@@ -46,6 +42,7 @@ function Post({ blogPost }: PropsBlogPost) {
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Postado em:{created.toLowerCase()}</p>
+          <p className="font-extralight text-xs">Atualiazado em:{updated.toLowerCase()}</p>
         </div>
       </div>
       <h2 className="font-extrabold">{title}</h2>
@@ -55,7 +52,7 @@ function Post({ blogPost }: PropsBlogPost) {
         {isOwnerPost ?
           <button onClick={clickDeletePost} className="hover:scale-110"><DeleteSvg /></button> : null}
         {isOwnerPost ?
-          <button onClick={clickEditPost} className="hover:scale-110"><EditSvg /></button> : null}
+          <button onClick={() => setIsEdit(true)} className="hover:scale-110"><EditSvg /></button> : null}
       </div>
     </article>
   );

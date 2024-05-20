@@ -6,6 +6,8 @@ export type ContextType = {
   user: UserNoPassword;
   setUser: (user: UserNoPassword) => void;
   blogPosts: BlogPost[];
+  viewPosts: BlogPost[];
+  setViewPosts: (blogPosts: BlogPost[]) => void;
   setBlogPosts: (blogPosts: BlogPost[]) => void;
 };
 
@@ -18,6 +20,8 @@ export const GlobalContext = createContext({} as ContextType);
 
 export function GlobalStateProvider({ children }: ContextProviderProps) {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [viewPosts, setViewPosts] = useState<BlogPost[]>([]);
+
   const [user, setUser] = useState<UserNoPassword>({
     id: 0,
     name: '',
@@ -28,6 +32,8 @@ export function GlobalStateProvider({ children }: ContextProviderProps) {
   const state = {
     blogPosts,
     setBlogPosts,
+    viewPosts,
+    setViewPosts,
     user,
     setUser,
   }

@@ -5,7 +5,7 @@ import LoadingSmall from "./loadings/LoadingSmall";
 import { GlobalContext } from "../context/globalContext";
 
 function CreatePost() {
-  const { blogPosts, setBlogPosts } = useContext(GlobalContext)
+  const { viewPosts, setViewPosts } = useContext(GlobalContext)
   const token = localStorage.getItem('token') || '';
   const [newPost, setNewPost] = useState({
     title: "",
@@ -37,8 +37,8 @@ function CreatePost() {
     }
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
-    setBlogPosts([...blogPosts]);
-    location.reload();
+    setViewPosts([...viewPosts]);
+    // location.reload();
   };
 
   return (

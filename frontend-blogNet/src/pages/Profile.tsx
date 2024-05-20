@@ -4,7 +4,6 @@ import CreatePost from "../components/CreatePost";
 import Navbar from "../components/navBar";
 import { EditUser, ViewUser } from "../components/EditUser";
 import BlogPostView from "../components/BlogPost";
-import { BlogPost } from "../types/blogPost";
 import { requestBlogPosts } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
@@ -12,26 +11,26 @@ import { GlobalContext } from "../context/globalContext";
 import { getUser } from "../services/utils";
 
 function Profile() {
-  const { user, setUser } = useContext(GlobalContext)
+  const { user, setUser, viewPosts, setViewPosts, setBlogPosts } = useContext(GlobalContext)
   const [editUser, setEditUser] = useState(false);
-  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem('token') || '';
   const sorted = true
 
-  const viewPost = posts.length === 0 
+  const viewPost = viewPosts.length === 0 
     ? <h2 className="text-gray-500 font-semibold text-center">Oops, parece que voce ainda não postou</h2> 
-    : posts.map((post) => <BlogPostView key={post.id} blogPost={post} />)
+    : viewPosts.map((post) => <BlogPostView key={post.id} blogPost={post} />)
 
   useEffect(() => {
     requestBlogPosts(token, sorted, true).then((response) => {
       if (response === 'error network') return alertNoNetwork();
       if (response.status !== 200) return alertNoLogged();
-      setPosts(response.data);
+      setBlogPosts(response.data);
+      setViewPosts(response.data);
       setLoading(false);
     });
     if (user.name === '') getUser(token, setUser);
-  }, [sorted, token, posts]);
+  }, [sorted, token, viewPosts]);
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">
