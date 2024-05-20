@@ -6,7 +6,7 @@ class ConstrollerRegister {
   constructor(
     private service: ServiceRegister,
     private messageError = 'Internal server error'
-  ) {}
+  ) { }
 
   async create(req: Request, res: Response): Promise<Response> {
     try {
@@ -23,6 +23,18 @@ class ConstrollerRegister {
     try {
       const { user } = req.body;
       const { status, data } = await this.service.find(user.id);
+      return res.status(mapStatusHTTP(status)).send(data);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ message: this.messageError });
+    }
+  }
+
+  async update(req: Request, res: Response): Promise<Response> {
+    try {
+      const { user, name, email, image } = req.body;
+      const newUser = { name, email, image };
+      const { status, data } = await this.service.update(user.id, newUser);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
       console.log(error);

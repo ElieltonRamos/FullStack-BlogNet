@@ -21,4 +21,10 @@ registerRoutes.get(
   AuthenticateToken.verifyToken,
   (req: Request, res: Response) => constrollerRegister.find(req, res));
 
+registerRoutes.patch(
+  '/user',
+  AuthenticateToken.verifyToken,
+  (req: Request, res: Response) => constrollerRegister.update(req, res)
+);
+
 export default registerRoutes;

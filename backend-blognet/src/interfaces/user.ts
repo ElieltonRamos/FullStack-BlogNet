@@ -10,6 +10,8 @@ export interface CreateUser {
   name: string;
 }
 
+export type UserNoPassword = Omit<User, 'password'>;
+
 interface User {
   id?: number;
   name: string;
