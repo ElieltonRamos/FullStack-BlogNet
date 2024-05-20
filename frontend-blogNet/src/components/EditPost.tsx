@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BlogPost } from "../types/blogPost";
 import AbstractUser from "./SVGs/AbstractUser";
 import { convertImageToBase64 } from "../services/convertImage";
 import { requestEditPost } from "../services/requests";
 import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { GlobalContext } from "../context/globalContext";
 
 type PropEditPost = {
   post: BlogPost;
@@ -11,8 +12,10 @@ type PropEditPost = {
 }
 
 function EditPost({ post, setIsEdit }: PropEditPost) {
+  const { user: userLogged } = useContext(GlobalContext);
   const [editPost, setEditPost] = useState({ title: post.title, content: post.content, image: '' });
   const [disabled, setDisabled] = useState(true);
+  if (!post.user) post.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = post;
   const token = localStorage.getItem('token') || '';
 
@@ -30,6 +33,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
   const clickEditPost = async () => {
     if (editPost.title === '' || editPost.content === '') return;
     const response = await requestEditPost(token, { ...editPost, id: post.id });
+    console.log(response);
     if (response === 'error network') return alertNoNetwork();
     if (response.status !== 200) return alertNoLogged();
     post.title = response.data.title;
@@ -69,7 +73,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         onChange={handleChange}
       />
 
-      {image !== '' ? <img className="w-full" src={image} alt="post" /> : null}
+      {!image ? <img className="w-full" src={image} alt="post" /> : null}
       <p className="text-[10px] text-slate-600 my-3 font-semibold text-center">Escolha uma nova imagem</p>
       <input
         className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
@@ -77,7 +81,6 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         name="image"
         type="file"
         accept="image/png, image/jpeg"
-        value={editPost.image}
         onChange={handleChange}
       />
 

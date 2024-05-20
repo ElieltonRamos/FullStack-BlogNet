@@ -49,6 +49,7 @@ class BlogPostService extends AbstractService<BlogPost> {
       title: newTitle,
       content: newContent,
       userId: post.userId,
+      image: data.image || post.image,
       created: post.created,
       updated: new Date()
     };

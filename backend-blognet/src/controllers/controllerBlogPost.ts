@@ -24,8 +24,8 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
   async update(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const { title, content, user } = req.body;
-      const postInfo = { title, content, userId: user.id };
+      const { title, content, user, image } = req.body;
+      const postInfo = { title, content, userId: user.id, image };
       const { status, data } = await this.blogPostService.update(Number(id), postInfo);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
