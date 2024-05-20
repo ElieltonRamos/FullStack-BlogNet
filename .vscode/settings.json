@@ -2,6 +2,8 @@
   "conventionalCommits.scopes": [
     "front-end",
     "back-end",
-    "docker"
+    "docker",
+    "database",
+    "documentation"
   ]
 }
