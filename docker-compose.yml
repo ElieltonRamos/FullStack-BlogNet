@@ -22,7 +22,7 @@ services:
     command: dev
     working_dir: /app-backend
     volumes: 
-      - ./backend/src:/app-backend/src
+      - ./backend-login-social/src:/app-backend/src
     environment:
       - API_PORT=3001
       - JWT_SECRET=senhajwt
@@ -46,7 +46,7 @@ services:
     command: dev
     working_dir: /app-frontend
     volumes: 
-      - ./frontend/src:/app-frontend/src
+      - ./frontend-login-social/src:/app-frontend/src
     environment:
       - FRONT_PORT=3000
     depends_on:
