@@ -38,7 +38,6 @@ function CreatePost() {
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
     setViewPosts([...viewPosts]);
-    // location.reload();
   };
 
   return (
