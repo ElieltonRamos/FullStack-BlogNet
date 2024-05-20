@@ -3,6 +3,7 @@ import { convertImageToBase64 } from "../services/convertImage";
 import { requestCreatePost } from "../services/requests";
 import LoadingSmall from "./loadings/LoadingSmall";
 import { GlobalContext } from "../context/globalContext";
+import { BlogPost } from "../types/blogPost";
 
 function CreatePost() {
   const { viewPosts, setViewPosts } = useContext(GlobalContext)
@@ -37,7 +38,8 @@ function CreatePost() {
     }
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
-    setViewPosts([...viewPosts]);
+    const updatedPost = [...viewPosts, createdPost.data].sort((a: BlogPost, b: BlogPost) => b.id - a.id);
+    setViewPosts(updatedPost);
   };
 
   return (

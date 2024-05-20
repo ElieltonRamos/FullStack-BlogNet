@@ -4,7 +4,8 @@ export type BlogPost = {
   id: number;
   title: string;
   content: string;
-  user: User;
+  user?: User;
+  userId: number;
   created: string;
   updated: string;
   image?: string;

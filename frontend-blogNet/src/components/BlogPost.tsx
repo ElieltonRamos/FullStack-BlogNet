@@ -15,9 +15,9 @@ type PropsBlogPost = {
 function Post({ blogPost }: PropsBlogPost) {
   const [isEdit, setIsEdit] = useState(false);
   const { user: userLogged, setBlogPosts } = useContext(GlobalContext);
-  const isOwnerPost = userLogged.id === blogPost.user.id;
+  const isOwnerPost = userLogged.id === blogPost.userId;
   const token = localStorage.getItem('token') || '';
-
+  if (!blogPost.user) blogPost.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = blogPost;
 
   const clickDeletePost = async () => {
