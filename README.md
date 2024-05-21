@@ -62,17 +62,17 @@ To develop and run this application, it is necessary to configure an environment
 
 **Docker**: We use Docker to package and isolate the application in containers, ensuring consistent deployment and easy dependency management.
 
-- [Como instalar o docker](https://docs.docker.com/engine/install/ubuntu/)
+- [How to install docker](https://docs.docker.com/engine/install/ubuntu/)
 
 **Docker Compose**: Docker Compose is a tool that simplifies the definition and management of multi-container services in a single file, ideal for orchestrating application-related containers.
 
-- [Como instalar o Docker-Compose](https://docs.docker.com/compose/install/)
+- [How to install Docker Compose](https://docs.docker.com/compose/install/)
 
 ### If you do not want to install Docker, you need to install Node JS on your machine
 
 **Node.js**: The application is developed in Node.js, a JavaScript/Typescript runtime platform, and is required to execute the code.
 
-- [Como instalar o Node.js](https://nodejs.org/en/download/package-manager)
+- [How to install Node.js](https://nodejs.org/en/download/package-manager)
 
 Be sure to install and configure these tools in your development environment before starting the project.
 
