@@ -18,7 +18,7 @@ function Profile() {
   const sorted = true
 
   const viewPost = viewPosts.length === 0 
-    ? <h2 className="text-gray-500 font-semibold text-center">Oops, parece que voce ainda não postou</h2> 
+    ? <h2 className="text-gray-500 font-semibold text-center">Oops, looks like you haven't posted yet</h2> 
     : viewPosts.map((post) => <BlogPostView key={post.id} blogPost={post} />)
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function Profile() {
         <div className="md:mt-10">
           <CreatePost />
           <div>
-            <h2 className="text-blue-600 text-xl font-bold text-center">Seus Posts</h2>
+            <h2 className="text-blue-600 text-xl font-bold text-center">Your Posts</h2>
             {loading ? <><LoadingMid /><LoadingMid /></> : viewPost}
           </div>
         </div>

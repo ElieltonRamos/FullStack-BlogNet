@@ -149,6 +149,14 @@ I used TypeScript to develop the application because it is a typed and high-leve
 
 ## Usage
 
+<p align="center">
+  <img src="../public/page-login.png" alt="page login" width="300px">
+  <img src="../public/page-profile.png" alt="page profile" width="300px">
+  <img src="../public/page-home.png" alt="page home" width="300px">
+  <img src="../public//page-register.png" alt="page register" width="300px">
+</p>
+
+
 The front end application will be available at http://localhost:3000, where you can access the user interface and interact with the backend RESTful API. The frontend has the following pages available:
 
 1. **Page: /**

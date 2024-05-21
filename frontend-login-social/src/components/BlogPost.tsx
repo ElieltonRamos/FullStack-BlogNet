@@ -41,8 +41,8 @@ function Post({ blogPost }: PropsBlogPost) {
       {user.image === null ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
-          <p className="font-extralight text-xs">Postado em:{created.toLowerCase()}</p>
-          <p className="font-extralight text-xs">Atualiazado em:{updated.toLowerCase()}</p>
+          <p className="font-extralight text-xs">Posted in:{created.toLowerCase()}</p>
+          <p className="font-extralight text-xs">Updated in:{updated.toLowerCase()}</p>
         </div>
       </div>
       <h2 className="font-extrabold">{title}</h2>

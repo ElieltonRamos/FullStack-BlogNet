@@ -15,7 +15,7 @@ export const convertImageToBase64 = (imageFile: File): Promise<string> => {
           canvas.width = image.width;
           canvas.height = image.height;
           ctx.drawImage(image, 0, 0);
-          const dataURL = canvas.toDataURL('image/jpeg', 0.5);
+          const dataURL = canvas.toDataURL('image/jpeg', 0.4);
           imagebase64 = dataURL;
           resolve(imagebase64);
         };

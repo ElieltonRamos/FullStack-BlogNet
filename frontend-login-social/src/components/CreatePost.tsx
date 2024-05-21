@@ -44,7 +44,7 @@ function CreatePost() {
 
   return (
     <div className="min-w-80 shadow-xl bg-white border mb-2 border-slate-200 flex flex-col gap-2 rounded-xl p-2 text-sm">
-      <h1 className="text-center text-slate-500 text-sm font-bold">No que voce esta pensando?</h1>
+      <h1 className="text-center text-slate-500 text-sm font-bold">What is on your mind?</h1>
 
       <input
         className="bg-slate-100 text-slate-600 border border-slate-200 outline-none rounded-lg p-1 duration-300
@@ -53,7 +53,7 @@ function CreatePost() {
         name="title"
         value={newPost.title}
         onChange={handleChange}
-        placeholder="Sobre o que você quer falar?"
+        placeholder="About what you want to talk?"
       />
 
       <textarea
@@ -61,13 +61,13 @@ function CreatePost() {
         name="content"
         value={newPost.content}
         onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-        placeholder="Solta o verbo!"
+        placeholder="Speak freely!"
         className="bg-slate-100 h-10 text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border
         border-slate-200
           resize-none outline-none rounded-lg p-2 duration-300 focus:border-slate-600"
       />
 
-      <span className="text-slate-500 text-[10px] mb-[-15px] font-semibold text-center">Adicione uma imagem</span>
+      <span className="text-slate-500 text-[10px] mb-[-15px] font-semibold text-center">Add Image</span>
       <input
         className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
           file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"

@@ -1,7 +1,7 @@
 import { BlogPost, BlogPostCreate, BlogPostEdit } from "../types/blogPost";
 import { User, UserLogin, UserNoPassword } from "../types/user";
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3001';
+const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3001';
 
 type Response = {
   status: number;
@@ -17,7 +17,6 @@ export const requestLogin = async (body: UserLogin): Promise<Response | string> 
     };
     const request = await fetch(`${BASE_URL}/login`, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     return 'error network';
@@ -33,7 +32,6 @@ export const requestRegister = async (body: User): Promise<Response | string> =>
     };
     const request = await fetch(`${BASE_URL}/register`, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     return 'error network';
@@ -55,7 +53,6 @@ export const requestBlogPosts = async (token: string, sorted: boolean, user?: bo
     const path = BASE_URL + route + orderPosts + userPosts;
     const request = await fetch(path, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     console.log(error);
@@ -75,7 +72,6 @@ export const requestCreatePost = async (token: string, body: BlogPostCreate) => 
     };
     const request = await fetch(`${BASE_URL}/posts`, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     console.log(error);
@@ -95,7 +91,6 @@ export const requestUser = async (token: string) => {
     const patch = `${BASE_URL}/register/user`;
     const request = await fetch(patch, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     console.log(error);
@@ -116,7 +111,6 @@ export const requestEditUser = async (token: string, body: UserNoPassword) => {
     const patch = `${BASE_URL}/register/user`;
     const request = await fetch(patch, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     console.log(error);
@@ -137,7 +131,6 @@ export const requestEditPost = async (token: string, body: BlogPostEdit) => {
     const patch = `${BASE_URL}/posts/${body.id}`;
     const request = await fetch(patch, configFetch);
     const response = await request.json();
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status, data: response };
   } catch (error) {
     console.log(error);
@@ -157,7 +150,6 @@ export const requestDeletePost = async (token: string, body: BlogPost) => {
     };
     const patch = `${BASE_URL}/posts/${body.id}`;
     const request = await fetch(patch, configFetch);
-    await new Promise(resolve => setTimeout(resolve, 500)); // remover essa linha apos desenvolvimento
     return { status: request.status };
   } catch (error) {
     console.log(error);

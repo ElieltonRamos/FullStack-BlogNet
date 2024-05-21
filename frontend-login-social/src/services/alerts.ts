@@ -9,6 +9,7 @@ export const alertNoNetwork = () => {
 };
 
 export const alertNoLogged = () => {
+  localStorage.removeItem("token");
   return Swal.fire({
     icon: "error",
     title: "Oops...",

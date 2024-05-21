@@ -137,6 +137,13 @@ docker logs -f frontend
 
 ## Usage
 
+<p align="center">
+  <img src="./public/page-login.png" alt="page login" width="300px">
+  <img src="./public/page-register.png" alt="page register" width="300px">
+  <img src="./public/page-home.png" alt="page home" width="260px">
+  <img src="./public//page-profile.png" alt="page profile" width="300px">
+</p>
+
 The front end application will be available at http://localhost:3000, where you can access the user interface and interact with the backend RESTful API.
 
 The backend application will be available at http://localhost:3001, where you can access the RESTful API and interact with the database.

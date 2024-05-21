@@ -28,7 +28,7 @@ function InputSearch() {
         value={searchPost}
         onChange={handleChange}
         className="h-4/6 w-full max-w-[160px] bg-gray-100 pl-2 text-base font-semibold outline-0"
-        placeholder="busque um post"
+        placeholder="search for a post"
       />
     </div>
   )

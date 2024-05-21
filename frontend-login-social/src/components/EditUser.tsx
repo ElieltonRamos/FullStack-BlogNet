@@ -41,7 +41,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
 
   return (
     <div className="shadow-xl bg-white border mr-3 border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 mb-2 text-sm h-min">
-      <h1 className="mt-8 text-center text-slate-500 text-sm font-bold">Este e o Seu Perfil</h1>
+      <h1 className="mt-8 text-center text-slate-500 text-sm font-bold">This is Your Profile</h1>
 
       {user.image === null ? <AbstractUser />: <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
       <input
@@ -59,7 +59,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
         name="name"
         value={newUser.name}
         onChange={handleChange}
-        placeholder="altere seu nome aqui"
+        placeholder="change your name here"
       />
       <p className="text-slate-500 text-sm font-bold">Email: email.com</p>
       <input
@@ -68,7 +68,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
         name="email"
         value={newUser.email}
         onChange={handleChange}
-        placeholder="altere seu email aqui"
+        placeholder="change your e-mail here"
       />
 
       <button
@@ -78,14 +78,14 @@ export function EditUser({ setEditUser }: PropEditUser) {
           w-full bg-green-400 stroke-slate-600 border 
         border-slate-200 col-span-2 flex justify-center rounded-lg p-2 hover:border-slate-800 hover:text-white"
       >
-        Salvar Alterações
+        Save editions
       </button>
       <button
         onClick={() => setEditUser(false)}
         className="font-bold text-gray-800  transition-all duration-300 active:scale-95 w-full bg-gray-400 stroke-slate-600 border 
           border-slate-200 col-span-2 flex justify-center rounded-lg p-2 hover:border-slate-800 hover:text-white"
       >
-        Cancelar
+        Cancel
       </button>
 
     </div>
@@ -101,11 +101,11 @@ export function ViewUser({ setEditUser }: PropEditUser) {
 
   return (
     <div className="shadow-xl mb-2 mr-3 md:mt-10 h-[235px] min-w-80 bg-white border border-slate-200 flex flex-col items-center gap-2 rounded-xl p-2 text-sm">
-      <h1 className="text-center text-slate-500 text-sm font-bold">Este e o Seu Perfil</h1>
+      <h1 className="text-center text-slate-500 text-sm font-bold">This is Your Profile</h1>
       {user.image === null ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
       <p className="text-slate-500 text-sm font-bold">Hello! {user.name}</p>
       <p className="text-slate-500 text-sm font-bold">Email: {user.email}</p>
-      <button onClick={() => setEditUser(true)} className="bg-blue-600 text-white font-bold rounded-md p-1 w-20">Editar</button>
+      <button onClick={() => setEditUser(true)} className="bg-blue-600 text-white font-bold rounded-md p-1 w-20">To Edit</button>
     </div>
   )
 }
