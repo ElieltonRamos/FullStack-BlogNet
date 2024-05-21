@@ -5,14 +5,14 @@
 
 <p align="center">
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="300px">
-  <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/800px-MySQL.svg.png" alt="logo mysql" width="300px">
+  <img src="https://pt.vitejs.dev/og-image-announcing-vite4-3.png" alt="logo vite" width="300px">
   <img src="https://logowik.com/content/uploads/images/nodejs.jpg" alt="logo node" width="300px">
-  <img src="https://miro.medium.com/v2/resize:fit:1400/1*i2fRBk3GsYLeUk_Rh7AzHw.png" alt="logo express" width="300px">
-  <img src="https://www.luiztools.com.br/wp-content/uploads/2021/01/sequelize.png" alt="logo sequelize" width="300px">
+  <img src="https://cdn.thexcodes.com/imgs/reactJS.png" alt="logo react" width="300px">
+  <img src="https://picperf.io/https://laravelnews.s3.amazonaws.com/images/tailwindcss-1633184775.jpg" alt="logo tailwind" width="300px">
   <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F0mrmucemyb2p06hcxa5c.png" width="300px">
 </p>
 
-Apresento o projeto FullStack Login Social, um projeto que conta com um frontend e um backend escritos em typescript que oferece um sistema de blog completo desenvolvido em Node.js com e orquestrado com Docker, com o auxílio do framework Express e do ORM Sequelize para interagir com o banco de dados MySQL. Esta e a documentação expecifica do backend, uma api que proporciona aos usuários funcionalidades essenciais, incluindo criação de contas, login seguro com autenticação JWT (JSON Web Token), criação, edicão e exclusão de posts.
+Apresento o projeto FullStack Login Social, um projeto que conta com um frontend e um backend escritos em typescript que oferece um sistema de blog completo desenvolvido em Node.js com e orquestrado com Docker, este e o repositório do frontend do projeto. Desenvolvido com Vite, React, Tailwind CSS e typescript. O frontend é responsável por fornecer uma interface de usuário intuitiva e responsiva para interagir com a API RESTful do backend.
 
 ## 🐳 Docker 
 
@@ -20,7 +20,7 @@ Apresento o projeto FullStack Login Social, um projeto que conta com um frontend
 
 O Docker foi utilizado neste projeto para facilitar a configuração e execução do ambiente de desenvolvimento. Com o Docker, é possível encapsular a aplicação, suas dependências e o banco de dados em contêineres isolados, garantindo que ela possa ser executada de maneira consistente em diferentes ambientes.
 
-O arquivo docker-compose.yml define a configuração dos contêineres necessários para o projeto, incluindo o contêiner do banco de dados MySQL e o contêiner da aplicação Node.js. Com um único comando, os contêineres podem ser inicializados, permitindo que o ambiente de desenvolvimento seja configurado de forma rápida e fácil, alem de contar com testes automatizados com jest.
+O arquivo docker-compose.yml define a configuração dos contêineres necessários para o projeto. Com um único comando, os contêineres podem ser inicializados, permitindo que o ambiente de desenvolvimento seja configurado de forma rápida e fácil.
 
 ## Tecnologias Utilizadas
 
@@ -32,11 +32,11 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 
 [Docker](https://www.docker.com/get-started/)
 
-[MySQL](https://www.mysql.com/)
+[Tailwind](https://tailwindcss.com/)
 
-[Express JS](https://expressjs.com/pt-br/)
+[React JS](https://react.dev/)
 
-[Jest](https://jestjs.io/pt-BR/docs/getting-started)
+[Vite](https://vitejs.dev/guide/)
 
 ## Índice
 
@@ -85,13 +85,13 @@ cd project-fullstack-login-social
 Instale as dependências (caso não esteja usando docker):
 
    ``` bash
-npm install
+cd frontend-login-social && npm install
    ```
 
-Caso não va utilizar o docker e necessario iniciar o backend manualmente
+Caso não va utilizar o docker e necessario iniciar o frontend manualmente
 
    ``` bash
-cd backend-login-social && npm run dev
+npm run dev
    ```
 
 Caso va utilizar o docker (indicado), execute os comandos abaixo
@@ -107,50 +107,35 @@ Inicie a aplicação:
   O container do node ja esta configurado para deixar a aplicação online automaticamente, caso queira ver os logs da aplicação, execute o seguinte comando
 
    ``` bash
-docker logs -f backend
+docker logs -f frontend
    ```
-
-## Testes
-
-O projeto conta com testes que verificam o funcionamento de cada rota da API, os testes foram escritos com JEST, lembrando que e necessario que o docker compose tenha sido executado para que os containers da apricação estejam online para que os testes funcionem.
-
-Para executar os testes siga os seguintes passos:
-
-Abra o terminal na raiz do projeto:
-
-Execute o comando para entrar no container:
-
-   ``` bash
-docker exec -it backend sh
-   ```
-
-Execute o comando:
-
-   ``` bash
-npm test
-   ```
-
-Verifique a saida dos testes no seu terminal
-
-Caso não tenha docker instalado instale as dependencias do projeto e execute o comando de teste:
-
-   ``` bash
-cd backend-login-social && npm install
-   ```
-
-Execute os testes:
-
-   ``` bash
-npm test
-   ```
-
-Veja a saida dos testes no seu terminal
 
 ## Uso
 
-Explore as rotas essenciais desta API, incluindo autenticação, operações de CRUD e funcionalidades de pesquisa para uma administração eficaz de um blog.
+A aplicação front end estará disponível em http://localhost:3000, onde você poderá acessar a interface de usuário e interagir com a API RESTful do backend. O frontend possui as seguintes paginas disponíveis:
 
-1. **POST /login**
+1. **Pagina: /**
+
+   - Pagina inicial da aplicação, onde e possivel fazer o login com um email e senha ja cadastrados.
+   - Caso insira email ou senha incorretos, sera exibido uma mensagem de erro.
+   - Caso não tenha um cadastro, e possivel se cadastrar clicando no botão "Criar Nova Conta".
+   - Apos o login, o usuário sera redirecionado para a pagina de posts.
+
+2. **Pagina: /register**
+
+   - Pagina de cadastro de usuário, onde e possivel inserir um nome, email e senha para criar uma conta.
+   - Caso o email ja esteja cadastrado, sera exibido uma mensagem de erro.
+   - Caso queira voltar para a pagina de login, e possivel clicando no botão "Voltar".
+   - Os campos de nome, email e senha são obrigatórios.
+   - Apos o cadastro, o usuário sera redirecionado para a pagina de posts.
+
+3. **Pagina: /home**
+
+   - Pagina de posts, onde e possivel visualizar todos os posts cadastrados.
+   - Caso não tenha nenhum post cadastrado, sera exibido uma mensagem informando que não ha posts.
+   - Caso queira criar um novo post, e possivel clicando no botão "Novo Post".
+   - Caso queira sair da aplicação, e possivel clicando no botão "Sair".
+   - 
 
 ## Contato
 
