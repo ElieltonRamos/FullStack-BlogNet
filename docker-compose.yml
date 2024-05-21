@@ -1,15 +1,17 @@
 services:
   database:
-    image: mysql:8.0.32
+    image: postgres:latest
     container_name: database
     ports:
-      - 3306:3306
+      - "5432:5432"
     environment:
-      - MYSQL_ROOT_PASSWORD=senhadatabase
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=senhadatabase
+      - POSTGRES_DB=login_social_db
     restart: 'always'
     # Deve aguardar o banco ficar operacional
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       timeout: 10s
       retries: 5
 
@@ -26,7 +28,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=senhadatabase
       - DB_HOST=database
-      - DB_PORT=3306
+      - DB_PORT=5432
     depends_on:
       database:
         condition: service_healthy
