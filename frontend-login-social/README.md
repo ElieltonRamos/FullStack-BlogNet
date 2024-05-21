@@ -1,6 +1,6 @@
-# Boas-vindas ao repositório do projeto FullStack Login Social
+# Welcome to the FullStack Social Login Project Repository
 
-## <p align="center">Frontend</p>
+## <p align="center">Repository Frontend</p>
 
 
 <p align="center">
@@ -12,17 +12,17 @@
   <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F0mrmucemyb2p06hcxa5c.png" width="300px">
 </p>
 
-Apresento o projeto FullStack Login Social, um projeto que conta com um frontend e um backend escritos em typescript que oferece um sistema de blog completo desenvolvido em Node.js com e orquestrado com Docker, este e o repositório do frontend do projeto. Desenvolvido com Vite, React, Tailwind CSS e typescript. O frontend é responsável por fornecer uma interface de usuário intuitiva e responsiva para interagir com a API RESTful do backend.
+Introducing the FullStack Social Login project, a frontend and backend project written in TypeScript that offers a complete blog system developed in Node.js and orchestrated with Docker. This is the project's frontend repository, developed with Vite, React, Tailwind CSS, and TypeScript. The frontend provides an intuitive and responsive user interface to interact with the backend's RESTful API.
 
 ## 🐳 Docker 
 
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="150px">
 
-O Docker foi utilizado neste projeto para facilitar a configuração e execução do ambiente de desenvolvimento. Com o Docker, é possível encapsular a aplicação, suas dependências e o banco de dados em contêineres isolados, garantindo que ela possa ser executada de maneira consistente em diferentes ambientes.
+Docker was used in this project to simplify the setup and execution of the development environment. With Docker, it's possible to encapsulate the application, its dependencies, and the database in isolated containers, ensuring it runs consistently across different environments.
 
-O arquivo docker-compose.yml define a configuração dos contêineres necessários para o projeto. Com um único comando, os contêineres podem ser inicializados, permitindo que o ambiente de desenvolvimento seja configurado de forma rápida e fácil.
+The docker-compose.yml file defines the configuration of the containers needed for the project. With a single command, the containers can be initialized, allowing the development environment to be set up quickly and easily.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 [Node JS](https://nodejs.org/en/docs)
 
@@ -38,7 +38,7 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 
 [Vite](https://vitejs.dev/guide/)
 
-## Índice
+## index
 
 - [Ambiente de Desenvolvimento](#requisitos)
 - [Padroes do projeto](#padroes-do-projeto)
@@ -47,174 +47,173 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 - [Contato](#contato)
 - [Licença](#licença)
 
-## Ambiente de Desenvolvimento
+## Development Environment
 
-Para desenvolver e executar esta aplicação, é necessário configurar um ambiente com as seguintes ferramentas:
+To develop and run this application, you need to set up an environment with the following tools:
 
-**Docker**: Utilizamos o Docker para empacotar e isolar a aplicação em contêineres, garantindo uma implantação consistente e fácil gerenciamento de dependências.
+Docker: We use Docker to package and isolate the application in containers, ensuring consistent deployment and easy dependency management.
 
-- [Como instalar o docker](https://docs.docker.com/engine/install/ubuntu/)
+- [How to install docker](https://docs.docker.com/engine/install/ubuntu/)
 
-**Docker Compose**: O Docker Compose é uma ferramenta que simplifica a definição e o gerenciamento de serviços multi-contêiner em um único arquivo, ideal para orquestrar contêineres relacionados à aplicação.
+**Docker Compose**: Docker Compose is a tool that simplifies the definition and management of multi-container services in a single file, ideal for orchestrating containers related to the application.
 
-- [Como instalar o Docker-Compose](https://docs.docker.com/compose/install/)
+- [How to install Docker Compose](https://docs.docker.com/compose/install/)
 
-### Caso não queira instalar o docker e necessario instalar o Node JS na sua maquina
+### If you do not want to install Docker, you need to install Node JS on your machine
 
-**Node.js**: A aplicação é desenvolvida em Node.js, uma plataforma de tempo de execução JavaScript/Typescript, e é necessária para executar o código.
+**Node.js**: The application is developed in Node.js, a JavaScript/TypeScript runtime platform, and is required to run the code.
 
-- [Como instalar o Node.js](https://nodejs.org/en/download/package-manager)
+- [How to install Node.js](https://nodejs.org/en/download/package-manager)
 
+Ensure you install and configure these tools in your development environment before starting the project.
 
-Certifique-se de instalar e configurar essas ferramentas em seu ambiente de desenvolvimento antes de iniciar o projeto.
+## Installation
 
-## Instalação
-
-Clone este repositório:
+Clone this repository:
 
    ```bash
    git clone git@github.com:ElieltonRamos/project-fullstack-login-social.git
    ```
 
-Navegue até o diretório do projeto:
+Navigate to the project directory:
 
    ```bash
 cd project-fullstack-login-social
    ```
 
-Instale as dependências (caso não esteja usando docker):
+Install dependencies (if not using Docker):
 
    ``` bash
-cd frontend-login-social && npm install
+npm install
    ```
 
-Caso não va utilizar o docker e necessario iniciar o frontend manualmente
+If not using Docker, start the frontend manually:
 
    ``` bash
 npm run dev
    ```
 
-Caso va utilizar o docker (indicado), execute os comandos abaixo
+If using Docker (recommended), run the commands below:
 
-Inicie o docker compose:
+Start Docker Compose:
 
    ``` bash
 docker compose up -d --build
    ```
 
-Inicie a aplicação:
+Start the application:
 
-  O container do node ja esta configurado para deixar a aplicação online automaticamente, caso queira ver os logs da aplicação, execute o seguinte comando
+The node container is configured to keep the application online automatically. To view the application logs, run the following command:
 
    ``` bash
 docker logs -f frontend
    ```
 
-## Padroes do projeto
+## Project Standards
 
   <img src="https://micreiros.com/wp-content/uploads/designpatterns-720x340.png" alt="logo docker" width="150px">
 
-O frontend foi desenvolvido seguindo padrão de paginas e componentes, permitindo a reutilização de código e facilitando a manutenção e escalabilidade da aplicação. A estrutura do projeto é organizada da seguinte forma:
+The frontend was developed following a pattern of pages and components, allowing code reuse and facilitating application maintenance and scalability. The project structure is organized as follows:
 
-- pages: contém as páginas da aplicação, que são acessadas por meio de rotas.
-- components: contém os componentes reutilizáveis da aplicação, que são utilizados em diferentes partes da aplicação.
-- services: contém os serviços que fazem chamadas à API RESTful do backend.
-- context: contém os contextos da aplicação, que são utilizados para compartilhar estados entre componentes.
-- types: contém os tipos de dados utilizados na aplicação.
+- pages: contains the application pages, which are accessed through routes.
+- components: contains the reusable components of the application, which are used in different parts of the application.
+- services: contains the services that make calls to the backend's RESTful API.
+- context: contains the application contexts, which are used to share states between components.
+- types: contains the types of data used in the application.
 
-O projeto foi desenvolvido com React, Tailwind CSS e Typescript, seguindo as melhores práticas de desenvolvimento e design de código, procurando manter o código limpo, organizado e de fácil manutenção.
+The project was developed with React, Tailwind CSS and Typescript, following the best code development and design practices, seeking to keep the code clean, organized and easy to maintain.
 
 ## framework CSS
 
    <img src="https://picperf.io/https://laravelnews.s3.amazonaws.com/images/tailwindcss-1633184775.jpg" alt="logo tailwind" width="150px">
 
-Utilizei o Tailwind CSS pois é um framework que permite criar interfaces de usuário personalizadas e responsivas de forma rápida e eficiente. Ele fornece uma série de classes utilitárias que podem ser aplicadas diretamente no HTML, permitindo estilizar os elementos de forma flexível e consistente. o que facilita o desenvolvimento e a manutenção do código.
+I used Tailwind CSS because it is a framework that allows creating customized and responsive user interfaces quickly and efficiently. It provides a series of utility classes that can be applied directly in the HTML, allowing flexible and consistent element styling, which facilitates development and code maintenance.
 
 ## Vite + React
 
    <img src="https://pt.vitejs.dev/og-image-announcing-vite4-3.png" alt="logo vite" width="150px">
 
-Utilizei o Vite para criar o projeto frontend, pois é um ambiente de desenvolvimento rápido e moderno que oferece uma experiência de desenvolvimento de alta qualidade. O Vite é um construtor de aplicações web que fornece um ambiente de desenvolvimento rápido e eficiente, com suporte para React, Vue e outras bibliotecas populares. Ele oferece uma série de recursos avançados, como carregamento rápido, recarregamento a quente e suporte a TypeScript, que tornam o desenvolvimento de aplicações web mais produtivo e agradável.
+I used Vite to create the frontend project because it is a fast and modern development environment that offers a high-quality development experience. Vite is a web application builder that provides a fast and efficient development environment with support for React, Vue, and other popular libraries. It offers a series of advanced features like fast loading, hot reloading, and TypeScript support, making web application development more productive and enjoyable.
 
 ## React JS
 
    <img src="https://cdn.thexcodes.com/imgs/reactJS.png" alt="logo react" width="150px">
 
-Utilizei o React para desenvolver a interface de usuário da aplicação, pois é uma biblioteca JavaScript popular e amplamente utilizada para criar interfaces de usuário interativas e responsivas. O React oferece uma série de recursos avançados, como componentes reutilizáveis, estados e propriedades, que facilitam o desenvolvimento de aplicações web modernas e escaláveis. Além disso, o React é altamente flexível e extensível, permitindo integrar facilmente com outras bibliotecas e frameworks, como o Tailwind CSS e o Vite.
+I used React to develop the application's user interface because it is a popular and widely used JavaScript library for creating interactive and responsive user interfaces. React offers a series of advanced features like reusable components, states, and properties, which facilitate the development of modern and scalable web applications. Additionally, React is highly flexible and extensible, allowing easy integration with other libraries and frameworks like Tailwind CSS and Vite.
 
 ## Typescript
 
    <img src="https://logowik.com/content/uploads/images/nodejs.jpg" alt="logo node" width="150px">
 
-Utilizei o Typescript para desenvolver a aplicação, pois é uma linguagem de programação tipada e de alto nível que oferece suporte a tipos estáticos e interfaces, o que ajuda a detectar erros de forma mais eficiente e a melhorar a qualidade do código. O Typescript é uma extensão do JavaScript que adiciona recursos avançados, como tipagem estática, classes, interfaces e módulos, que tornam o desenvolvimento de aplicações web mais seguro, produtivo e escalável.
+I used TypeScript to develop the application because it is a typed and high-level programming language that offers support for static types and interfaces, helping to detect errors more efficiently and improve code quality. TypeScript is an extension of JavaScript that adds advanced features like static typing, classes, interfaces, and modules, making web application development safer, more productive, and scalable.
 
-## Uso
+## Usage
 
-A aplicação front end estará disponível em http://localhost:3000, onde você poderá acessar a interface de usuário e interagir com a API RESTful do backend. O frontend possui as seguintes paginas disponíveis:
+The front end application will be available at http://localhost:3000, where you can access the user interface and interact with the backend RESTful API. The frontend has the following pages available:
 
-1. **Pagina: /**
+1. **Page: /**
 
-   - Pagina inicial da aplicação, onde e possivel fazer o login com um email e senha ja cadastrados.
-   - Caso insira email ou senha incorretos, sera exibido uma mensagem de erro.
-   - Caso não tenha um cadastro, e possivel se cadastrar clicando no botão "Criar Nova Conta".
-   - Apos o login, o usuário sera redirecionado para a pagina de posts.
+   - Application home page, where it is possible to log in with an already registered email and password.
+   - If you enter an incorrect email or password, an error message will be displayed.
+   - If you don't have a registration, you can register by clicking the "Create New Account" button.
+   - After logging in, the user will be redirected to the posts page.
 
-2. **Pagina: /register**
+2. **Page: /register**
 
-   - Pagina de cadastro de usuário, onde e possivel inserir um nome, email e senha para criar uma conta.
-   - Caso o email ja esteja cadastrado, sera exibido uma mensagem de erro.
-   - Caso queira voltar para a pagina de login, e possivel clicando no botão "Voltar".
-   - Os campos de nome, email e senha são obrigatórios.
-   - Apos o cadastro, o usuário sera redirecionado para a pagina de posts.
+   - User registration page, where you can enter a name, email and password to create an account.
+   - If the email is already registered, an error message will be displayed.
+   - If you want to return to the login page, you can click on the "Back" button.
+   - The name, email and password fields are mandatory.
+   - After registration, the user will be redirected to the posts page.
 
-3. **Pagina: /home**
+3. **Page: /home**
 
-   - Pagina de posts, onde e possivel visualizar todos os posts cadastrados.
-   - Caso não tenha nenhum post cadastrado, sera exibido uma mensagem informando que não ha posts.
-   - Caso queira criar um novo post, e possivel clicando no botão "Send", butao azul.
-   - Caso queira sair da aplicação, e possivel clicando no botão "Sair", icone presente no canto superior da tela.
-   - Caso queira editar um post, e possivel clicando no botão "Edit", icone presente no canto superior do post.
-   - Caso queira deletar um post, e possivel clicando no botão "Delete", icone presente no canto superior do post.
-   - Os botoes de editar e deletar so estarão disponíveis para o usuário que criou o post.
-   - Ao clicar na sua foto de perfil no navbar, sera redirecionado para a pagina de perfil.
-   - Ao clicar em "login social" no navbar, sera redirecionado para a pagina /home.
-   - Existe um toggle no canto superior direito da tela, que permite escolher entre posts mais recentes e mais antigos.
-   - Existe um campo de pesquisa no canto superior direito da tela, que permite buscar posts por titulo e conteudo.
+   - Posts page, where you can view all registered posts.
+   - If you do not have any posts registered, a message will be displayed informing you that there are no posts.
+   - If you want to create a new post, you can click on the "Send" button, blue button.
+   - If you want to exit the application, you can click on the "Exit" button, icon in the top corner of the screen.
+   - If you want to edit a post, you can click on the "Edit" button, icon present in the top corner of the post.
+   - If you want to delete a post, you can click on the "Delete" button, icon present in the top corner of the post.
+   - The edit and delete buttons will only be available to the user who created the post.
+   - When you click on your profile photo in the navbar, you will be redirected to the profile page.
+   - When you click on "social login" in the navbar, you will be redirected to the /home page.
+   - There is a toggle in the top right corner of the screen, which allows you to choose between newer and older posts.
+   - There is a search field in the top right corner of the screen, which allows you to search for posts by title and content.
 
-4. **Pagina: /profile**
+4. **Page: /profile**
 
-   - Pagina de perfil do usuário, onde e possivel visualizar as informações do usuário logado.
-   - Caso queira editar as informações do usuário, e possivel clicando no botão "Editar".
-   - E possivel enviar uma foto de perfil, clicando no input "Enviar Foto".
-   - Name e email são campos obrigatórios.
-   - Image e um campo opcional.
-   - Caso queira voltar para a pagina de posts, e possivel clicando no "login social" no nav bar.
-   - Caso queira sair da aplicação, e possivel clicando no botão "Sair", icone presente no canto superior da tela.
-   - E possivel visualizar os posts criados pelo usuário logado, eles sao carregados automaticamente".
-   - E possivel criar, editar e deletar um post nessa pagina.
+   - User profile page, where it is possible to view the logged in user's information.
+   - If you want to edit user information, you can click on the "Edit" button.
+   - It is possible to send a profile photo by clicking on the "Send Photo" input.
+   - Name and email are mandatory fields.
+   - Image and an optional field.
+   - If you want to return to the posts page, you can click on "social login" in the nav bar.
+   - If you want to exit the application, you can click on the "Exit" button, icon in the top corner of the screen.
+   - It is possible to view the posts created by the logged in user, they are loaded automatically."
+   - It is possible to create, edit and delete a post on this page.
 
-5. **Pagina: /not-found**
+5. **Page: /not-found**
 
-   - Pagina de erro 404, caso a rota acessada não exista.
+   - 404 error page, if the route accessed does not exist.
 
-## Contato
+## Contact
 
 Elielton Ramos
 
-[![Envie-me um e-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
+[![E-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/elielton-ramos/)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](elielton6554)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/elieltonramos08/)
 
-## Licença
+## License
 
-Código Aberto (Open Source)
+Open Source
 
-Este projeto é de código aberto e está disponível para toda a comunidade. Fique à vontade para explorar, clonar e contribuir para o projeto.
+This project is open source and available to the community. Feel free to explore, clone, and contribute to the project.
 
-## Agradecimentos
+## Acknowledgements
 
-Agradeço por todas as horas dedicadas, os desafios superados e as lições aprendidas durante o desenvolvimento deste projeto. Cada linha de código escrita foi um passo em direção ao meu crescimento como desenvolvedor e ao sucesso deste empreendimento.
+Thank you for all the hours dedicated, challenges overcome, and lessons learned during the development of this project. Every line of code written was a step towards my growth as a developer and the success of this endeavor.
 
-Também gostaria de estender meu agradecimento a todos os recursos educacionais, documentações e comunidades online que me forneceram orientação, inspiração e suporte ao longo deste processo.
+I would also like to extend my gratitude to all educational resources, documentation, and online communities that provided guidance, inspiration, and support throughout this process.
 

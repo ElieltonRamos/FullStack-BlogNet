@@ -1,6 +1,6 @@
-# Boas-vindas ao repositório do projeto FullStack Login Social
+# Welcome to the FullStack Social Login Project Repository
 
-## <p align="center">Backend</p>
+## <p align="center">Repository Backend</p>
 
 
 <p align="center">
@@ -12,17 +12,17 @@
   <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F0mrmucemyb2p06hcxa5c.png" width="300px">
 </p>
 
-Apresento o projeto FullStack Login Social, um projeto que conta com um frontend e um backend escritos em typescript que oferece um sistema de blog completo desenvolvido em Node.js com e orquestrado com Docker, com o auxílio do framework Express e do ORM Sequelize para interagir com o banco de dados MySQL. Esta e a documentação expecifica do backend, uma api que proporciona aos usuários funcionalidades essenciais, incluindo criação de contas, login seguro com autenticação JWT (JSON Web Token), criação, edicão e exclusão de posts.
+I present the FullStack Login Social project, a project that has a frontend and a backend written in typescript that offers a complete blog system developed in Node.js with and orchestrated with Docker, with the help of the Express framework and ORM Sequelize to interact with the MySQL database. This is documentation specific to the backend, an API that provides users with essential functionality, including account creation, secure login with JWT (JSON Web Token) authentication, creation, editing and deletion of posts.
 
-## 🐳 Docker 
+## 🐳 Docker
 
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="150px">
 
-O Docker foi utilizado neste projeto para facilitar a configuração e execução do ambiente de desenvolvimento. Com o Docker, é possível encapsular a aplicação, suas dependências e o banco de dados em contêineres isolados, garantindo que ela possa ser executada de maneira consistente em diferentes ambientes.
+Docker was used in this project to facilitate the configuration and execution of the development environment. With Docker, it is possible to encapsulate the application, its dependencies and the database in isolated containers, ensuring that it can run consistently in different environments.
 
-O arquivo docker-compose.yml define a configuração dos contêineres necessários para o projeto, incluindo o contêiner do banco de dados MySQL e o contêiner da aplicação Node.js. Com um único comando, os contêineres podem ser inicializados, permitindo que o ambiente de desenvolvimento seja configurado de forma rápida e fácil, alem de contar com testes automatizados com jest.
+The docker-compose.yml file defines the configuration of the containers required for the project, including the MySQL database container and the Node.js application container. With a single command, containers can be initialized, allowing the development environment to be configured quickly and easily, in addition to automated testing with jest.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 [Node JS](https://nodejs.org/en/docs)
 
@@ -38,328 +38,323 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 
 [Jest](https://jestjs.io/pt-BR/docs/getting-started)
 
-## Índice
+## Index
 
-- [Ambiente de Desenvolvimento](#requisitos)
-- [Padroes do projeto](#padroes-do-projeto)
-- [Instalação](#instalação)
-- [Uso](#uso)
-- [Contato](#contato)
-- [Licença](#licença)
+- [Development Environment](#requirements)
+- [Project standards](#project-standards)
+- [Installation](#installation)
+- [Use](#use)
+- [Contact](#contact)
+- [License](#license)
 
-## Ambiente de Desenvolvimento
+## Development Environment
 
-Para desenvolver e executar esta aplicação, é necessário configurar um ambiente com as seguintes ferramentas:
+To develop and run this application, you need to set up an environment with the following tools:
 
-**Docker**: Utilizamos o Docker para empacotar e isolar a aplicação em contêineres, garantindo uma implantação consistente e fácil gerenciamento de dependências.
+Docker: We use Docker to package and isolate the application in containers, ensuring consistent deployment and easy dependency management.
 
-- [Como instalar o docker](https://docs.docker.com/engine/install/ubuntu/)
+- [How to install docker](https://docs.docker.com/engine/install/ubuntu/)
 
-**Docker Compose**: O Docker Compose é uma ferramenta que simplifica a definição e o gerenciamento de serviços multi-contêiner em um único arquivo, ideal para orquestrar contêineres relacionados à aplicação.
+**Docker Compose**: Docker Compose is a tool that simplifies the definition and management of multi-container services in a single file, ideal for orchestrating containers related to the application.
 
-- [Como instalar o Docker-Compose](https://docs.docker.com/compose/install/)
+- [How to install Docker Compose](https://docs.docker.com/compose/install/)
 
-### Caso não queira instalar o docker e necessario instalar o Node JS na sua maquina
+### If you do not want to install Docker, you need to install Node JS on your machine
 
-**Node.js**: A aplicação é desenvolvida em Node.js, uma plataforma de tempo de execução JavaScript/Typescript, e é necessária para executar o código.
+**Node.js**: The application is developed in Node.js, a JavaScript/TypeScript runtime platform, and is required to run the code.
 
-- [Como instalar o Node.js](https://nodejs.org/en/download/package-manager)
+- [How to install Node.js](https://nodejs.org/en/download/package-manager)
 
+Ensure you install and configure these tools in your development environment before starting the project.
 
-Certifique-se de instalar e configurar essas ferramentas em seu ambiente de desenvolvimento antes de iniciar o projeto.
+## Project standards
 
-## Padroes do projeto
+  <img src="https://micreiros.com/wp-content/uploads/designpatterns-720x340.png" alt="docker logo" width="150px">
 
-  <img src="https://micreiros.com/wp-content/uploads/designpatterns-720x340.png" alt="logo docker" width="150px">
+The backend is based on the Model/Service/Controller (MSC) architecture, I chose this architecture because it separates the app differently, separating the responsibilities of your application into three distinct layers, promoting better organization and maintenance of the code:
 
-O backend tem como base a arquitetura Model/Service/Controller (MSC), escolhi essa arquitetura pois separa de forma distinta o app, separando em diferentes responsabilidades do seu aplicativo em três camadas distintas, promovendo uma melhor organização e manutenção do código:
+**Model:** Manages the logic and representation of data, interacting directly with the database or other data sources.
 
-**Model:** Gerencia a lógica e a representação dos dados, interagindo diretamente com o banco de dados ou outras fontes de dados.
+**Service:** Contains the application's business logic. It is responsible for processing data between the Controller and the Model.
 
-**Service:** Contém a lógica de negócios da aplicação. É responsável por processar dados entre o Controller e o Model.
+**Controller:** Handles HTTP requests, delegating tasks to the Service and Model layers, and returning appropriate responses to the client.
 
-**Controller:** Lida com as requisições HTTP, delegando tarefas às camadas de Service e Model, e retornando respostas apropriadas ao cliente.
-
-## Escolha da linguagem e do framework
+## Choice of language and framework
 
   <img src="https://www.devmedia.com.br/arquivos/Artigos/42224/image004.png" alt="logo docker" width="150px">
 
-Escolhi o node juntamente com seu framework express e a linguagem javascript/typescript pois são ferramentas de facil entendimento e com uma comunidade grande, O TypeScript adiciona um sistema de tipagem estática ao JavaScript, detectando erros em tempo de compilação e oferecendo uma camada adicional de segurança ao código. Ele também melhora a legibilidade e a manutenibilidade do código, fornecendo recursos como IntelliSense e autocompletar em editores de código. O express e um framework minimalista que permite uma proximidade maior da linguagem e o node e o ambiente de execução ideal do javascript.
+I chose node along with its express framework and the javascript/typescript language because they are easy-to-understand tools with a large community. TypeScript adds a static typing system to JavaScript, detecting errors at compile time and offering an additional layer of security to the code. It also improves code readability and maintainability by providing features like IntelliSense and autocompletion in code editors. Express is a minimalist framework that allows for greater proximity between the language and the node and the ideal javascript execution environment.
 
-## Utilização de ORM (Object-Relational Mapping)
+## Use of ORM (Object-Relational Mapping)
 
  <img src="https://miro.medium.com/v2/da:true/resize:fit:1200/0*UkOqM_a_agYwUOoV" alt="logo docker" width="150px">
 
-Optei por utilizar um ORM pois possibilita o desacoplamento das regras dos bancos de dados, facilitando uma possivel mudança no futuro, alem de permitir a abstração da modelagem de dados, maior seguranca, proteção contra sql injection.
+I chose to use an ORM because it allows the decoupling of database rules, facilitating a possible change in the future, in addition to allowing the abstraction of data modeling, greater security, protection against sql injection.
 
-Utilizei o sequelize pois e um ORM do javascript, compativel com typescript, bem robusto, ja conhecido pela comunidade e que propricia completa manipulação do banco de dados atraves de codico javascript/typescript.
+I used sequelize because it is a javascript ORM, compatible with typescript, very robust, already known by the community and which provides complete database manipulation through javascript/typescript code.
 
-## Utilização do MySQL
+## Using MySQL
 
-  <img src="https://st4.depositphotos.com/14846838/22198/v/450/depositphotos_221986140-stock-illustration-database-server-data-protection-storage.jpg" alt="logo docker" width="150px">
+  <img src="https://st4.depositphotos.com/14846838/22198/v/450/depositphotos_221986140-stock-illustration-database-server-data-protection-storage.jpg" alt="docker logo" width=" 150px">
 
+I chose MySQL as the database for this project, as it is what I had most contact with in my studies, as well as being known for its reliability, scalability and performance. MySQL supports a wide variety of data types, functions, and operators, making it a versatile choice for applications of all sizes. With its client-server architecture, MySQL allows multiple applications to connect to the same database, ensuring data consistency and integrity.
 
-Escolhi o MySQL como banco de dados para este projeto, pois e o que eu mais tive contato nos meus estudos, alem de ser conhecido por sua confiabilidade, escalabilidade e desempenho. O MySQL oferece suporte a uma ampla variedade de tipos de dados, funções e operadores, tornando-o uma escolha versátil para aplicações de todos os tamanhos. Com sua arquitetura cliente-servidor, o MySQL permite a conexão de várias aplicações ao mesmo banco de dados, garantindo a consistência e a integridade dos dados.
+## Use of Json Web Token (JWT)
 
-## Utilização do Json Web Token (JWT)
+  <img src="https://pradeepl.com/blog/jwt/JWT-Cover.png" alt="docker logo" width="150px">
 
-  <img src="https://pradeepl.com/blog/jwt/JWT-Cover.png" alt="logo docker" width="150px">
+As it is an application in which the user needs authentication, I opted for JWT, which offers an efficient and secure solution for authentication in web applications and APIs. It simplifies authentication by allowing user verification without the need to consult the database. each request. With its simple and standardized structure, JWT is easily implemented and interoperable across different platforms. Your ability to include custom information in the token offers control and flexibility in managing permissions and authorizations. Additionally, the digital signature ensures the integrity of the token's data, while optional encryption protects the token's contents from unauthorized access.
 
+## Using Bcript JS
 
-Como e uma aplicação em que o usuario precisa de autenticação optei pelo JWT, que oferece uma solução eficiente e segura para autenticação em aplicações web e APIs. Ele simplifica a autenticação ao permitir a verificação do usuário sem a necessidade de consultar o banco de dados a cada solicitação. Com sua estrutura simples e padronizada, JWT é facilmente implementado e interoperável em diferentes plataformas. Sua capacidade de incluir informações personalizadas no token oferece controle e flexibilidade na gestão de permissões e autorizações. Além disso, a assinatura digital garante a integridade dos dados do token, enquanto a criptografia opcional protege o conteúdo do token contra acesso não autorizado.
+  <img src="https://codeforgeek.com/wp-content/uploads/2023/02/Bcrypt-vs-BcryptJS.jpg" alt="docker logo" width="150px">
 
-## Utilização do Bcript JS
+To avoid major problems in relation to data leaks, I used Bcript JS, a secure and well-known encryption library in the community, which allows hash comparison without the explicit need to decrypt the password. Furthermore, its flexibility allows it to adjust the computational cost of hashing to keep up with technology advancements. By using bcrypt.js, the protection of users' confidential information is ensured, promoting trust and application integrity.
 
-  <img src="https://codeforgeek.com/wp-content/uploads/2023/02/Bcrypt-vs-BcryptJS.jpg" alt="logo docker" width="150px">
+## Using jest
 
+  <img src="https://miro.medium.com/v2/resize:fit:617/0*Kbpj6uYEDOzd0kbH.png" alt="docker logo" width="150px">
 
-Para evitar maiores problemas em relação a vazamento de dados, utilizei o Bcript JS, uma biblioteca de criptografia segura e conhecida na comunidade, que permite a comparação de hash sem a necessidade explicita de descriptografar a senha. Além disso, sua flexibilidade permite ajustar o custo computacional do hashing para acompanhar o avanço da tecnologia. Ao utilizar o bcrypt.js, assegura-se a proteção das informações confidenciais dos usuários, promovendo a confiança e a integridade da aplicação.
+Like any good backend, this one has automated tests, I used jest as a testing library, as it is very complete and does not need many dependencies to be used, it simplifies the testing process with a clear and easy-to-use syntax, in addition to offer advanced features. With its parallel execution, Jest is fast and efficient, making it ideal for large test suites. It offers built-in support for creating mocks, function spying, and snapshot testing, making it easier to create isolated tests and detect regressions. Furthermore, Jest integrates perfectly with TypeScript, allowing you to write statically typed tests. Its ability to integrate with transpiling tools like Babel and packaging tools like Webpack makes it a versatile choice for backend projects.
 
-## Utilização do jest
+## Installation
 
-  <img src="https://miro.medium.com/v2/resize:fit:617/0*Kbpj6uYEDOzd0kbH.png" alt="logo docker" width="150px">
-
-
-Como todo bom backend, este conta com testes automatizados, utilizei o jest como biblioteca de testes, pois ele e bem completo e nao precisa de muitas dependencias para ser usado, ele simplifica o processo de teste com uma sintaxe clara e fácil de usar, além de oferecer recursos avançados. Com sua execução paralela, o Jest é rápido e eficiente, sendo ideal para grandes conjuntos de testes. Ele oferece suporte integrado para criação de mocks, espionagem de funções e snapshot testing, facilitando a criação de testes isolados e a detecção de regressões. Além disso, o Jest integra-se perfeitamente com TypeScript, permitindo a escrita de testes com tipagem estática. Sua capacidade de integrar-se com ferramentas de transpilação como Babel e empacotamento como Webpack o torna uma escolha versátil para projetos de backend. 
-
-## Instalação
-
-Clone este repositório:
+Clone this repository:
 
    ```bash
    git clone git@github.com:ElieltonRamos/project-fullstack-login-social.git
    ```
 
-Navegue até o diretório do projeto:
+Navigate to the project directory:
 
    ```bash
 cd project-fullstack-login-social
    ```
 
-Instale as dependências (caso não esteja usando docker):
+Install the dependencies (if you are not using Docker):
 
    ``` bash
 npm install
    ```
 
-Caso não va utilizar o docker e necessario iniciar o backend manualmente
+If you are not going to use Docker and you need to start the backend manually
 
    ``` bash
-cd backend-login-social && npm run dev
+npm run dev
    ```
 
-Caso va utilizar o docker (indicado), execute os comandos abaixo
+If you are going to use docker (recommended), run the commands below
 
-Inicie o docker compose:
+Start docker compose:
 
    ``` bash
 docker compose up -d --build
    ```
 
-Inicie a aplicação:
+Start the application:
 
-  O container do node ja esta configurado para deixar a aplicação online automaticamente, caso queira ver os logs da aplicação, execute o seguinte comando
+  The node container is already configured to leave the application online automatically, if you want to see the application logs, run the following command
 
    ``` bash
 docker logs -f backend
    ```
 
-## Testes
+## Tests
 
-O projeto conta com testes que verificam o funcionamento de cada rota da API, os testes foram escritos com JEST, lembrando que e necessario que o docker compose tenha sido executado para que os containers da apricação estejam online para que os testes funcionem.
+The project has tests that verify the operation of each API route. The tests were written with JEST, remembering that Docker Compose must have been run for the application containers to be online for the tests to work.
 
-Para executar os testes siga os seguintes passos:
+To run the tests, follow these steps:
 
-Abra o terminal na raiz do projeto:
+Open the terminal at the project root:
 
-Execute o comando para entrar no container:
+Run the command to enter the container:
 
    ``` bash
 docker exec -it backend sh
    ```
 
-Execute o comando:
+Run the command:
 
    ``` bash
 npm test
    ```
 
-Verifique a saida dos testes no seu terminal
+Check the test output on your terminal
 
-Caso não tenha docker instalado instale as dependencias do projeto e execute o comando de teste:
+If you don't have Docker installed, install the project's dependencies and run the test command:
 
    ``` bash
 cd backend-login-social && npm install
    ```
 
-Execute os testes:
+Run the tests:
 
    ``` bash
 npm test
    ```
 
-Veja a saida dos testes no seu terminal
+See the test output in your terminal
 
-## Uso
+## Usage
 
-Explore as rotas essenciais desta API, incluindo autenticação, operações de CRUD e funcionalidades de pesquisa para uma administração eficaz de um blog.
+Explore the essential routes of this API, including authentication, CRUD operations, and search capabilities for effective blog administration.
 
 1. **POST /login**
-   - Recebe no body um json do tipo:
+   - Receives a json in the body of the type:
 
    { "email": string, "password": string }
 
-   - Retorna um token JWT e um status http 200 caso usuario seja valido.
-   - Caso o usuario nao exista, a senha esteja incorreta ou o usuario nao esteja cadastrado, retorna uma mensagem de erro.
+   - Returns a JWT token and an http status of 200 if the user is valid.
+   - If the user does not exist, the password is incorrect or the user is not registered, an error message will be returned.
 
 2. **POST /register**
-   - Recebe no body um json no formato:
+   - Receives a json in the body in the format:
 
    {"name": string, "email": string, "password": string, "image": string}
 
-   - E possivel enviar a imagem de perfil do usuario em um formato base64
-   - O campo image e opcional
-   - Valida se os campos são validos e retorna um erro caso falte algum campo.
-   - Faz um cadastro de um novo usuario no banco de dados, retorna um status http 201 e um token JWT.
+   - It is possible to send the user's profile image in a base64 format
+   - The image field is optional
+   - Validates whether the fields are valid and returns an error if any field is missing.
+   - Registers a new user in the database, returns an http status 201 and a JWT token.
 
 3. **GET /register/user**
-   - Para acessar essa rota e necessario informar um token JWT no header, no formato
+   - To access this route it is necessary to enter a JWT token in the header, in the format
 
       { "authorization": baerer (tokenJWT) }
    
-   - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-   - Valida o token e retorna uma mensagem caso o token seja invalido
-   - Caso o token seja valido retorna os dados do usuario que fez a requisição
-   - Retorna um status http 200 e os dados do usuario
+   - Validates whether the token was sent and returns a message if it was not sent
+   - Validates the token and returns a message if the token is invalid
+   - If the token is valid, it returns the data of the user who made the request
+   - Returns an http 200 status and user data
 
 4. **PATCH register/user**
-   - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+   - To access this route it is necessary to enter a JWT token in the header, in the format:
 
       { "authorization": baerer (tokenJWT) }
    
-   - Valida o token e retorna uma mensagem caso o token seja invalido
-   - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
+   - Validates the token and returns a message if the token is invalid
+   - Validates whether the token was sent and returns a message if it was not sent
 
-   - Deve receber no body um json no formato:
+   - You must receive a json in the body in the format:
 
       { "name": string, "email": string, "image": string }
 
-   - Caso o token seja valido atualiza o usuario que fez a requisição com os dados do body
-   - O campo image e opcional
-   - Os campos name e email nao podem ser vazios
-   - Retorna um status http 200 e o usuario atualizado
+   - If the token is valid, update the user who made the request with the body data
+   - The image field is optional
+   - The name and email fields cannot be empty
+   - Returns an http status of 200 and the user is updated
 
 5. **POST /posts**
-   - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+   - To access this route it is necessary to enter a JWT token in the header, in the format:
 
       { "authorization": baerer (tokenJWT) }
    
-   - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-   - Valida o token e retorna uma mensagem caso o token seja invalido
-   - Cria um novo post no banco de dados.
-   - Recebe no body um json no formato:
-   - E possivel enviar a imagem do post em um formato base64, mais e opcional
-   - Title e content nao podem ser vazios
-   - Valida se os campos sao validos e retorna um erro caso falte algum campo
+   - Validates whether the token was sent and returns a message if it was not sent
+   - Validates the token and returns a message if the token is invalid
+   - Creates a new post in the database.
+   - Receives a json in the body in the format:
+   - It is possible to send the post image in a base64 format, but it is optional
+   - Title and content cannot be empty
+   - Validates whether the fields are valid and returns an error if any field is missing
 
       { "title": string, "content": string, image: string }
 
-   - Retorna um status http 201 e o post criado.
+   - Returns a 201 http status and the created post.
 
 6. **PATCH /posts/:id**
-      - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-      - Valida o token e retorna uma mensagem caso o token seja invalido
-      - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+      - Validates whether the token was sent and returns a message if it was not sent
+      - Validates the token and returns a message if the token is invalid
+      - To access this route it is necessary to enter a JWT token in the header, in the format:
 
          { "authorization": baerer (tokenJWT) }
 
-      - Atualiza um post no banco de dados.
-      - o ID do post deve ser informado na rota
-      - Recebe no body um json no formato:
+      - Updates a post in the database.
+      - the post ID must be provided in the route
+      - Receives a json in the body in the format:
 
          { "title": string, "content": string, image: string }
 
-      - E possivel enviar a imagem do post em um formato base64, mais e opcional
-      - Valida se o post existe e retorna uma mensagem caso nao exista
-      - Valida se o post pertence ao usuario que fez a requisição e retorna uma mensagem caso nao pertença
-      - Title e content nao podem ser vazios
-      - Valida se os campos sao validos e retorna um erro caso falte algum campo
-      - Retorna um status http 200 e o post atualizado.
+      - It is possible to send the post image in a base64 format, but it is optional
+      - Validates whether the post exists and returns a message if it does not exist
+      - Validates whether the post belongs to the user who made the request and returns a message if it does not belong
+      - Title and content cannot be empty
+      - Validates whether the fields are valid and returns an error if any field is missing
+      - Returns an http status of 200 and the post is updated.
    
 
 7. **GET /posts/:id**
-      - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-      - Valida o token e retorna uma mensagem caso o token seja invalido
-      - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+      - Validates whether the token was sent and returns a message if it was not sent
+      - Validates the token and returns a message if the token is invalid
+      - To access this route it is necessary to enter a JWT token in the header, in the format:
 
          { "authorization": baerer (tokenJWT) }
 
-      - Retorna um post especifico do banco de dados.
-      - o ID do post deve ser informado na rota
-      - Valida se o post existe e retorna uma mensagem caso nao exista
-      - Valida se o post pertence ao usuario que fez a requisição e retorna status 401 e uma mensagem de não autorizado caso nao pertença
-      - Retorna um status http 200 e o post solicitado.
+      - Returns a specific post from the database.
+      - the post ID must be provided in the route
+      - Validates whether the post exists and returns a message if it does not exist
+      - Validates whether the post belongs to the user who made the request and returns status 401 and an unauthorized message if it does not belong
+      - Returns an http 200 status and the requested post.
 
 8. **DELETE /posts/:id**
-      - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-      - Valida o token e retorna uma mensagem caso o token seja invalido
-      - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+      - Validates whether the token was sent and returns a message if it was not sent
+      - Validates the token and returns a message if the token is invalid
+      - To access this route it is necessary to enter a JWT token in the header, in the format:
 
          { "authorization": baerer (tokenJWT) }
 
-      - Delete um post especifico do banco de dados.
-      - o ID do post deve ser informado na rota
-      - Valida se o post existe e retorna uma mensagem caso nao exista
-      - Valida se o post pertence ao usuario que fez a requisição e retorna status 401 e uma mensagem de não autorizado caso nao pertença
-      - Retorna um status http 204 sem conteudo
+      - Delete a specific post from the database.
+      - the post ID must be provided in the route
+      - Validates whether the post exists and returns a message if it does not exist
+      - Validates whether the post belongs to the user who made the request and returns status 401 and an unauthorized message if it does not belong
+      - Returns a 204 http status with no content
 
 9. **GET /posts**
-      - Valida se o token foi enviado e retorna uma mensagem caso nao tenha sido enviado
-      - Valida o token e retorna uma mensagem caso o token seja invalido
-      - Para acessar essa rota e necessario informar um token JWT no header, no formato:
+      - Validates whether the token was sent and returns a message if it was not sent
+      - Validates the token and returns a message if the token is invalid
+      - To access this route it is necessary to enter a JWT token in the header, in the format:
 
          { "authorization": baerer (tokenJWT) }
 
-      - Caso não seja espeficificado alguma query na rota retorna todos os posts do banco de dados.
-      - Retorna um status http 200 e os posts solicitados.
-      - E possivel enviar as querys 'ASC' ou 'DESC' para ordenar os posts por data de criação.
+      - If a query is not specified in the route, it returns all posts in the database.
+      - Returns an http 200 status and the requested posts.
+      - It is possible to send the 'ASC' or 'DESC' queries to order the posts by creation date.
          
-         Exemplo:      /posts?order=ASC   OU   /posts?order=DESC
+         Example: /posts?order=ASC OR /posts?order=DESC
 
-      - E possivel enviar a query 'USER' para retornar apenas os posts do usuario que fez a requisição
+      - It is possible to send the 'USER' query to return only the posts of the user who made the request
 
-         Exemplo:   /posts?user=true
+         Example: /posts?user=true
 
-      - E possivel enviar a duas querys anteriores juntas para ordenar os posts do usuario que fez a requisição
+      - It is possible to send two previous queries together to order the posts of the user who made the request
 
-         Exemplo:   /posts?user=true&order=ASC  OU   /posts?user=true&order=DESC
+         Example: /posts?user=true&order=ASC OR /posts?user=true&order=DESC
 
-      - Retorna status 200 e os posts solicitados
+      - Returns status 200 and the requested posts
 
-10. **Tratamento de erros**
+10. **Error Handling**
 
-      - Todas as rotas possuem tratamento de erros.
-      - Todas as controllers possuem um bloco try/catch para evitar a exposição de dados internos do servidor.
-      - Caso ocorra algum erro ja esperado e retornado uma mensagem informando o que ocorreu.
-      - Caso ocorra algum erro inesperado, a aplicação retorna um status http 500 e uma mensagem de erro.
+      - All routes have error handling.
+      - All controllers have a try/catch block to avoid exposing internal server data.
+      - If an error occurs, it is expected and a message is returned informing what happened.
+      - If an unexpected error occurs, the application returns an http 500 status and an error message.
 
 ## Contato
 
 Elielton Ramos
 
-[![Envie-me um e-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
+[![E-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/elielton-ramos/)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](elielton6554)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/elieltonramos08/)
 
-## Licença
+## License
 
-Código Aberto (Open Source)
+Open Source
 
-Este projeto é de código aberto e está disponível para toda a comunidade. Fique à vontade para explorar, clonar e contribuir para o projeto.
+This project is open source and available to the community. Feel free to explore, clone, and contribute to the project.
 
-## Agradecimentos
+## Acknowledgements
 
-Agradeço por todas as horas dedicadas, os desafios superados e as lições aprendidas durante o desenvolvimento deste projeto. Cada linha de código escrita foi um passo em direção ao meu crescimento como desenvolvedor e ao sucesso deste empreendimento.
+Thank you for all the hours dedicated, challenges overcome, and lessons learned during the development of this project. Every line of code written was a step towards my growth as a developer and the success of this endeavor.
 
-Também gostaria de estender meu agradecimento a todos os recursos educacionais, documentações e comunidades online que me forneceram orientação, inspiração e suporte ao longo deste processo.
+I would also like to extend my gratitude to all educational resources, documentation, and online communities that provided guidance, inspiration, and support throughout this process.

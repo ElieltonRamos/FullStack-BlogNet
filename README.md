@@ -1,6 +1,6 @@
-# Boas-vindas ao repositório do projeto FullStack Login Social
+# Welcome to the FullStack Login Social Project Repository
 
-## <p align="center">Repositorio FullStack</p>
+## <p align="center">Repository FullStack</p>
 
 
 <p align="center">
@@ -15,17 +15,17 @@
   <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F0mrmucemyb2p06hcxa5c.png" width="300px">
 </p>
 
-Apresento o projeto FullStack Login Social, um projeto que conta com um frontend e um backend escritos em typescript que oferece um sistema de blog completo desenvolvido em Node.js com e orquestrado com Docker, O frontend foi construido com React JS, Vite e Tailwind CSS. O backend foi construido com Express, Sequelize, node, typescript.
+I present the FullStack Login Social project, a project that has a frontend and a backend written in typescript that offers a complete blog system developed in Node.js and orchestrated with Docker. The frontend was built with React JS, Vite and Tailwind CSS . The backend was built with Express, Sequelize, node, typescript.
 
 ## 🐳 Docker 
 
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="150px">
 
-O Docker foi utilizado neste projeto para facilitar a configuração e execução do ambiente de desenvolvimento. Com o Docker, é possível encapsular a aplicação, suas dependências e o banco de dados em contêineres isolados, garantindo que ela possa ser executada de maneira consistente em diferentes ambientes.
+Docker was used in this project to facilitate the configuration and execution of the development environment. With Docker, it is possible to encapsulate the application, its dependencies and the database in isolated containers, ensuring that it can run consistently in different environments.
 
-O arquivo docker-compose.yml define a configuração dos contêineres necessários para o projeto. Com um único comando, os contêineres podem ser inicializados, permitindo que o ambiente de desenvolvimento seja configurado de forma rápida e fácil.
+The docker-compose.yml file defines the configuration of containers required for the project. With a single command, containers can be initialized, allowing the development environment to be set up quickly and easily.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 [Node JS](https://nodejs.org/en/docs)
 
@@ -47,7 +47,7 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 
 [Jest](https://jestjs.io/pt-BR/docs/getting-started)
 
-## Índice
+## index
 
 - [Ambiente de Desenvolvimento](#requisitos)
 - [Padroes do projeto](#padroes-do-projeto)
@@ -56,78 +56,75 @@ O arquivo docker-compose.yml define a configuração dos contêineres necessári
 - [Contato](#contato)
 - [Licença](#licença)
 
-## Ambiente de Desenvolvimento
+## Development Environment
 
-Para desenvolver e executar esta aplicação, é necessário configurar um ambiente com as seguintes ferramentas:
+To develop and run this application, it is necessary to configure an environment with the following tools:
 
-**Docker**: Utilizamos o Docker para empacotar e isolar a aplicação em contêineres, garantindo uma implantação consistente e fácil gerenciamento de dependências.
+**Docker**: We use Docker to package and isolate the application in containers, ensuring consistent deployment and easy dependency management.
 
 - [Como instalar o docker](https://docs.docker.com/engine/install/ubuntu/)
 
-**Docker Compose**: O Docker Compose é uma ferramenta que simplifica a definição e o gerenciamento de serviços multi-contêiner em um único arquivo, ideal para orquestrar contêineres relacionados à aplicação.
+**Docker Compose**: Docker Compose is a tool that simplifies the definition and management of multi-container services in a single file, ideal for orchestrating application-related containers.
 
 - [Como instalar o Docker-Compose](https://docs.docker.com/compose/install/)
 
-### Caso não queira instalar o docker e necessario instalar o Node JS na sua maquina
+### If you do not want to install Docker, you need to install Node JS on your machine
 
-**Node.js**: A aplicação é desenvolvida em Node.js, uma plataforma de tempo de execução JavaScript/Typescript, e é necessária para executar o código.
+**Node.js**: The application is developed in Node.js, a JavaScript/Typescript runtime platform, and is required to execute the code.
 
 - [Como instalar o Node.js](https://nodejs.org/en/download/package-manager)
 
+Be sure to install and configure these tools in your development environment before starting the project.
 
-Certifique-se de instalar e configurar essas ferramentas em seu ambiente de desenvolvimento antes de iniciar o projeto.
+## Installation
 
-## Instalação
-
-Clone este repositório:
-
+Clone this repository:
    ```bash
    git clone git@github.com:ElieltonRamos/project-fullstack-login-social.git
    ```
 
-Navegue até o diretório do projeto:
+Navigate to the project directory:
 
    ```bash
 cd project-fullstack-login-social
    ```
 
-Instale as dependências (caso não esteja usando docker):
+Install the dependencies (if you are not using Docker):
 
    ``` bash
 cd frontend-login-social && npm install
    ```
 
-tambem e necessario instalar as dependencias do backend
+It is also necessary to install the backend dependencies
 
       ``` bash
 cd backend-login-social && npm install
    ```
 
-Caso não va utilizar o docker e necessario iniciar o frontend e backend manualmente
+If you are not going to use Docker and you need to start the frontend and backend manually
 
    ``` bash
 npm run dev
    ```
 
-Va na pasta frontend-login-social e execute o comando:
+Go to the frontend-login-social folder and run the command:
 
     ``` bash
 npm run dev
     ```
+If you are going to use docker (recommended), run the commands below
 
-Caso va utilizar o docker (indicado), execute os comandos abaixo
-
-Inicie o docker compose:
+Start docker compose:
 
    ``` bash
 docker compose up -d --build
    ```
 
-Inicie a aplicação:
+Start the application:
 
-  O container do node ja esta configurado para deixar a aplicação online automaticamente, caso queira ver os logs da aplicação, execute o seguinte comando
+  The node container is already configured to leave the application online automatically, if you want to see the application logs, run the following command
 
-  Container do backend:
+  Backend container:
 
      ``` bash
 docker logs -f backend
@@ -138,32 +135,32 @@ Container do frontend:
 docker logs -f frontend
    ```
 
-## Uso
+## Usage
 
-A aplicação front end estará disponível em http://localhost:3000, onde você poderá acessar a interface de usuário e interagir com a API RESTful do backend.
+The front end application will be available at http://localhost:3000, where you can access the user interface and interact with the backend RESTful API.
 
-A aplicação backend estará disponível em http://localhost:3001, onde você poderá acessar a API RESTful e interagir com o banco de dados.
+The backend application will be available at http://localhost:3001, where you can access the RESTful API and interact with the database.
 
-Nas pastas frontend-login-social e backend-login-social, você encontrará os devidos README.md com instruções detalhadas sobre como usar e configurar cada parte da aplicação. alem de explicações sobre as rotas, funcionalidades da aplicação, execucao de testes alem de padroes de projeto.
+In the frontend-login-social and backend-login-social folders, you will find the appropriate README.md with detailed instructions on how to use and configure each part of the application. in addition to explanations about the routes, application functionalities, test execution and project patterns.
 
-## Contato
+## Contact
 
 Elielton Ramos
 
-[![Envie-me um e-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
+[![e-mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:elieltonramos14@gmail.com)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/elielton-ramos/)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](elielton6554)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/elieltonramos08/)
 
-## Licença
+## License
 
-Código Aberto (Open Source)
+Open Source
 
-Este projeto é de código aberto e está disponível para toda a comunidade. Fique à vontade para explorar, clonar e contribuir para o projeto.
+This project is open source and available to the community. Feel free to explore, clone, and contribute to the project.
 
-## Agradecimentos
+## Acknowledgements
 
-Agradeço por todas as horas dedicadas, os desafios superados e as lições aprendidas durante o desenvolvimento deste projeto. Cada linha de código escrita foi um passo em direção ao meu crescimento como desenvolvedor e ao sucesso deste empreendimento.
+Thank you for all the hours dedicated, challenges overcome, and lessons learned during the development of this project. Every line of code written was a step towards my growth as a developer and the success of this endeavor.
 
-Também gostaria de estender meu agradecimento a todos os recursos educacionais, documentações e comunidades online que me forneceram orientação, inspiração e suporte ao longo deste processo.
+I would also like to extend my gratitude to all educational resources, documentation, and online communities that provided guidance, inspiration, and support throughout this process.
 
