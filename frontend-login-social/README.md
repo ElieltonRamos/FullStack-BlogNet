@@ -110,6 +110,44 @@ Inicie a aplicação:
 docker logs -f frontend
    ```
 
+## Padroes do projeto
+
+  <img src="https://micreiros.com/wp-content/uploads/designpatterns-720x340.png" alt="logo docker" width="150px">
+
+O frontend foi desenvolvido seguindo padrão de paginas e componentes, permitindo a reutilização de código e facilitando a manutenção e escalabilidade da aplicação. A estrutura do projeto é organizada da seguinte forma:
+
+- pages: contém as páginas da aplicação, que são acessadas por meio de rotas.
+- components: contém os componentes reutilizáveis da aplicação, que são utilizados em diferentes partes da aplicação.
+- services: contém os serviços que fazem chamadas à API RESTful do backend.
+- context: contém os contextos da aplicação, que são utilizados para compartilhar estados entre componentes.
+- types: contém os tipos de dados utilizados na aplicação.
+
+O projeto foi desenvolvido com React, Tailwind CSS e Typescript, seguindo as melhores práticas de desenvolvimento e design de código, procurando manter o código limpo, organizado e de fácil manutenção.
+
+## framework CSS
+
+   <img src="https://picperf.io/https://laravelnews.s3.amazonaws.com/images/tailwindcss-1633184775.jpg" alt="logo tailwind" width="150px">
+
+Utilizei o Tailwind CSS pois é um framework que permite criar interfaces de usuário personalizadas e responsivas de forma rápida e eficiente. Ele fornece uma série de classes utilitárias que podem ser aplicadas diretamente no HTML, permitindo estilizar os elementos de forma flexível e consistente. o que facilita o desenvolvimento e a manutenção do código.
+
+## Vite + React
+
+   <img src="https://pt.vitejs.dev/og-image-announcing-vite4-3.png" alt="logo vite" width="150px">
+
+Utilizei o Vite para criar o projeto frontend, pois é um ambiente de desenvolvimento rápido e moderno que oferece uma experiência de desenvolvimento de alta qualidade. O Vite é um construtor de aplicações web que fornece um ambiente de desenvolvimento rápido e eficiente, com suporte para React, Vue e outras bibliotecas populares. Ele oferece uma série de recursos avançados, como carregamento rápido, recarregamento a quente e suporte a TypeScript, que tornam o desenvolvimento de aplicações web mais produtivo e agradável.
+
+## React JS
+
+   <img src="https://cdn.thexcodes.com/imgs/reactJS.png" alt="logo react" width="150px">
+
+Utilizei o React para desenvolver a interface de usuário da aplicação, pois é uma biblioteca JavaScript popular e amplamente utilizada para criar interfaces de usuário interativas e responsivas. O React oferece uma série de recursos avançados, como componentes reutilizáveis, estados e propriedades, que facilitam o desenvolvimento de aplicações web modernas e escaláveis. Além disso, o React é altamente flexível e extensível, permitindo integrar facilmente com outras bibliotecas e frameworks, como o Tailwind CSS e o Vite.
+
+## Typescript
+
+   <img src="https://logowik.com/content/uploads/images/nodejs.jpg" alt="logo node" width="150px">
+
+Utilizei o Typescript para desenvolver a aplicação, pois é uma linguagem de programação tipada e de alto nível que oferece suporte a tipos estáticos e interfaces, o que ajuda a detectar erros de forma mais eficiente e a melhorar a qualidade do código. O Typescript é uma extensão do JavaScript que adiciona recursos avançados, como tipagem estática, classes, interfaces e módulos, que tornam o desenvolvimento de aplicações web mais seguro, produtivo e escalável.
+
 ## Uso
 
 A aplicação front end estará disponível em http://localhost:3000, onde você poderá acessar a interface de usuário e interagir com a API RESTful do backend. O frontend possui as seguintes paginas disponíveis:
@@ -133,9 +171,31 @@ A aplicação front end estará disponível em http://localhost:3000, onde você
 
    - Pagina de posts, onde e possivel visualizar todos os posts cadastrados.
    - Caso não tenha nenhum post cadastrado, sera exibido uma mensagem informando que não ha posts.
-   - Caso queira criar um novo post, e possivel clicando no botão "Novo Post".
-   - Caso queira sair da aplicação, e possivel clicando no botão "Sair".
-   - 
+   - Caso queira criar um novo post, e possivel clicando no botão "Send", butao azul.
+   - Caso queira sair da aplicação, e possivel clicando no botão "Sair", icone presente no canto superior da tela.
+   - Caso queira editar um post, e possivel clicando no botão "Edit", icone presente no canto superior do post.
+   - Caso queira deletar um post, e possivel clicando no botão "Delete", icone presente no canto superior do post.
+   - Os botoes de editar e deletar so estarão disponíveis para o usuário que criou o post.
+   - Ao clicar na sua foto de perfil no navbar, sera redirecionado para a pagina de perfil.
+   - Ao clicar em "login social" no navbar, sera redirecionado para a pagina /home.
+   - Existe um toggle no canto superior direito da tela, que permite escolher entre posts mais recentes e mais antigos.
+   - Existe um campo de pesquisa no canto superior direito da tela, que permite buscar posts por titulo e conteudo.
+
+4. **Pagina: /profile**
+
+   - Pagina de perfil do usuário, onde e possivel visualizar as informações do usuário logado.
+   - Caso queira editar as informações do usuário, e possivel clicando no botão "Editar".
+   - E possivel enviar uma foto de perfil, clicando no input "Enviar Foto".
+   - Name e email são campos obrigatórios.
+   - Image e um campo opcional.
+   - Caso queira voltar para a pagina de posts, e possivel clicando no "login social" no nav bar.
+   - Caso queira sair da aplicação, e possivel clicando no botão "Sair", icone presente no canto superior da tela.
+   - E possivel visualizar os posts criados pelo usuário logado, eles sao carregados automaticamente".
+   - E possivel criar, editar e deletar um post nessa pagina.
+
+5. **Pagina: /not-found**
+
+   - Pagina de erro 404, caso a rota acessada não exista.
 
 ## Contato
 

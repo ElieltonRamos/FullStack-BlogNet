@@ -11,8 +11,7 @@ import NavBar from "../components/navBar";
 import { getUser } from "../services/utils";
 
 function Home() {
-  const { user, setUser, blogPosts, setBlogPosts, viewPosts, setViewPosts } = useContext(GlobalContext)
-  console.log(blogPosts)
+  const { user, setUser, setBlogPosts, viewPosts, setViewPosts } = useContext(GlobalContext)
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState(false);
   const token = localStorage.getItem('token') || '';
