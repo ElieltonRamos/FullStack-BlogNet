@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "back-end",
-    "database"
+    "database",
+    "deploy"
   ]
 }
