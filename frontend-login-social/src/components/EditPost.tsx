@@ -57,7 +57,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         className="bg-slate-100 text-slate-600 border border-slate-200 outline-none rounded-lg p-1 duration-300
         focus:border-slate-600"
         name="title"
-        placeholder="Edite o titulo do post"
+        placeholder="Edit the post title"
         value={editPost.title}
         onChange={handleChange}
       />
@@ -67,13 +67,13 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         className="bg-slate-100 text-slate-600 border border-slate-200 outline-none rounded-lg p-1 duration-300
         focus:border-slate-600"
         name="content"
-        placeholder="Edite o conteudo do post"
+        placeholder="Edit the post content"
         value={editPost.content}
         onChange={handleChange}
       />
 
       {!image ? <img className="w-full" src={image} alt="post" /> : null}
-      <p className="text-[10px] text-slate-600 my-3 font-semibold text-center">Escolha uma nova imagem</p>
+      <p className="text-[10px] text-slate-600 my-3 font-semibold text-center">Choose a new image</p>
       <input
         className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
           file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
@@ -85,7 +85,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
 
       <div className="flex justify-end gap-2 pt-2">
         <button onClick={clickEditPost} disabled={disabled} className="hover:scale-110 disabled:cursor-not-allowed bg-green-500 rounded-xl p-1 active:scale-95">Salvar</button>
-        <button onClick={() => setIsEdit(false)} className="hover:scale-110 bg-slate-600 rounded-xl p-1 active:scale-95">Cancelar</button>
+        <button onClick={() => setIsEdit(false)} className="hover:scale-110 bg-slate-600 rounded-xl p-1 active:scale-95">Cancel</button>
       </div>
     </article>
   );

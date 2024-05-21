@@ -34,7 +34,7 @@ function Login() {
     setLoading(true);
     const response = await requestLogin(form)
     setLoading(false);
-    if (typeof response === 'string') return setErrorMsg('Erro de rede');
+    if (typeof response === 'string') return setErrorMsg('Oops, looks like we had a little server problem. Please try again later!');
     if ('message' in response.data) return setErrorMsg(response.data.message);
     localStorage.setItem('token', response.data.token);
     setErrorMsg('');
@@ -46,7 +46,7 @@ function Login() {
 
       <section className="w-580 pr-8 text-center md:text-left">
         <h1 className="text-blue-800 font-bold text-5xl">Login Social</h1>
-        <h2 className="text-3xl text-black">Conecte-se com as pessoas que fazem parte da sua vida</h2>
+        <h2 className="text-3xl text-black">Connect with the people in your life</h2>
       </section>
 
       <form
@@ -66,7 +66,7 @@ function Login() {
           className="input-login"
           type="password"
           name="password"
-          placeholder="Senha"
+          placeholder="Password"
         />
 
         <button
@@ -74,7 +74,7 @@ function Login() {
           type="submit"
           disabled={loading}
         >
-          {loading ? <Loading /> : 'Entrar'}
+          {loading ? <Loading /> : 'Login'}
         </button>
         <p className="text-red font-light text-sm mt-2">{errorMsg}</p>
 
@@ -85,7 +85,7 @@ function Login() {
           className="bg-green-600 rounded-md text-white px-5 h-12"
           type="button"
         >
-          Criar Nova Conta
+          Create New Account
         </button>
 
       </form>

@@ -22,7 +22,7 @@ function Register() {
     setLoading(true);
     const response = await requestRegister(form);
     setLoading(false);
-    if (typeof response === 'string') return setErrorMsg('Erro de rede');
+    if (typeof response === 'string') return setErrorMsg('Oops, looks like we had a little server problem. Please try again later!');
     if ('message' in response.data) return setErrorMsg(response.data.message);
     localStorage.setItem('token', response.data.token);
     if (user.name === '') getUser(response.data.token, setUser);

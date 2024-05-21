@@ -1,7 +1,7 @@
 import { BlogPost, BlogPostCreate, BlogPostEdit } from "../types/blogPost";
 import { User, UserLogin, UserNoPassword } from "../types/user";
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3001';
+const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3001';
 
 type Response = {
   status: number;
