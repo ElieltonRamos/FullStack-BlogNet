@@ -1,6 +1,6 @@
 import { sign, verify } from 'jsonwebtoken';
 
-const secretKey = process.env.SECRET || 'secret';
+const secretKey = process.env.JWT_SECRET || 'secret';
 
 export interface Payload {
   id: number;
