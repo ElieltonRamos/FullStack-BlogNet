@@ -33,7 +33,6 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
   const clickEditPost = async () => {
     if (editPost.title === '' || editPost.content === '') return;
     const response = await requestEditPost(token, { ...editPost, id: post.id });
-    console.log(response);
     if (response === 'error network') return alertNoNetwork();
     if (response.status !== 200) return alertNoLogged();
     post.title = response.data.title;
