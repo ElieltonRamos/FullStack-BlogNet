@@ -1,26 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../services/requests";
-import { UserLogin } from "../types/user";
+import { CreateUser } from "../types/user";
 import Loading from "../components/loadings/LoadingSmall";
-import { GlobalContext } from "../context/globalContext";
-import { getUser } from "../services/utils";
+import { useState } from "react";
 
 function Login() {
-  const [form, setForm] = useState<UserLogin>({ email: '', password: '' });
+  const [form, setForm] = useState<CreateUser>({ email: '', password: '' });
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setUser } =useContext(GlobalContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token") || '';
-    if (token !== '') {
-      getUser(token, setUser);
-      navigate('/home');
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -34,9 +23,8 @@ function Login() {
     setLoading(true);
     const response = await requestLogin(form)
     setLoading(false);
-    if (typeof response === 'string') return setErrorMsg('Oops, looks like we had a little server problem. Please try again later!');
-    if ('message' in response.data) return setErrorMsg(response.data.message);
-    localStorage.setItem('token', response.data.token);
+    if ('message' in response) return setErrorMsg(response.message);
+    localStorage.setItem('token', response.token);
     setErrorMsg('');
     navigate('/home');
   }
