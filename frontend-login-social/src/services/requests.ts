@@ -4,7 +4,7 @@ import { CreateUser, Token, User } from "../types/user";
 const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3001';
 const ERROR_NETWORK = 'Oops, looks like we had a little server problem. Please try again later!';
 export type MsgBackend = { message: string };
-type Response<t> =  t | MsgBackend;
+type Response<t> = t | MsgBackend;
 
 const configFetch = (method: string, body?: CreateUser | BlogPostCreate) => {
   return {
@@ -24,10 +24,8 @@ export async function request(method: string, route: string, body?: CreateUser |
 
     const response = await fetch(patch, config);
     const data = await response.json();
-    console.log('data:', response);
     return data;
   } catch (error) {
-    console.log('Error in request:', error);
     return { message: ERROR_NETWORK };
   }
 }
@@ -71,8 +69,12 @@ export async function requestEditPost(post: BlogPostEdit): Promise<Response<Blog
 }
 
 export async function requestDeletePost(postId: number): Promise<Response<MsgBackend>> {
-  const response = await fetch(`${BASE_URL}/posts/${postId}`, configFetch('DELETE'));
-  const result = response.status === 204 ? { message: 'Post deleted' } : response.json();
-  const data = await result;
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, configFetch('DELETE'));
+    const result = response.status === 204 ? { message: 'Post deleted' } : response.json();
+    const data = await result;
+    return data;
+  } catch (error) {
+    return { message: ERROR_NETWORK };
+  }
 }

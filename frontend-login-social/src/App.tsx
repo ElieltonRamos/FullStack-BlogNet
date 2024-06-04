@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import { GlobalStateProvider } from "./context/globalContext"
 import Profile from "./pages/Profile"
 import { useEffect } from "react"
+import PageNotFound from "./pages/PageNotFound"
 
 function App() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </GlobalStateProvider>
   )

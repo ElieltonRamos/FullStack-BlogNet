@@ -6,8 +6,8 @@ export const alertError = (msg: string) => {
   return Swal.fire({
     icon: "error",
     title: "Oops...",
-    text: "Something went wrong! " + msg,
-    footer: '<a href="/">Try logging in again or check your internet connection</a>'
+    text: "Something went wrong!: " + msg,
+    footer: '<a class="bg-blue-500 hover:bg-blue-600 rounded-lg p-2 text-black" href="/">Try logging in again or check your internet connection</a>'
   });
 };
 
