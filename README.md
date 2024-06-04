@@ -5,7 +5,7 @@
 
 <p align="center">
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="300px">
-  <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/800px-MySQL.svg.png" alt="logo mysql" width="300px">
+  <img src="[https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/800px-MySQL.svg.png](https://www.postgresqltutorial.com/wp-content/uploads/2012/08/What-is-PostgreSQL.png)" alt="logo postgreSQL" width="300px">
     <img src="https://miro.medium.com/v2/resize:fit:1400/1*i2fRBk3GsYLeUk_Rh7AzHw.png" alt="logo express" width="300px">
   <img src="https://www.luiztools.com.br/wp-content/uploads/2021/01/sequelize.png" alt="logo sequelize" width="300px">
   <img src="https://pt.vitejs.dev/og-image-announcing-vite4-3.png" alt="logo vite" width="300px">
@@ -41,7 +41,7 @@ The docker-compose.yml file defines the configuration of containers required for
 
 [Vite](https://vitejs.dev/guide/)
 
-[MySQL](https://www.mysql.com/)
+[PostgreSQL](https://www.postgresql.org/)
 
 [Express JS](https://expressjs.com/pt-br/)
 
