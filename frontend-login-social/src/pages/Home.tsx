@@ -1,31 +1,32 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import Post from "../components/BlogPost";
 import { GlobalContext } from "../context/globalContext";
-import { requestBlogPosts } from "../services/requests";
-import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { requestBlogPosts, requestUser } from "../services/requests";
+import { alertError } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import CreatePost from "../components/CreatePost";
 import ToggleSimple from "../components/toggleSwitches/toggleSimple";
 import NavBar from "../components/navBar";
-import { getUser } from "../services/utils";
 
 function Home() {
-  const { user, setUser, setBlogPosts, viewPosts, setViewPosts } = useContext(GlobalContext)
+  const { setUser, setBlogPosts, viewPosts, setViewPosts } = useContext(GlobalContext)
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState(false);
-  const token = localStorage.getItem('token') || '';
 
   useEffect(() => {
-      requestBlogPosts(token, order).then(posts => {
-      if (posts === 'error network') return alertNoNetwork();
-      if (posts.status !== 200) return alertNoLogged();
-      setBlogPosts(posts.data);
-      setViewPosts(posts.data);
+      requestBlogPosts(order).then(posts => {
+      if ('message' in posts) return alertError(posts.message);
+      setBlogPosts(posts);
+      setViewPosts(posts);
       setLoading(false);
       });
-    if (user.name === '') getUser(token, setUser);
-  }, [order])
+
+      requestUser().then(user => {
+      if ('message' in user) return alertError(user.message);
+      setUser(user);
+      });
+
+  }, [order, setBlogPosts, setUser, setViewPosts])
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">

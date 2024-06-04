@@ -7,3 +7,8 @@
     @apply border-gray-300 rounded-sm border-2 w-full h-14 mb-2.5 pl-2;
   }
 }
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+}

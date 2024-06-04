@@ -30,12 +30,12 @@ export default {
         },
       },
       created: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       updated: {
-        type: DataTypes.DATE,
-        allowNull: false,
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     });
   },

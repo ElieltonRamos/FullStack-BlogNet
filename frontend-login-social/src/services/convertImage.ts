@@ -1,4 +1,4 @@
-export const convertImageToBase64 = (imageFile: File): Promise<string> => {
+export const convertImage = (imageFile: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     let imagebase64 = '';
     if (imageFile) {
@@ -25,4 +25,13 @@ export const convertImageToBase64 = (imageFile: File): Promise<string> => {
       reject(new Error('No image file provided'));
     }
   });
+};
+
+export const convertImageToBase64 = (imageFile: File): Promise<string> => {
+  try {
+    const imagebase64 = convertImage(imageFile);
+    return imagebase64;
+  } catch (error) {
+    return Promise.resolve('');
+  }
 };

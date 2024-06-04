@@ -8,7 +8,7 @@ import AbstractUser from "./SVGs/AbstractUser";
 function Navbar() {
   const { user } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const imageExists = user.image === null || user.image === '';
+  const imageExists = user.image === null || user.image === '' || user.image === undefined;
 
   const clickLogOut = () => {
     localStorage.removeItem('token');

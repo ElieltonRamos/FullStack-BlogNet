@@ -13,6 +13,7 @@ class ControllerLogin {
       const { status, data } = await this.serviceLogin.login(email, password);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(mapStatusHTTP('serverError')).send({ message: 'Server Error' });
     }
   }

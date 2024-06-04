@@ -5,32 +5,28 @@ import Navbar from "../components/navBar";
 import { EditUser, ViewUser } from "../components/EditUser";
 import BlogPostView from "../components/BlogPost";
 import { requestBlogPosts } from "../services/requests";
-import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import { GlobalContext } from "../context/globalContext";
-import { getUser } from "../services/utils";
 
 function Profile() {
-  const { user, setUser, viewPosts, setViewPosts, setBlogPosts } = useContext(GlobalContext)
+  const { viewPosts, setViewPosts, setBlogPosts } = useContext(GlobalContext)
   const [editUser, setEditUser] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem('token') || '';
-  const sorted = true
+  const [loading, setLoading] = useState(false);
 
   const viewPost = viewPosts.length === 0 
     ? <h2 className="text-gray-500 font-semibold text-center">Oops, looks like you haven't posted yet</h2> 
     : viewPosts.map((post) => <BlogPostView key={post.id} blogPost={post} />)
 
   useEffect(() => {
-    requestBlogPosts(token, sorted, true).then((response) => {
-      if (response === 'error network') return alertNoNetwork();
-      if (response.status !== 200) return alertNoLogged();
-      setBlogPosts(response.data);
-      setViewPosts(response.data);
-      setLoading(false);
+    setLoading(true);
+    requestBlogPosts(true, true).then((response) => {
+      if ('message' in response) return alertError(response.message);
+      setBlogPosts(response);
+      setViewPosts(response);
     });
-    if (user.name === '') getUser(token, setUser);
-  }, [sorted, token, viewPosts]);
+    setLoading(false);
+  }, []);
 
   return (
     <main className="w-screen h-screen bg-gray-200 flex items-center justify-center flex-col overflow-auto">

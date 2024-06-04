@@ -7,8 +7,8 @@ interface BlogPost {
     userId: number;
     title: string;
     content: string;
-    created: Date;
-    updated: Date;
+    created: string;
+    updated?: string;
     image?: string;
     user?: User;
 }

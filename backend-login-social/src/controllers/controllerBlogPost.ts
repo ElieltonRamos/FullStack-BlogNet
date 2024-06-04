@@ -17,6 +17,7 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
       const { status, data } = await this.blogPostService.create(postInfo);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -29,6 +30,7 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
       const { status, data } = await this.blogPostService.update(Number(id), postInfo);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }
@@ -42,6 +44,7 @@ class ControllerBlogPost extends AbstractController<BlogPost> {
       const { status, data } = await this.service.listAll(order, postsUser);
       return res.status(mapStatusHTTP(status)).send(data);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ message: this.messageError });
     }
   }

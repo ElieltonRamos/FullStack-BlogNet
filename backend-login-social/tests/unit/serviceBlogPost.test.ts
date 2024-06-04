@@ -15,11 +15,11 @@ describe('tests service blogPost', () => {
     const blogPost = { title: 'Title', content: 'Content', userId: 1 };
 
     const { status, data } = await serviceBlogPost.create(blogPost);
+    console.log(data)
 
     expect(status).toBe('created');
     expect(data).toHaveProperty('id');
     expect(data).toHaveProperty('created');
-    expect(data).toHaveProperty('updated');
   })
 
   it('should not be possible to register a blog post without title', async () => {
@@ -117,8 +117,8 @@ describe('tests service blogPost', () => {
   it('should be find a blog post by id', async () => {
     const userId = 1;
     const id = 1;
-    const created = new Date();
-    const updated = new Date();
+    const created = '01/06/2024';
+    const updated = '01/06/2024';
     const blogPost = { id, title: 'Title', content: 'Content', userId, created, updated};
     memoryModel.memory.push(blogPost);
     const { status, data } = await serviceBlogPost.find(1, 1);

@@ -3,7 +3,7 @@ import { BlogPost } from "../types/blogPost";
 import AbstractUser from "./SVGs/AbstractUser";
 import { convertImageToBase64 } from "../services/convertImage";
 import { requestEditPost } from "../services/requests";
-import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import { GlobalContext } from "../context/globalContext";
 
 type PropEditPost = {
@@ -17,7 +17,9 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
   const [disabled, setDisabled] = useState(true);
   if (!post.user) post.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = post;
-  const token = localStorage.getItem('token') || '';
+  const postImageExists = image === '' || image === null || image === undefined;
+  const userImageExists = userLogged.image === '' || userLogged.image === null || userLogged.image === undefined;
+
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.name
@@ -32,23 +34,25 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
 
   const clickEditPost = async () => {
     if (editPost.title === '' || editPost.content === '') return;
-    const response = await requestEditPost(token, { ...editPost, id: post.id });
-    if (response === 'error network') return alertNoNetwork();
-    if (response.status !== 200) return alertNoLogged();
-    post.title = response.data.title;
-    post.content = response.data.content;
-    post.image = response.data.image;
+    const response = await requestEditPost({ ...editPost, id: post.id });
+    
+    if ('message' in response) return alertError(response.message);
+
+    post.title = response.title;
+    post.content = response.content;
+    post.image = response.image;
+    post.updated = response.updated;
     setIsEdit(false);
   };
 
   return (
     <article className="bg-white rounded-lg p-5 mb-3">
       <div className="flex">
-        {user.image === null ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
+        {userImageExists ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Postado em:{created.toLowerCase()}</p>
-          <p className="font-extralight text-xs">Atualizado em:{updated.toLowerCase()}</p>
+          {updated ? <p className="font-extralight text-xs">Atualizado em:{updated.toLowerCase()}</p> : null}
         </div>
       </div>
 
@@ -72,7 +76,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         onChange={handleChange}
       />
 
-      {!image ? <img className="w-full" src={image} alt="post" /> : null}
+      {!postImageExists ? <img className="w-full" src={image} alt="post" /> : null}
       <p className="text-[10px] text-slate-600 my-3 font-semibold text-center">Choose a new image</p>
       <input
         className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
