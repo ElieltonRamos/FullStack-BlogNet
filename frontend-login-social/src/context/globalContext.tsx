@@ -31,7 +31,8 @@ export function GlobalStateProvider({ children }: ContextProviderProps) {
   });
 
   useEffect(() => {
-    if (user.name === '') {
+    const token = localStorage.getItem('token');
+    if (user.name === '' && token) {
       requestUser().then((response) => {
         if ('message' in response) return alertNoLogged();
         setUser(response);
