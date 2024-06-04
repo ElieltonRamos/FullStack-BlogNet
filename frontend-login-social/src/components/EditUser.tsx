@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../context/globalContext";
 import { requestEditUser } from "../services/requests";
 import { convertImageToBase64 } from "../services/convertImage";
-import { alertNoLogged } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import AbstractUser from "./SVGs/AbstractUser";
 
 export function EditUser({ setEditUser }: PropEditUser) {
@@ -15,7 +15,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
 
   const handleEditUser = async () => {
     const response = await requestEditUser(newUser);
-    if ('messsage' in response) return alertNoLogged();
+    if ('message' in response) return alertError(response.message);
     setUser(newUser);
     setEditUser(false);
   };

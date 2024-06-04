@@ -71,8 +71,10 @@ export async function requestEditPost(post: BlogPostEdit): Promise<Response<Blog
 }
 
 export async function requestDeletePost(postId: number): Promise<Response<MsgBackend>> {
-  const response = await request('DELETE', `/posts/${postId}`);
-  return response;
+  const response = await fetch(`${BASE_URL}/posts/${postId}`, configFetch('DELETE'));
+  const result = response.status === 204 ? { message: 'Post deleted' } : response.json();
+  const data = await result;
+  return data;
 }
 
 // export const requestLogin = async (body: UserLogin): Promise<Response | string> => {

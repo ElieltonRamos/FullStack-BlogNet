@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Post from "../components/BlogPost";
 import { GlobalContext } from "../context/globalContext";
 import { requestBlogPosts, requestUser } from "../services/requests";
-import { alertNoLogged } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import CreatePost from "../components/CreatePost";
 import ToggleSimple from "../components/toggleSwitches/toggleSimple";
@@ -15,14 +15,14 @@ function Home() {
 
   useEffect(() => {
       requestBlogPosts(order).then(posts => {
-      if ('message' in posts) return alertNoLogged();
+      if ('message' in posts) return alertError(posts.message);
       setBlogPosts(posts);
       setViewPosts(posts);
       setLoading(false);
       });
 
       requestUser().then(user => {
-      if ('message' in user) return alertNoLogged();
+      if ('message' in user) return alertError(user.message);
       setUser(user);
       });
 

@@ -5,7 +5,7 @@ import AbstractUser from "./SVGs/AbstractUser";
 import DeleteSvg from "./SVGs/DeleteSvg";
 import EditSvg from "./SVGs/EditSvg";
 import { requestBlogPosts, requestDeletePost } from "../services/requests";
-import { alertNoLogged, alertConfirmDeletePost } from "../services/alerts";
+import { alertConfirmDeletePost, alertError } from "../services/alerts";
 import EditPost from "./EditPost";
 
 type PropsBlogPost = {
@@ -28,10 +28,10 @@ function Post({ blogPost }: PropsBlogPost) {
 
     const response = await requestDeletePost(blogPost.id);
 
-    if ('message' in response) return console.log('alert error');
+    if (response.message !== 'Post deleted') return alertError(response.message);
 
     const newBlogPosts = await requestBlogPosts(false);
-    if ('message' in newBlogPosts) return alertNoLogged();
+    if ('message' in newBlogPosts) return alertError(newBlogPosts.message);
     setBlogPosts(newBlogPosts);
   };
 

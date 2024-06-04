@@ -1,20 +1,13 @@
 import Swal from "sweetalert2";
 
-export const alertNoNetwork = () => {
-  return Swal.fire({
-    title: "The Internet?",
-    text: "Are you connected to the internet?",
-    icon: "question"
-  });
-};
 
-export const alertNoLogged = () => {
+export const alertError = (msg: string) => {
   localStorage.removeItem("token");
   return Swal.fire({
     icon: "error",
     title: "Oops...",
-    text: "Something went wrong!",
-    footer: '<a href="/">try logging in or registering</a>'
+    text: "Something went wrong! " + msg,
+    footer: '<a href="/">Try logging in again or check your internet connection</a>'
   });
 };
 

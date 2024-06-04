@@ -3,7 +3,7 @@ import { BlogPost } from "../types/blogPost";
 import AbstractUser from "./SVGs/AbstractUser";
 import { convertImageToBase64 } from "../services/convertImage";
 import { requestEditPost } from "../services/requests";
-import { alertNoLogged } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import { GlobalContext } from "../context/globalContext";
 
 type PropEditPost = {
@@ -32,7 +32,9 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
   const clickEditPost = async () => {
     if (editPost.title === '' || editPost.content === '') return;
     const response = await requestEditPost({ ...editPost, id: post.id });
-    if ('message' in response) return alertNoLogged();
+    
+    if ('message' in response) return alertError(response.message);
+
     post.title = response.title;
     post.content = response.content;
     post.image = response.image;

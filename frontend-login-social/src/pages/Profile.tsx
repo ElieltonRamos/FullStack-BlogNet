@@ -5,7 +5,7 @@ import Navbar from "../components/navBar";
 import { EditUser, ViewUser } from "../components/EditUser";
 import BlogPostView from "../components/BlogPost";
 import { requestBlogPosts } from "../services/requests";
-import { alertNoLogged } from "../services/alerts";
+import { alertError } from "../services/alerts";
 import LoadingMid from "../components/loadings/LoadingMid";
 import { GlobalContext } from "../context/globalContext";
 
@@ -21,7 +21,7 @@ function Profile() {
   useEffect(() => {
     setLoading(true);
     requestBlogPosts(true, true).then((response) => {
-      if ('message' in response) return alertNoLogged();
+      if ('message' in response) return alertError(response.message);
       setBlogPosts(response);
       setViewPosts(response);
     });
