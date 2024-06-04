@@ -24,7 +24,7 @@ export async function request(method: string, route: string, body?: CreateUser |
 
     const response = await fetch(patch, config);
     const data = await response.json();
-    console.log('Data:', data);
+    console.log('data:', response);
     return data;
   } catch (error) {
     console.log('Error in request:', error);
@@ -70,8 +70,8 @@ export async function requestEditPost(post: BlogPostEdit): Promise<Response<Blog
   return response;
 }
 
-export async function requestDeletePost(post: BlogPost): Promise<Response<MsgBackend>> {
-  const response = await request('DELETE', `/posts/${post.id}`, post);
+export async function requestDeletePost(postId: number): Promise<Response<MsgBackend>> {
+  const response = await request('DELETE', `/posts/${postId}`);
   return response;
 }
 

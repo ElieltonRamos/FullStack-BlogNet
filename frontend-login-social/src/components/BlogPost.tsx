@@ -5,7 +5,7 @@ import AbstractUser from "./SVGs/AbstractUser";
 import DeleteSvg from "./SVGs/DeleteSvg";
 import EditSvg from "./SVGs/EditSvg";
 import { requestBlogPosts, requestDeletePost } from "../services/requests";
-import { alertNoLogged, alertNoNetwork, alertConfirmDeletePost } from "../services/alerts";
+import { alertNoLogged, alertConfirmDeletePost } from "../services/alerts";
 import EditPost from "./EditPost";
 
 type PropsBlogPost = {
@@ -19,13 +19,19 @@ function Post({ blogPost }: PropsBlogPost) {
   if (!blogPost.user) blogPost.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = blogPost;
 
+  const postImageExists = image === '' || image === null || image === undefined;
+  const userImageExists = user.image === '' || user.image === null || user.image === undefined;
+
   const clickDeletePost = async () => {
     const confirmDelete = await alertConfirmDeletePost()
     if (!confirmDelete) return;
-    const response = await requestDeletePost(blogPost);
-    if ('message' in response) return alertNoLogged();
+
+    const response = await requestDeletePost(blogPost.id);
+
+    if ('message' in response) return console.log('alert error');
+
     const newBlogPosts = await requestBlogPosts(false);
-    if ('message' in newBlogPosts) return alertNoNetwork();
+    if ('message' in newBlogPosts) return alertNoLogged();
     setBlogPosts(newBlogPosts);
   };
 
@@ -36,7 +42,7 @@ function Post({ blogPost }: PropsBlogPost) {
   return (
     <article className="bg-white rounded-lg p-5 mb-3">
       <div className="flex">
-      {user.image === null ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
+      {userImageExists ? <AbstractUser /> : <img className="h-14 w-14 rounded-2xl" src={user.image} alt="user" />}
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Posted in:{created.toLowerCase()}</p>
@@ -45,7 +51,7 @@ function Post({ blogPost }: PropsBlogPost) {
       </div>
       <h2 className="font-extrabold">{title}</h2>
       <p className="font-sans">{content}</p>
-      { image !== '' ? <img className="w-full" src={image} alt="post" /> : null}
+      { !postImageExists ? <img className="w-full" src={image} alt="post" /> : null}
       <div className="flex justify-end gap-2 pt-2">
         {isOwnerPost ?
           <button onClick={clickDeletePost} className="hover:scale-110"><DeleteSvg /></button> : null}
