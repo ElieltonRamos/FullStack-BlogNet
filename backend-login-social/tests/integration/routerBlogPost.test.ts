@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../../src/app';
 import BlogPostModel from '../../src/models/modelBlogPost';
-import { mockPostDateString, mockPosts } from '../mocks/mockBlogPosts';
+import { mockPosts } from '../mocks/mockBlogPosts';
 import JsonWebToken from '../../src/utils/jsonWebToken';
 
 jest.mock('../../src/models/modelBlogPost');
@@ -22,7 +22,7 @@ describe('blogPosts router tests', () => {
     const { status, body } = await request(app).post('/posts').send(newBlogPost).set({ Authorization: 'Bearer token' });
 
     expect(status).toBe(201);
-    expect(body).toEqual(mockPostDateString[0]);
+    expect(body).toEqual(newBlogPost);
   });
 
   it('should return 401 when token invalid', async () => {
@@ -43,7 +43,7 @@ describe('blogPosts router tests', () => {
     mockModelBlogPost.prototype.findAll.mockResolvedValue(postByUser1);
 
     const { status, body } = await request(app).get('/posts').set({ Authorization: 'Bearer token' });
-    const postByUser = mockPostDateString.filter((post) => post.userId === 1);
+    const postByUser = mockPosts.filter((post) => post.userId === 1);
 
     expect(status).toBe(200);
     expect(body).toEqual(postByUser);
@@ -56,7 +56,7 @@ describe('blogPosts router tests', () => {
     const { status, body } = await request(app).get(`/posts/${post.id}`).set({ Authorization: 'Bearer token' });
 
     expect(status).toBe(200);
-    expect(body).toEqual(mockPostDateString[0]);
+    expect(body).toEqual(mockPosts[0]);
   });
 
   it('It should be possible to update a blog post', async () => {
@@ -67,7 +67,7 @@ describe('blogPosts router tests', () => {
 
     const { status, body } = await request(app).patch(`/posts/${post.id}`).send(updatedPost).set({ Authorization: 'Bearer token' });
     expect(status).toBe(200);
-    expect(body).toEqual({ ...mockPostDateString[0], title: 'Updated title', updated: expect.any(String) });
+    expect(body).toEqual({ ...mockPosts[0], title: 'Updated title', updated: expect.any(String) });
   });
 
   it('It should be possible to delete a blog post', async () => {
