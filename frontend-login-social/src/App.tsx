@@ -12,8 +12,8 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token && location.pathname !== '/register') return navigate('/');
-  }, [navigate, location.pathname]);
+    if (!token && location.pathname !== '/register') navigate('/');
+  }, [location.pathname, navigate]);
 
   return (
     <GlobalStateProvider>

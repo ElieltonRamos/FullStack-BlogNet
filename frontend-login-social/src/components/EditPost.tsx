@@ -3,7 +3,7 @@ import { BlogPost } from "../types/blogPost";
 import AbstractUser from "./SVGs/AbstractUser";
 import { convertImageToBase64 } from "../services/convertImage";
 import { requestEditPost } from "../services/requests";
-import { alertNoLogged, alertNoNetwork } from "../services/alerts";
+import { alertNoLogged } from "../services/alerts";
 import { GlobalContext } from "../context/globalContext";
 
 type PropEditPost = {
@@ -17,7 +17,6 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
   const [disabled, setDisabled] = useState(true);
   if (!post.user) post.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = post;
-  const token = localStorage.getItem('token') || '';
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.name
@@ -32,12 +31,11 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
 
   const clickEditPost = async () => {
     if (editPost.title === '' || editPost.content === '') return;
-    const response = await requestEditPost(token, { ...editPost, id: post.id });
-    if (response === 'error network') return alertNoNetwork();
-    if (response.status !== 200) return alertNoLogged();
-    post.title = response.data.title;
-    post.content = response.data.content;
-    post.image = response.data.image;
+    const response = await requestEditPost({ ...editPost, id: post.id });
+    if ('message' in response) return alertNoLogged();
+    post.title = response.title;
+    post.content = response.content;
+    post.image = response.image;
     setIsEdit(false);
   };
 

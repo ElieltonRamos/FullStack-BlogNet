@@ -24,7 +24,7 @@ export async function request(method: string, route: string, body?: CreateUser |
 
     const response = await fetch(patch, config);
     const data = await response.json();
-    
+    console.log('Data:', data);
     return data;
   } catch (error) {
     console.log('Error in request:', error);

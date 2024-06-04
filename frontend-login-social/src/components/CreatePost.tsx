@@ -7,7 +7,6 @@ import { BlogPost } from "../types/blogPost";
 
 function CreatePost() {
   const { viewPosts, setViewPosts } = useContext(GlobalContext)
-  const token = localStorage.getItem('token') || '';
   const [newPost, setNewPost] = useState({
     title: "",
     content: "",
@@ -31,14 +30,12 @@ function CreatePost() {
       return setMsgError('title and content are necessary');
     }
     setLoading(true);
-    const createdPost = await requestCreatePost(token, newPost);
+    const createdPost = await requestCreatePost(newPost);
     setLoading(false);
-    if (createdPost === 'error network' || createdPost.status !== 201) {
-      return setMsgError('unable to register post, try again');
-    }
+    if ('message' in createdPost) return setMsgError('unable to register post, try again');
     setMsgError('');
     setNewPost({ title: '', content: '', image: '' });
-    const updatedPost = [...viewPosts, createdPost.data].sort((a: BlogPost, b: BlogPost) => b.id - a.id);
+    const updatedPost = [...viewPosts, createdPost].sort((a: BlogPost, b: BlogPost) => b.id - a.id);
     setViewPosts(updatedPost);
   };
 

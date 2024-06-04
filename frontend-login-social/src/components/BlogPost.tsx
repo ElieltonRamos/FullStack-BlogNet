@@ -16,19 +16,17 @@ function Post({ blogPost }: PropsBlogPost) {
   const [isEdit, setIsEdit] = useState(false);
   const { user: userLogged, setBlogPosts } = useContext(GlobalContext);
   const isOwnerPost = userLogged.id === blogPost.userId;
-  const token = localStorage.getItem('token') || '';
   if (!blogPost.user) blogPost.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = blogPost;
 
   const clickDeletePost = async () => {
     const confirmDelete = await alertConfirmDeletePost()
     if (!confirmDelete) return;
-    const response = await requestDeletePost(token, blogPost);
-    if (response === 'error network') return alertNoNetwork();
-    if (response.status !== 204) return alertNoLogged();
-    const newBlogPosts = await requestBlogPosts(token, false);
-    if (newBlogPosts === 'error network') return alertNoNetwork();
-    setBlogPosts(newBlogPosts.data);
+    const response = await requestDeletePost(blogPost);
+    if ('message' in response) return alertNoLogged();
+    const newBlogPosts = await requestBlogPosts(false);
+    if ('message' in newBlogPosts) return alertNoNetwork();
+    setBlogPosts(newBlogPosts);
   };
 
   if (isEdit) return (
