@@ -47,7 +47,7 @@ function Post({ blogPost }: PropsBlogPost) {
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Posted in:{created.toLowerCase()}</p>
-          <p className="font-extralight text-xs">Updated in:{updated.toLowerCase()}</p>
+          {updated ? <p className="font-extralight text-xs">Updated in:{updated.toLowerCase()}</p> : null}
         </div>
       </div>
       <h2 className="font-extrabold">{title}</h2>

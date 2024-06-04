@@ -32,8 +32,10 @@ class BlogPostService extends AbstractService<BlogPost> {
     }
 
     const dateCreated = new Date();
+    const created = dateCreated.toLocaleDateString();
+
     const newPost = await this.blogPostModel
-      .create({ ...post, created: dateCreated, updated: dateCreated });
+      .create({ ...post, created });
     return { status: 'created', data: newPost };
   }
 
@@ -43,6 +45,7 @@ class BlogPostService extends AbstractService<BlogPost> {
     if ('status' in post) return post;
     const newContent = data.content || post.content;
     const newTitle = data.title || post.title;
+    const updated = new Date();
 
     const updatedPost = {
       id: post.id,
@@ -51,7 +54,7 @@ class BlogPostService extends AbstractService<BlogPost> {
       userId: post.userId,
       image: data.image || post.image,
       created: post.created,
-      updated: new Date()
+      updated: updated.toLocaleDateString(),
     };
 
     const affectedRows = await this.blogPostModel.update(id, updatedPost);
@@ -62,7 +65,13 @@ class BlogPostService extends AbstractService<BlogPost> {
 
   async listAll(sorted: string, userId: number): Promise<ServiceResponse<BlogPost[]>> {
     const allPosts = await this.blogPostModel.findAll();
-    const sortedPosts = [...allPosts].sort((a, b) => b.created.getTime() - a.created.getTime());
+
+    const sortedPosts = [...allPosts].sort((a, b) => {
+      const postA = new Date(a.created);
+      const postB = new Date(b.created);
+      return postB.getTime() - postA.getTime();
+    });
+
     if (sorted === 'desc' && !userId) return { status: 'ok', data: sortedPosts };
     if (userId && sorted === 'desc') {
       const userPosts = sortedPosts.filter((post) => post.userId === userId);

@@ -41,6 +41,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
     post.title = response.title;
     post.content = response.content;
     post.image = response.image;
+    post.updated = response.updated;
     setIsEdit(false);
   };
 
@@ -51,7 +52,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         <div className="ml-2">
           <p className="font-serif">{user.name}</p>
           <p className="font-extralight text-xs">Postado em:{created.toLowerCase()}</p>
-          <p className="font-extralight text-xs">Atualizado em:{updated.toLowerCase()}</p>
+          {updated ? <p className="font-extralight text-xs">Atualizado em:{updated.toLowerCase()}</p> : null}
         </div>
       </div>
 
