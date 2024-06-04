@@ -14,7 +14,7 @@ type PropsBlogPost = {
 
 function Post({ blogPost }: PropsBlogPost) {
   const [isEdit, setIsEdit] = useState(false);
-  const { user: userLogged, setBlogPosts } = useContext(GlobalContext);
+  const { user: userLogged, setBlogPosts, setViewPosts } = useContext(GlobalContext);
   const isOwnerPost = userLogged.id === blogPost.userId;
   if (!blogPost.user) blogPost.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = blogPost;
@@ -33,6 +33,7 @@ function Post({ blogPost }: PropsBlogPost) {
     const newBlogPosts = await requestBlogPosts(false);
     if ('message' in newBlogPosts) return alertError(newBlogPosts.message);
     setBlogPosts(newBlogPosts);
+    setViewPosts(newBlogPosts);
   };
 
   if (isEdit) return (
