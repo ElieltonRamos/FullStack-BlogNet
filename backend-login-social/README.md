@@ -5,7 +5,7 @@
 
 <p align="center">
   <img src="https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png" alt="logo docker" width="300px">
-  <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/800px-MySQL.svg.png" alt="logo mysql" width="300px">
+  <img src="https://www.stickersdevs.com.br/wp-content/uploads/2022/01/postgresql-adesivo-sticker.png" alt="logo postgresql" width="300px">
   <img src="https://logowik.com/content/uploads/images/nodejs.jpg" alt="logo node" width="300px">
   <img src="https://miro.medium.com/v2/resize:fit:1400/1*i2fRBk3GsYLeUk_Rh7AzHw.png" alt="logo express" width="300px">
   <img src="https://www.luiztools.com.br/wp-content/uploads/2021/01/sequelize.png" alt="logo sequelize" width="300px">
@@ -32,7 +32,7 @@ The docker-compose.yml file defines the configuration of the containers required
 
 [Docker](https://www.docker.com/get-started/)
 
-[MySQL](https://www.mysql.com/)
+[PostgreSQL](https://www.postgresql.org/)
 
 [Express JS](https://expressjs.com/pt-br/)
 
@@ -93,11 +93,11 @@ I chose to use an ORM because it allows the decoupling of database rules, facili
 
 I used sequelize because it is a javascript ORM, compatible with typescript, very robust, already known by the community and which provides complete database manipulation through javascript/typescript code.
 
-## Using MySQL
+## Using PostgreSQL
 
-  <img src="https://st4.depositphotos.com/14846838/22198/v/450/depositphotos_221986140-stock-illustration-database-server-data-protection-storage.jpg" alt="docker logo" width=" 150px">
+  <img src="https://www.postgresqltutorial.com/wp-content/uploads/2012/08/What-is-PostgreSQL.png" alt="docker logo" width=" 150px">
 
-I chose MySQL as the database for this project, as it is what I had most contact with in my studies, as well as being known for its reliability, scalability and performance. MySQL supports a wide variety of data types, functions, and operators, making it a versatile choice for applications of all sizes. With its client-server architecture, MySQL allows multiple applications to connect to the same database, ensuring data consistency and integrity.
+I chose PostgreSQL as the database for this project because it is a powerful, open-source, and reliable relational database management system. It offers a wide range of features, including support for complex queries, data integrity, and transactions. PostgreSQL is highly extensible, allowing you to create custom data types, functions, and extensions. Its support for JSON and JSONB data types makes it ideal for storing and querying JSON data. With its active community and regular updates, PostgreSQL is a popular choice for web applications, data warehousing, and geospatial applications.
 
 ## Use of Json Web Token (JWT)
 
