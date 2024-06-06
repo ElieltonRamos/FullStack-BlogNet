@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import ConstrollerRegister from '../controllers/constrollerRegister';
 import ServiceRegister from '../services/serviceRegister';
 import RegisterUserModel from '../models/modelRegister';
-import { validateEmail, validatePassword } from '../middlewares/validateUser';
+import { validateEmail, validateName, validatePassword } from '../middlewares/validateUser';
 import AuthenticateToken from '../middlewares/authenticateToken';
 
 const modelregisterUser = new RegisterUserModel();
@@ -14,6 +14,7 @@ const registerRoutes = Router();
 registerRoutes.post(
   '/',
   validateEmail,
+  validateName,
   validatePassword,
   (req: Request, res: Response) => constrollerRegister.create(req, res));
 
@@ -25,6 +26,8 @@ registerRoutes.get(
 registerRoutes.patch(
   '/user',
   AuthenticateToken.verifyToken,
+  validateEmail,
+  validateName,
   (req: Request, res: Response) => constrollerRegister.update(req, res)
 );
 

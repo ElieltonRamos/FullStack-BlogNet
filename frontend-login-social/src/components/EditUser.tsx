@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/globalContext";
 import { requestEditUser } from "../services/requests";
-import { alertError } from "../services/alerts";
 import AbstractUser from "./SVGs/AbstractUser";
 import { handleChange } from "../services/utils";
 
@@ -16,7 +15,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
   const handleEditUser = async () => {
     if (newUser.name === '' || newUser.email === '') return setMsgError('name and email are necessary');
     const response = await requestEditUser(newUser);
-    if ('message' in response) return alertError(response.message);
+    if ('message' in response) return setMsgError(response.message);
     setUser(newUser);
     setEditUser(false);
   };

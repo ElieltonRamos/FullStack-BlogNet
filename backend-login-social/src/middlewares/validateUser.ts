@@ -30,7 +30,7 @@ export function validateEmail(req: Request, res: Response, next: NextFunction) {
 }
 
 export function validatePassword(req: Request, res: Response, next: NextFunction) {
-  const { password, name } = req.body;
+  const { password } = req.body;
 
   if (!password || password === '') {
     return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.password });
@@ -40,6 +40,12 @@ export function validatePassword(req: Request, res: Response, next: NextFunction
     return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.passwordLength });
   }
 
+  next();
+}
+
+export function validateName(req: Request, res: Response, next: NextFunction) {
+  const { name } = req.body;
+
   if (!name || name === '') {
     return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.name });
   }
@@ -47,6 +53,7 @@ export function validatePassword(req: Request, res: Response, next: NextFunction
   if (name.length < 3) {
     return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.nameLength });
   }
+  
   next();
 }
 
