@@ -7,7 +7,7 @@ export const alertError = (msg: string) => {
     icon: "error",
     title: "Oops...",
     text: "Something went wrong!: " + msg,
-    footer: '<a class="bg-blue-500 hover:bg-blue-600 rounded-lg p-2 text-black" href="/">Try logging in again or check your internet connection</a>'
+    footer: '<a class="bg-purple hover:bg-purpleDark border-4 border-border rounded-lg p-2 text-border" href="/">Try logging in again or check your internet connection</a>'
   });
 };
 

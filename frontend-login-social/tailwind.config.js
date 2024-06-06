@@ -11,7 +11,10 @@ export default {
         380: '380px',
       },
       colors: {
-        red: '#f02849'
+        red: '#f02849',
+        purple: '#7167e0',
+        purpleDark: '#443e86',
+        border: '#dfddf8'
       }
     },
   },
