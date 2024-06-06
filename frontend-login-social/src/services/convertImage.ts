@@ -27,9 +27,9 @@ export const convertImage = (imageFile: File): Promise<string> => {
   });
 };
 
-export const convertImageToBase64 = (imageFile: File): Promise<string> => {
+export const convertImageToBase64 = async (imageFile: File): Promise<string> => {
   try {
-    const imagebase64 = convertImage(imageFile);
+    const imagebase64 = await convertImage(imageFile);
     return imagebase64;
   } catch (error) {
     return Promise.resolve('');

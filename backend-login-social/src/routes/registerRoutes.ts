@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import ConstrollerRegister from '../controllers/constrollerRegister';
 import ServiceRegister from '../services/serviceRegister';
 import RegisterUserModel from '../models/modelRegister';
-import midlewares from '../middlewares/validateUser';
+import { validateEmail, validatePassword } from '../middlewares/validateUser';
 import AuthenticateToken from '../middlewares/authenticateToken';
 
 const modelregisterUser = new RegisterUserModel();
@@ -13,7 +13,8 @@ const registerRoutes = Router();
 
 registerRoutes.post(
   '/',
-  midlewares.validateCreateUser,
+  validateEmail,
+  validatePassword,
   (req: Request, res: Response) => constrollerRegister.create(req, res));
 
 registerRoutes.get(

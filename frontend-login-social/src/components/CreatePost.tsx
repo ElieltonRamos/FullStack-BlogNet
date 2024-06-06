@@ -15,15 +15,34 @@ function CreatePost() {
   const [msgError, setMsgError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.name
     const value = e.target.value
-    let image = '';
-    if (e.target.files !== null) {
-      image = await convertImageToBase64(e.target.files[0]);
-    }
-    setNewPost({ ...newPost, [input]: value, image });
+    setNewPost({ ...newPost, [input]: value });
   };
+
+  const handleInsertImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputFile = e.target.files;
+    
+    if (inputFile === null) return setNewPost({ ...newPost, image: '' });
+
+    if (inputFile.length > 1) return setMsgError('Only one image is allowed');
+
+    const inputImage = inputFile[0];
+
+    if (inputImage.type !== 'image/png' && inputImage.type !== 'image/jpeg') {
+      return setMsgError('Only png and jpeg images are allowed');
+    }
+
+    if (inputImage.size > 1000000) {
+      return setMsgError('Image size must be less than 1MB');
+    }
+
+    const imageBase64 = await convertImageToBase64(inputImage);
+
+    if (imageBase64 === '') return setMsgError('Unable to convert image');
+    setNewPost({ ...newPost, image: imageBase64 });
+  }
 
   const createPost = async () => {
     if (newPost.title === '' || newPost.content === '') {
@@ -71,7 +90,7 @@ function CreatePost() {
         name="image"
         type="file"
         accept="image/png, image/jpeg"
-        onChange={handleChange}
+        onChange={handleInsertImage}
       />
 
       <span className="text-red text-[10px] mb-[-10px] font-semibold text-center">{msgError}</span>

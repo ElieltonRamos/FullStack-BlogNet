@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import ControllerLogin from '../controllers/controllerLogin';
 import ServiceLogin from '../services/serviceLogin';
 import RegisterUserModel from '../models/modelRegister';
-import midlewares from '../middlewares/validateUser';
+import { validadeUserLogin } from '../middlewares/validateUser';
 
 // const memoryModelDatabase = new MemoryDatabase<User>();
 const modelregisterUser = new RegisterUserModel();
@@ -13,7 +13,7 @@ const loginRoutes = Router();
 
 loginRoutes.post(
   '/',
-  midlewares.validadeUserLogin,
+  validadeUserLogin,
   (req: Request, res: Response) => controllerLogin.login(req, res));
 
 export default loginRoutes;

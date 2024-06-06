@@ -2,28 +2,55 @@ import { Request, Response, NextFunction } from 'express';
 import mapStatusHTTP from '../utils/mapStatusHTPP';
 
 const msgErro = {
-  allFields: 'all fields are required',
+  allFields: 'All fields are required',
   email: 'Email is required',
+  emailInvalid: 'Invalid email',
   password: 'Password is required',
-  name: 'Name is required'
+  passwordLength: 'Password must be at least 6 characters',
+  name: 'Name is required',
+  nameLength: 'Name must be at least 3 characters',
 };
 
-function validateCreateUser(req: Request, res: Response, next: NextFunction) {
-  const { email, password, name} = req.body;
+export function validateEmail(req: Request, res: Response, next: NextFunction) {
+  const { email, password } = req.body;
+  const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
   if (!email && !password) {
     return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.allFields });
   }
 
-  if (!email) return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.email });
+  if (!email || email === '') {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.email });
+  }
 
-  if (!password) return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.password });
-
-  if (!name) return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.name});
-
+  if (!regexEmail.test(email)) {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.emailInvalid });
+  }
   next();
 }
 
-function validadeUserLogin(req: Request, res: Response, next: NextFunction) {
+export function validatePassword(req: Request, res: Response, next: NextFunction) {
+  const { password, name } = req.body;
+
+  if (!password || password === '') {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.password });
+  }
+
+  if (password.length < 6) {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.passwordLength });
+  }
+
+  if (!name || name === '') {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.name });
+  }
+
+  if (name.length < 3) {
+    return res.status(mapStatusHTTP('badRequest')).json({ message: msgErro.nameLength });
+  }
+  next();
+}
+
+export function validadeUserLogin(req: Request, res: Response, next: NextFunction) {
   const { email, password } = req.body;
 
   if (!email && !password) {
@@ -36,8 +63,3 @@ function validadeUserLogin(req: Request, res: Response, next: NextFunction) {
 
   next();
 }
-
-export default {
-  validateCreateUser,
-  validadeUserLogin
-};
