@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { BlogPost } from "../types/blogPost";
 import AbstractUser from "./SVGs/AbstractUser";
-import { convertImageToBase64 } from "../services/convertImage";
 import { requestEditPost } from "../services/requests";
 import { alertError } from "../services/alerts";
 import { GlobalContext } from "../context/globalContext";
+import { handleChange } from "../services/utils";
 
 type PropEditPost = {
   post: BlogPost;
@@ -14,26 +14,15 @@ type PropEditPost = {
 function EditPost({ post, setIsEdit }: PropEditPost) {
   const { user: userLogged } = useContext(GlobalContext);
   const [editPost, setEditPost] = useState({ title: post.title, content: post.content, image: '' });
-  const [disabled, setDisabled] = useState(true);
+  const [msgError, setMsgError] = useState('');
   if (!post.user) post.user = { ...userLogged, password: ''};
   const { title, content, created, user, image, updated } = post;
   const postImageExists = image === '' || image === null || image === undefined;
   const userImageExists = userLogged.image === '' || userLogged.image === null || userLogged.image === undefined;
 
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.name
-    const value = e.target.value
-    let image = '';
-    if (e.target.files !== null) {
-      image = await convertImageToBase64(e.target.files[0]);
-    }
-    setEditPost({ ...editPost, [input]: value, image });
-    if (editPost.title !== '' && editPost.content !== '') setDisabled(false);
-  };
-
   const clickEditPost = async () => {
-    if (editPost.title === '' || editPost.content === '') return;
+    if (editPost.title === '' || editPost.content === '') return setMsgError('title and content are necessary');
     const response = await requestEditPost({ ...editPost, id: post.id });
     
     if ('message' in response) return alertError(response.message);
@@ -63,7 +52,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         name="title"
         placeholder="Edit the post title"
         value={editPost.title}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setEditPost, editPost, setMsgError)}
       />
 
       <p className="font-sans">{content}</p>
@@ -73,7 +62,7 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         name="content"
         placeholder="Edit the post content"
         value={editPost.content}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setEditPost, editPost, setMsgError)}
       />
 
       {!postImageExists ? <img className="w-full" src={image} alt="post" /> : null}
@@ -84,11 +73,12 @@ function EditPost({ post, setIsEdit }: PropEditPost) {
         name="image"
         type="file"
         accept="image/png, image/jpeg"
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setEditPost, editPost, setMsgError)}
       />
+      <span className="text-red text-[10px] mb-[-10px] font-semibold text-center">{msgError}</span>
 
       <div className="flex justify-end gap-2 pt-2">
-        <button onClick={clickEditPost} disabled={disabled} className="hover:scale-110 disabled:cursor-not-allowed bg-green-500 rounded-xl p-1 active:scale-95">Salvar</button>
+        <button onClick={clickEditPost} className="hover:scale-110 disabled:cursor-not-allowed bg-green-500 rounded-xl p-1 active:scale-95">Salvar</button>
         <button onClick={() => setIsEdit(false)} className="hover:scale-110 bg-slate-600 rounded-xl p-1 active:scale-95">Cancel</button>
       </div>
     </article>

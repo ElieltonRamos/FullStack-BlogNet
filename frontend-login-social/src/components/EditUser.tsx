@@ -1,37 +1,24 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/globalContext";
 import { requestEditUser } from "../services/requests";
-import { convertImageToBase64 } from "../services/convertImage";
 import { alertError } from "../services/alerts";
 import AbstractUser from "./SVGs/AbstractUser";
+import { handleChange } from "../services/utils";
 
 export function EditUser({ setEditUser }: PropEditUser) {
   const { user, setUser } = useContext(GlobalContext);
   const [ newUser, setNewUser ] = useState(user);
-  const [enable, setEnable] = useState(true);
+  const [msgError, setMsgError] = useState('');
 
   const userImageExists = user.image === '' || user.image === null || user.image === undefined;
 
 
   const handleEditUser = async () => {
+    if (newUser.name === '' || newUser.email === '') return setMsgError('name and email are necessary');
     const response = await requestEditUser(newUser);
     if ('message' in response) return alertError(response.message);
     setUser(newUser);
     setEditUser(false);
-  };
-
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const userInvalid = newUser.name !== '';
-    const emailInvalid = newUser.email !== '';
-    if (userInvalid || emailInvalid) setEnable(false);
-
-    const input = e.target.name;
-    const value = e.target.value;
-    let image = '';
-    if (e.target.files !== null) {
-      image = await convertImageToBase64(e.target.files[0]);
-    }
-    setNewUser({ ...newUser, [input]: value, image });
   };
 
   return (
@@ -44,7 +31,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
         file:text-sm file:font-semibold file:bg-gray-300 file:text-violet-700 hover:file:bg-gray-400"
         name="image"
         type="file"
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setNewUser, newUser, setMsgError)}
         accept="image/png, image/jpeg"
       />
       <p className="text-slate-500 text-sm font-bold">Nome: Fulano de Tal</p>
@@ -53,7 +40,7 @@ export function EditUser({ setEditUser }: PropEditUser) {
         type="text"
         name="name"
         value={newUser.name}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setNewUser, newUser, setMsgError)}
         placeholder="change your name here"
       />
       <p className="text-slate-500 text-sm font-bold">Email: email.com</p>
@@ -62,13 +49,14 @@ export function EditUser({ setEditUser }: PropEditUser) {
         type="email"
         name="email"
         value={newUser.email}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setNewUser, newUser, setMsgError)}
         placeholder="change your e-mail here"
       />
 
+      <span className="text-red text-[10px] mb-[-10px] font-semibold text-center">{msgError}</span>
+
       <button
         onClick={handleEditUser}
-        disabled={enable}
         className="disabled:cursor-not-allowed text-gray-800 transition-all duration-300 active:scale-95
           w-full bg-green-400 stroke-slate-600 border 
         border-slate-200 col-span-2 flex justify-center rounded-lg p-2 hover:border-slate-800 hover:text-white"

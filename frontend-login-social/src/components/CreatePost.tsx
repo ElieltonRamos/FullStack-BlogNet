@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { convertImageToBase64 } from "../services/convertImage";
 import { requestCreatePost } from "../services/requests";
 import LoadingSmall from "./loadings/LoadingSmall";
 import { GlobalContext } from "../context/globalContext";
 import { BlogPost } from "../types/blogPost";
+import { handleChange } from "../services/utils";
 
 function CreatePost() {
   const { viewPosts, setViewPosts } = useContext(GlobalContext)
@@ -14,35 +14,6 @@ function CreatePost() {
   });
   const [msgError, setMsgError] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.name
-    const value = e.target.value
-    setNewPost({ ...newPost, [input]: value });
-  };
-
-  const handleInsertImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputFile = e.target.files;
-    
-    if (inputFile === null) return setNewPost({ ...newPost, image: '' });
-
-    if (inputFile.length > 1) return setMsgError('Only one image is allowed');
-
-    const inputImage = inputFile[0];
-
-    if (inputImage.type !== 'image/png' && inputImage.type !== 'image/jpeg') {
-      return setMsgError('Only png and jpeg images are allowed');
-    }
-
-    if (inputImage.size > 1000000) {
-      return setMsgError('Image size must be less than 1MB');
-    }
-
-    const imageBase64 = await convertImageToBase64(inputImage);
-
-    if (imageBase64 === '') return setMsgError('Unable to convert image');
-    setNewPost({ ...newPost, image: imageBase64 });
-  }
 
   const createPost = async () => {
     if (newPost.title === '' || newPost.content === '') {
@@ -68,7 +39,7 @@ function CreatePost() {
         type="text"
         name="title"
         value={newPost.title}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e, setNewPost, newPost, setMsgError)}
         placeholder="About what you want to talk?"
       />
 
@@ -76,7 +47,7 @@ function CreatePost() {
         itemType="text"
         name="content"
         value={newPost.content}
-        onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+        onChange={(e) => handleChange(e, setNewPost, newPost, setMsgError)}
         placeholder="Speak freely!"
         className="bg-slate-100 h-10 text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border
         border-slate-200
@@ -90,7 +61,7 @@ function CreatePost() {
         name="image"
         type="file"
         accept="image/png, image/jpeg"
-        onChange={handleInsertImage}
+        onChange={(e) => handleChange(e, setNewPost, newPost, setMsgError)}
       />
 
       <span className="text-red text-[10px] mb-[-10px] font-semibold text-center">{msgError}</span>
