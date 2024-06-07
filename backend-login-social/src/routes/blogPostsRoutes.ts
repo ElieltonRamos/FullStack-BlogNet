@@ -3,6 +3,7 @@ import AuthenticateToken from '../middlewares/authenticateToken';
 import ControllerBlogPost from '../controllers/controllerBlogPost';
 import BlogPostService from '../services/serviceBlogPost';
 import BlogPostModel from '../models/modelBlogPost';
+import { validateImage } from '../middlewares/validateImage';
 
 // const memoryModelDatabase = new MemoryDatabase<BlogPost>();
 const modelBlogPosts = new BlogPostModel();
@@ -19,11 +20,13 @@ blogPostsRoutes.get(
 blogPostsRoutes.post(
   '/',
   AuthenticateToken.verifyToken,
+  validateImage,
   (req: Request, res: Response) => controlllerBlogPosts.create(req, res));
 
 blogPostsRoutes.patch(
   '/:id',
   AuthenticateToken.verifyToken,
+  validateImage,
   (req: Request, res: Response) => controlllerBlogPosts.update(req, res));
 
 blogPostsRoutes.get(

@@ -20,12 +20,12 @@ export const handleChange = async <t>(
   const input = e.target.name;
   const value = e.target.value;
 
-  let image = '';
   if ('files' in e.target && input === 'image') {
     const files = e.target.files;
     const convertImage = await convertImageToBase64(files);
     if (typeof convertImage === 'string') return setMsgError(convertImage);
-    image = convertImage.imageBase64;
+    const image = convertImage.imageBase64;
+    return setState({ ...state, image });
   }
-  setState({ ...state, [input]: value, image });
+  setState({ ...state, [input]: value });
 };

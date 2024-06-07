@@ -4,6 +4,7 @@ import ServiceRegister from '../services/serviceRegister';
 import RegisterUserModel from '../models/modelRegister';
 import { validateEmail, validateName, validatePassword } from '../middlewares/validateUser';
 import AuthenticateToken from '../middlewares/authenticateToken';
+import { validateImage } from '../middlewares/validateImage';
 
 const modelregisterUser = new RegisterUserModel();
 const serviceRegister = new ServiceRegister(modelregisterUser);
@@ -16,6 +17,7 @@ registerRoutes.post(
   validateEmail,
   validateName,
   validatePassword,
+  validateImage,
   (req: Request, res: Response) => constrollerRegister.create(req, res));
 
 registerRoutes.get(
@@ -28,6 +30,7 @@ registerRoutes.patch(
   AuthenticateToken.verifyToken,
   validateEmail,
   validateName,
+  validateImage,
   (req: Request, res: Response) => constrollerRegister.update(req, res)
 );
 
